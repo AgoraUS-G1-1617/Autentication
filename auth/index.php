@@ -20,7 +20,7 @@ if (isset($_REQUEST['error'])) {
     $errorMsgs = array(
         "shortPass"=>"La constraseña es demasiado corta como para ser válida.",
         "shortUser"=>"El usuario es demasiado corto como para ser válido.",
-        "wrongPass"=>"La contraseña es incorrecta",
+        "wrongPass"=>"La contraseña no corresponde con el usuario, porfavor, introduzaca de nuevo la contraseña",
         "connectionFailed"=>"Ha ocurrido un error con la base de datos."
         );
     $errorMsg = $errorMsgs[$_REQUEST['error']];
