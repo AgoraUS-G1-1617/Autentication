@@ -10,10 +10,10 @@ CREATE TABLE IF NOT EXISTS USERS(
 	age 	TINYINT NOT NULL,
 	PRIMARY KEY(U_ID));
 
-INSERT INTO USERS VALUE(NULL, 'danayaher','7a1b688bc2bb3cc02e0d55c4e0188fb0','danayaher@alum.us.es','Masculino','Andalucia','22');
-INSERT INTO USERS VALUE(NULL, 'dandelea','9cf23ad866a1953b3dd93c80f595ea11','dandelea@alum.us.es','Masculino','Andalucia','22');
-INSERT INTO USERS VALUE(NULL, 'fidmazdel','b746ac06bca08e9c60f1e67f9a978253','fidmazdel@alum.us.es','Masculino','Andalucia','24');
-INSERT INTO USERS VALUE(NULL, 'juarolsal','9f1644a43dbfbaf05fda6ec642430b4d','juarolsal@alum.us.es','Masculino','Andalucia','22');
-INSERT INTO USERS VALUE(NULL, 'alesanmed','2c678f01c9222350776420037a69a1db','alesanmed@alum.us.es','Masculino','Andalucia','22');
-INSERT INTO USERS VALUE(NULL, 'juacaslop','f8e70dcaaf443f4fadd34959adaca9d2','juacaslop@alum.us.es','Masculino','Andalucia','27');
+INSERT INTO USERS VALUE(NULL, 'pabcargar2','6d722561cf386015cb1d7c1937806bb5','pabcargar2@alum.us.es','Masculino','Andalucia','22');
+INSERT INTO USERS VALUE(NULL, 'julmayalv','69d597adc75eb3dd6bd50263d07ba7d0','julmayalv@alum.us.es','Masculino','Andalucia','22');
+INSERT INTO USERS VALUE(NULL, 'josnavmar','9d9f2aad56b353eba0f1455e76ddb232','josnavmar@alum.us.es','Masculino','Andalucia','24');
+INSERT INTO USERS VALUE(NULL, 'sercaroli','05091978bbc2a25dc311e825950aeb0f','sercaroli@alum.us.es','Masculino','Andalucia','22');
+INSERT INTO USERS VALUE(NULL, 'fuerte94','e048609908aed7af5ffe60ad8c37fb2c','jorrodfue@alum.us.es','Masculino','Andalucia','22');
+INSERT INTO USERS VALUE(NULL, 'aletormar','2a714a0e9c5af182865491b0969e5f60','aletormar@alum.us.es','Masculino','Andalucia','27');
 COMMIT;
