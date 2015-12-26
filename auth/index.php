@@ -30,6 +30,17 @@ if (isset($_REQUEST['error'])) {
 ?>
 <!DOCTYPE html>
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml">
+	
+	<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.mi.js"></script>
+	<script type="text/javascript" src="bootstrap/js/npm.js"></script>
+
+	
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css">
+	<link rel="stylesheet" href="styles/bootstrap/css/bootstrap-theme.css" type="text/css">
+	<link rel="stylesheet" href="styles/bootstrap/css/bootstrap-theme.css.map" type="text/css">
+	<link rel="stylesheet" href="styles/bootstrap/css/bootstrap.css.map" type="text/css">
+	
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <title><?php echo TITLE?></title>

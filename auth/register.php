@@ -176,6 +176,7 @@ session_start();
                     <input  type="text" 
                             id="username" 
                             name="username" 
+                            class="form-control"
                             value=<?php echo htmlentities($registerForm['username']) ?>>
                 </td>
                 <td>
