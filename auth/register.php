@@ -18,6 +18,17 @@ session_start();
    <meta charset="utf-8">
    <link rel="stylesheet" href="layout.css" />
    <script src="lib/jquery-2.1.1.min.js"></script>
+   
+   <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.mi.js"></script>
+	<script type="text/javascript" src="bootstrap/js/npm.js"></script>
+
+	
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css">
+	<link rel="stylesheet" href="styles/bootstrap/css/bootstrap-theme.css" type="text/css">
+	<link rel="stylesheet" href="styles/bootstrap/css/bootstrap-theme.css.map" type="text/css">
+	<link rel="stylesheet" href="styles/bootstrap/css/bootstrap.css.map" type="text/css">
+   
    <title><?php echo TITLE?></title>
    <script type="text/javascript">
     function validateEmail(email) {
@@ -167,74 +178,56 @@ session_start();
         ?>
     </div>
     <form id="registerForm" onsubmit="return form_process()" method="POST" action="action_register.php">
-        <table>
-            <tr>
-                <td>
-                    <label for="username">Nombre de usuario:</label>
-                </td>
-                <td>
-                    <input  type="text" 
-                            id="username" 
-                            name="username" 
-                            class="form-control"
-                            value=<?php echo htmlentities($registerForm['username']) ?>>
-                </td>
-                <td>
-                    <label for="email">Correo electrónico</label>
-                </td>
-                <td>
+    	
+             <i class="glyphicon glyphicon-user"></i><label for="username">Nombre de usuario:</label>
+             <input  type="text" 
+                     id="username" 
+                     name="username" 
+                     class="form-control"
+                     value=<?php echo htmlentities($registerForm['username']) ?>>
+
+<br />
+                     <i class="glyphicon glyphicon-envelope"></i><label for="email">Correo electrónico</label>
                     <input  type="text" 
                             id="email" 
                             name="email" 
+                             class="form-control"
                             value=<?php echo htmlentities($registerForm['email']) ?>>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="password">Contraseña</label>
-                </td>
-                <td>
+<br />
+
+                   <label for="password">Contraseña</label>
                     <input  type="password" 
                             id="password" 
+                            class="form-control"
                             name="password">
-                </td>
-                <td>
+
+<br />
                     <label for="r_password">Repetir contraseña</label>
-                </td>
-                <td>
                     <input  type="password" 
-                            id="r_password" 
+                            id="r_password"
+                            class="form-control" 
                             name="r_password">
-                </td>
-            </tr>
-            <tr>
-                <td>
+
+<br />
                     <label for="genre">Género</label>
-                </td>
-                <td>
-                    <select id="genre" name="genre">
+                    <select id="genre" name="genre" class="form-control">
                         <option value="default">----------</option>
                         <option value="Masculino">Masculino</option>
                         <option value="Femenino">Femenino</option>
                     </select>
-                </td>
-                <td>
+
+<br />
                     <label for="age">Edad</label>
-                </td>
-                <td>
                     <input  type="number" 
                             id="age" 
                             name="age" 
                             min="1" 
+                            class="form-control"
                             value=<?php echo htmlentities($registerForm['age'])?>>
-                </td>
-            </tr>
-            <tr>
-                <td>
+  
+  <br />
                     <label for="autonomous_community">Comunidad autónoma</label>
-                </td>
-                <td>
-                    <select name="autonomous_community" id="autonomous_community">
+                    <select name="autonomous_community" id="autonomous_community" class="form-control"> 
                         <option value="default" selected="true">----------</option>
                         <option value="Andalucia">Andalucia</option>
                         <option value="Murcia">Murcia</option>
@@ -252,22 +245,26 @@ session_start();
                         <option value="Pais Vasco">Pais Vasco</option>
                         <option value="Navarra">Navarra</option>
                     </select>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
+
+<br />
+                
                     <input  type="submit" 
                             id="submit" 
                             value ="Enviar" 
-                            class="contact"/>
-                </td>
-            </tr>
-        <table>
+                           	class="btn btn-primary"/>
+                           	
+                    <input  onClick="location.href = 'index.php' "
+                            id="back" 
+                            type="button"
+                            value ="Volver" 
+                           	class="btn btn-danger"/>
+
+
     </form>
     <div class="push"></div>
     </div>
     <div class="footer">
-        <p>Copyright</p>
+        <i class="glyphicon glyphicon-copyright-mark"></i><b>Copyright</b>
     </div>
 </body>
 </html>

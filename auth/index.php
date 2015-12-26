@@ -34,6 +34,10 @@ if (isset($_REQUEST['error'])) {
 	<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
 	<script type="text/javascript" src="bootstrap/js/bootstrap.mi.js"></script>
 	<script type="text/javascript" src="bootstrap/js/npm.js"></script>
+	<script type="text/javascript" src="bootstrap/js/index.js"></script>
+	<script type="text/javascript" src="scripts/index.js"></script>
+	
+	<link rel="stylesheet" href="style/style.css" type="text/css">
 
 	
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css">
@@ -46,44 +50,47 @@ if (isset($_REQUEST['error'])) {
     <title><?php echo TITLE?></title>
 </head>
 <body>
+	
+	<div class="container-fluid">
 <div id="loginWr">
     <div id="loginTitle"><?php echo TITLE?></div>
-    <div id="login">
-        <p> Si no estás registrado, puedes hacerlo <a href="register.php">aquí</a></p>
-        <form action="logAttempt.php" method="post">
-        <table>
-            <tr>
-                <td>
+    <div id="login" >
+        <form action="logAttempt.php" method="post" class="login-form">
+<div class="content">
                     <label for="user"><img src="img/userSnapshot.png" alt="Nombre de usuario"></label>
-                </td>
-                <td>
                     <input  type="text" 
                             id="user" 
                             name="user" 
+                            style="font-size: 18px"
                             title="Su nombre de usuario" 
-                            placeholder="Nombre de usuario" 
-                            tabindex="1"/><br/>
-                </td>
-                <td rowspan="2" id="enter">
-                    <input type="submit" value="Entrar">
-                </td>
-            </tr><tr>
-                <td>
-                    <label for="pass"><img src="img/passSnapshot.png" alt="Contraseña"></label>
-                </td>
-                <td>
+                            placeholder="Nombre de usuario" />
+                            <br/>
+
+
+                    
+ 
+                    <label for="pass"><img src="img/passSnapshot.png" alt="Contraseña" ></label>
                     <input  type="password" 
                             id="pass" 
                             name="pass" 
                             title="Su contraseña" 
                             placeholder="Contraseña" 
-                            tabindex="2"/>
-                </td>
-            </tr>
-        </table>
+                            style="font-size: 18px"/>
+                        </div>
+                            <br />
+                            
+<div class="footer">
+					<input type="submit" class="btn btn-primary" value="Entrar">
+					<input  onClick="location.href = 'register.php' "
+                            id="register" 
+                            type="button"
+                            value ="Registrate" 
+                           	class="btn btn-info"/>
+                           	</div>
         </form>
     <div id="error"><?php echo $errorMsg?></div>
     </div>
+</div>
 </div>
 </body>
 </html>
