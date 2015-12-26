@@ -22,6 +22,7 @@ session_start();
    <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
 	<script type="text/javascript" src="bootstrap/js/bootstrap.mi.js"></script>
 	<script type="text/javascript" src="bootstrap/js/npm.js"></script>
+	
 
 	
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css">
@@ -103,9 +104,10 @@ session_start();
 </head>
 <body>
    <div class="wrapper">
-   <div class="logo">Logo y título de la aplicación</div>
-   <div class="menu">Menú de selección de opciones</div>
-   <h1>Registro</h1>
+   <div class="container-fluid">
+		<div class="logo">
+		<h1>Registro de Agor@us<img alt="Agora@us" src="img/agoraUsImage.jpg" width="100px" height="100px"></h1>
+	</div>
    <div id="error">
         <?php
             if (isset($_REQUEST['error'])) {
