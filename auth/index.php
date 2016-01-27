@@ -52,8 +52,10 @@ if (isset($_REQUEST['error'])) {
 <body>
 	
 	<div class="container-fluid">
+		<div class="logo">
+		<h4>Bienvenidos a Agor@us<img alt="Agora@us" src="img/agoraUsImage.jpg" width="100px" height="100px"></h4>
+	</div>
 <div id="loginWr">
-    <div id="loginTitle"><?php echo TITLE?></div>
     <div id="login" >
         <form action="logAttempt.php" method="post" class="login-form">
 <div class="content">

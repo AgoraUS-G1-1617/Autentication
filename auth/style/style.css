@@ -19,13 +19,13 @@
 body {
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 	font-weight:300;
-	text-align: left;
+	text-align: center;
 	text-decoration: none;
 	height: 500px;
 }
 
 #login{
-	margin-top: 10%;
+	margin-top: 10px;
 }
 
 #container{
@@ -220,6 +220,11 @@ FOOTER
 	box-shadow: inset 0 1px 0 rgba(0,0,0,0.15);
 	-moz-box-shadow: inset 0 1px 0 rgba(0,0,0,0.15);
 	-webkit-box-shadow: inset 0 1px 0 rgba(0,0,0,0.15);
+}
+
+.logo{
+	margin:0 auto 0 auto; width:390px;
+	padding-top: 100px;
 }
 
 /* Login button */
