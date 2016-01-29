@@ -1,22 +1,22 @@
-Se deberá de mencionar en 'Control de versiones' la realización de la conclusión (Miembro: July O Pablo)
+
 
 
  -----------------------------------------------------------------------------------------------------------------------
-|Gestión del código fuente: se explicarán los procesos, técnicas y herramientas para					|
-|la gestión del código del proyecto. Evite poner información de las herramientas					|
-|en sí que se pueda encontrar en fuentes bibliográficas o internet. Si es del caso haga					|
-|referencia a ellas. Céntrese en los aspectos particulares de su proyecto, por						|
-|ejemplo,														|
-|															|
-|¿cómo se gestionan las ramas en el código? 										|
-|															|
-|¿cómo se aplica un parche (patch)? 											|
-|															|
-|¿cómo se aprueban los cambios? 											|
-|															|
-|¿qué roles existen en la gestión del código?										|
-|															|
-|¿qué políticas de nombre y estilo se utilizan en el código fuente? 							|
-|															|
-|¿cuál es el usage model del repositorio de código? Cada una de estos apartados deben estar divididos en secciones.	|
+|GestiÃ³n del cÃ³digo fuente: se explicarÃ¡n los procesos, tÃ©cnicas y herramientas para				                               	|
+|la gestiÃ³n del cÃ³digo del proyecto. Evite poner informaciÃ³n de las herramientas			                                   		|
+|en sÃ­ que se pueda encontrar en fuentes bibliogrÃ¡ficas o internet. Si es del caso haga				                            	|
+|referencia a ellas. CÃ©ntrese en los aspectos particulares de su proyecto, por						                                    |
+|ejemplo,												                                                                                                 		|
+|															                                                                                                        |
+|Â¿cÃ³mo se gestionan las ramas en el cÃ³digo? 							                                                                  			|
+|														                                                                                                         |
+|Â¿cÃ³mo se aplica un parche (patch)? 								                                        			                                 |
+|														                                                                                                       	 |
+|Â¿cÃ³mo se aprueban los cambios? 									                                                                            		 |
+|														                                                                                                       	 |
+|Â¿quÃ© roles existen en la gestiÃ³n del cÃ³digo?							                                                                 			|
+|														                                                                                                        	|
+|Â¿quÃ© polÃ­ticas de nombre y estilo se utilizan en el cÃ³digo fuente? 					                                               |
+|														                                                                                                       	 |
+|Â¿cuÃ¡l es el usage model del repositorio de cÃ³digo? Cada una de estos apartados deben estar divididos en secciones.	    |
  -----------------------------------------------------------------------------------------------------------------------
