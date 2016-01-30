@@ -24,23 +24,6 @@ if($_POST['accion'] == 'enviar'){
 }
 ?>
 
-XHTML
-
-<html>
-  <head>
-    <title>Mi primer ejemplo de reCAPTCHA</title>
-     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-  </head>
-  <body>
-    <form action="verificar.php" method="post">
-      <div class="g-recaptcha" data-sitekey="AQUI_LA_CLAVE_DEL_SITIO"></div>
-      <br/>
-      <input type="submit" value="Enviar">
-      <input type="hidden" name="accion" value="enviar">
-    </form>
-  </body>
-</html>
-
 <html>
   <head>
     <title>Confirma que no eres un robot para continuar</title>
