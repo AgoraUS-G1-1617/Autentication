@@ -8,7 +8,7 @@ Repositorio para el proyecto de EGC del grupo Autenticación para el curso 2015-
 * Pablo José Carrillo
 * José Manuel Navarro
 * Sergio Carrascosa
-* Giuliano Mayer
+* Giuliano Mayer (Ossyriand)
 * Jorge Rodríguez
 * Alejandro Tortolero
 
