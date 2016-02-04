@@ -9,24 +9,6 @@
 
 include_once 'variables.php';
 
-if (isset($_REQUEST['logout'])) {
-    setcookie("token", NULL, time()-3600);
-    setcookie("user", NULL, time()-3600);
-} else if (isset($_SESSION['user'])) {
-    header('Location: ./?cont=home');
-}
-
-if (isset($_REQUEST['error'])) {
-    $errorMsgs = array(
-        "shortPass"=>"La constraseña es demasiado corta como para ser válida.",
-        "shortUser"=>"El usuario es demasiado corto como para ser válido.",
-        "wrongPass"=>"La contraseña no corresponde con el usuario, porfavor, introduzaca de nuevo la contraseña",
-        "connectionFailed"=>"Ha ocurrido un error con la base de datos."
-        );
-    $errorMsg = $errorMsgs[$_REQUEST['error']];
-} else {
-    $errorMsg = "";
-}
 ?>
 <!DOCTYPE html>
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml">
@@ -44,55 +26,52 @@ if (isset($_REQUEST['error'])) {
 	<link rel="stylesheet" href="styles/bootstrap/css/bootstrap-theme.css" type="text/css">
 	<link rel="stylesheet" href="styles/bootstrap/css/bootstrap-theme.css.map" type="text/css">
 	<link rel="stylesheet" href="styles/bootstrap/css/bootstrap.css.map" type="text/css">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:100' rel='stylesheet' type='text/css'>
 	
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <title><?php echo TITLE?></title>
 </head>
-<body>
+<body style="background-color: #F5F5F5;font-family: Roboto;">
 	
-	<div class="container-fluid">
-		<div class="logo">
-		<h4>Bienvenidos a Agor@us<img alt="Agora@us" src="img/agoraUsImage.jpg" width="100px" height="100px"></h4>
+	<div class="tituloInicio">
+		<h1 style="font-size: 100px; font-family: Roboto">¡Bienvenidos a agor@us!</h1>
 	</div>
-<div id="loginWr">
-    <div id="login" >
-        <form action="logAttempt.php" method="post" class="login-form">
-<div class="content">
-                    <label for="user"><img src="img/userSnapshot.png" alt="Nombre de usuario"></label>
-                    <input  type="text" 
-                            id="user" 
-                            name="user" 
-                            style="font-size: 18px"
-                            title="Su nombre de usuario" 
-                            placeholder="Nombre de usuario" />
-                            <br/>
-
-
-                    
- 
-                    <label for="pass"><img src="img/passSnapshot.png" alt="Contraseña" ></label>
-                    <input  type="password" 
-                            id="pass" 
-                            name="pass" 
-                            title="Su contraseña" 
-                            placeholder="Contraseña" 
-                            style="font-size: 18px"/>
-                        </div>
-                            <br />
-                            
-<div class="footer">
-					<input type="submit" class="btn btn-primary" value="Entrar">
-					<input  onClick="location.href = 'register.php' "
+	
+	<div class="row">
+  <div class="col-md-4">
+  	<div class="loginDNIe">
+		<h1 style="font-size: 40px;">Entrar con DNIe</h1>
+		<input  onClick="location.href = 'loginDNIe.php' "
+                            id="loginDNIe" 
+                            type="button"
+                            value ="Entra" 
+                           	class="btn btn-info"/>
+	</div>
+  </div>
+  <div class="col-md-4">
+  	<div class="loginNotDNIe">
+		<h1 style="font-size: 40px;">Entrar sin DNIe</h1>
+		<input  onClick="location.href = 'loginNotDNIe.php' "
+                            id="loginNotDNIe" 
+                            type="button"
+                            value ="Entra" 
+                           	class="btn btn-info"/>
+	</div>
+  </div>
+  
+  <div class="col-md-4">
+  	<div class="register">
+		<h1 style="font-size: 40px;">¿Aún no te has registrado?</h1>
+		<input  onClick="location.href = 'register.php' "
                             id="register" 
                             type="button"
                             value ="Registrate" 
                            	class="btn btn-info"/>
-                           	</div>
-        </form>
-    <div id="error"><?php echo $errorMsg?></div>
-    </div>
+	</div>
+  </div>
 </div>
-</div>
+	
+	
 </body>
 </html>
