@@ -272,19 +272,20 @@ session_start();
                     </select>
 
 <br />
-                
+                <div class="g-recaptcha" data-sitekey="6Ldx5RYTAAAAALAbT0AF2v0Aj9tNI6nfjinPOo9E"></div>
                     <input  type="submit" 
                             id="submit" 
                             value ="Enviar" 
                            	class="btn btn-primary"/>
                            	
+                    
                     <input  onClick="location.href = 'index.php' "
                             id="back" 
                             type="button"
                             value ="Volver" 
                            	class="btn btn-danger"/>
 
-		<div class="g-recaptcha" data-sitekey="6Ldx5RYTAAAAALAbT0AF2v0Aj9tNI6nfjinPOo9E"></div>
+		
 		
     </form>
     <div class="push"></div>
