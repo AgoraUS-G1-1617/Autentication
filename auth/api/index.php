@@ -101,7 +101,7 @@
     */
     function checkToken($token) {
         header('HTTP/1.1 200 OK');
-        header('Content-type: application/json');
+        //header('Content-type: application/json');
         $result['valid']=tokenIsCorrect($token);
 
         echo json_encode($result);
