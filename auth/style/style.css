@@ -1,5 +1,10 @@
 @import url(http://fonts.googleapis.com/css?family=Bree+Serif);
 
+@font-face {
+	font-family: "RobotoThin";
+	src: url("https://www.google.com/fonts#UsePlace:use/Collection:Roboto:100");
+}
+
 :selection {
 	color: #fff;
 	background: #f676b2; /* Safari */
@@ -17,7 +22,8 @@
 }
 
 body {
-	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	background-color: #c2185b;
+	font-family: Roboto;
 	font-weight:300;
 	text-align: center;
 	text-decoration: none;
@@ -276,14 +282,15 @@ FOOTER
 	color: white;
 }
 
-@font-face {
-	font-family: "RobotoThin";
-	src: url("https://www.google.com/fonts#UsePlace:use/Collection:Roboto:100");
-}
+
 
 .row{
 	
 	background-color: #F5F5F5;
 	padding: 90px;
 	border: 0px;
+}
+
+.formLogin {
+	margin-top: -30px;
 }
