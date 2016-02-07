@@ -46,7 +46,7 @@ session_start();
 	<script type="text/javascript" src="bootstrap/js/bootstrap.mi.js"></script>
 	<script type="text/javascript" src="bootstrap/js/npm.js"></script>
 	
-
+	<link rel="stylesheet" href="style/style.css" type="text/css">
 	
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css">
 	<link rel="stylesheet" href="styles/bootstrap/css/bootstrap-theme.css" type="text/css">
