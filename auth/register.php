@@ -46,12 +46,14 @@ session_start();
 	<script type="text/javascript" src="bootstrap/js/bootstrap.mi.js"></script>
 	<script type="text/javascript" src="bootstrap/js/npm.js"></script>
 	
-	<link rel="stylesheet" href="style/style.css" type="text/css">
+	
 	
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css">
 	<link rel="stylesheet" href="styles/bootstrap/css/bootstrap-theme.css" type="text/css">
 	<link rel="stylesheet" href="styles/bootstrap/css/bootstrap-theme.css.map" type="text/css">
 	<link rel="stylesheet" href="styles/bootstrap/css/bootstrap.css.map" type="text/css">
+	
+	<link rel="stylesheet" href="style/style.css" type="text/css">
    
    <title><?php echo TITLE?></title>
    <script type="text/javascript">
@@ -124,12 +126,15 @@ session_start();
 
     $_SESSION['registerForm'] = $registerForm;
     ?>
+    
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100' rel='stylesheet' type='text/css'>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
-<body>
-   <div class="wrapper">
-   <div class="container-fluid">
-		<div class="logo">
-		<h1>Registro de Agor@us<img alt="Agora@us" src="img/agoraUsImage.jpg" width="100px" height="100px"></h1>
+<body style="font-family: Roboto; color: white;">
+   
+   <div class="tituloInicio">
+		<h1 style="font-size: 100px; font-family: Roboto">Formulario de registro</h1>
 	</div>
    <div id="error">
         <?php
@@ -202,57 +207,44 @@ session_start();
             }
         ?>
     </div>
+    <div align="left">
     <form id="registerForm" onsubmit="return form_process()" method="POST" action="action_register.php">
-    	
-             <i class="glyphicon glyphicon-user"></i><label for="username">Nombre de usuario:</label>
-             <input  type="text" 
-                     id="username" 
-                     name="username" 
-                     class="form-control"
-                     value=<?php echo htmlentities($registerForm['username']) ?>>
 
+                <label for="username" style="font-size: 22px"> <i class="glyphicon glyphicon-user"></i> Nombre de usuario:</label>
+                <input  type="text" id="username" name="username" style="font-size: 22px; width: 30%; color: black;" value=<?php echo htmlentities($registerForm['username']) ?>>
+  			
+  				<label for="email" style="font-size: 22px; margin-left: 23px; margin-right: 24px;"><i class="glyphicon glyphicon-envelope"></i> Correo electrónico:</label>
+                <input  type="text" id="email" name="email" style="font-size: 22px; width: 30%;color: black;" value=<?php echo htmlentities($registerForm['email']) ?>>
+  			
 <br />
-                     <i class="glyphicon glyphicon-envelope"></i><label for="email">Correo electrónico</label>
-                    <input  type="text" 
-                            id="email" 
-                            name="email" 
-                             class="form-control"
-                            value=<?php echo htmlentities($registerForm['email']) ?>>
+<br />
+                
+                <label for="password" style="font-size: 22px; margin-right: 87px;"> <i class="fa fa-lock"></i> Contraseña:</label>
+                <input  type="password" id="password" name="password" style="font-size: 22px; width: 30%;color: black;" />
+                
+                <label for="r_password" style="font-size: 22px; margin-left: 23px; margin-right: 102px;"> <i class="fa fa-lock"></i> Contraseña:</label>
+                <input  type="password" id="r_password" name="r_password" style="font-size: 22px; width: 30%;color: black;" />
+                
+<br />
 <br />
 
-                   <label for="password">Contraseña</label>
-                    <input  type="password" 
-                            id="password" 
-                            class="form-control"
-                            name="password">
-
-<br />
-                    <label for="r_password">Repetir contraseña</label>
-                    <input  type="password" 
-                            id="r_password"
-                            class="form-control" 
-                            name="r_password">
-
-<br />
-                    <label for="genre">Género</label>
-                    <select id="genre" name="genre" class="form-control">
+				<label for="genre" style="font-size: 22px; margin-right: 153px;">Género:</label>
+                    <select id="genre" name="genre" style="font-size: 22px; width: 10%;color: black; margin-right: 27px;">
                         <option value="default">----------</option>
                         <option value="Masculino">Masculino</option>
                         <option value="Femenino">Femenino</option>
-                    </select>
-
-<br />
-                    <label for="age">Edad</label>
+                    </select>                
+                    
+                    <label for="age" style="font-size: 22px;">Edad: </label>
                     <input  type="number" 
                             id="age" 
                             name="age" 
                             min="1" 
-                            class="form-control"
+                            style="font-size: 22px; width: 5%;color: black; margin-right: 218px;"
                             value=<?php echo htmlentities($registerForm['age'])?>>
-  
-  <br />
-                    <label for="autonomous_community">Comunidad autónoma</label>
-                    <select name="autonomous_community" id="autonomous_community" class="form-control"> 
+                            
+                    <label for="autonomous_community" style="font-size: 22px; margin-right: 10px;">Comunidad autónoma:</label>
+                    <select name="autonomous_community" id="autonomous_community" style="font-size: 22px; width: 15%;color: black;"> 
                         <option value="default" selected="true">----------</option>
                         <option value="Andalucia">Andalucia</option>
                         <option value="Murcia">Murcia</option>
@@ -272,26 +264,27 @@ session_start();
                     </select>
 
 <br />
-                <div class="g-recaptcha" data-sitekey="6Ldx5RYTAAAAALAbT0AF2v0Aj9tNI6nfjinPOo9E"></div>
-                    <input  type="submit" 
+<br />
+                
+                <div class="g-recaptcha" data-sitekey="6Ldx5RYTAAAAALAbT0AF2v0Aj9tNI6nfjinPOo9E" align="center"></div>
+                <div align="center">  
+                	<input  type="submit" 
                             id="submit" 
                             value ="Enviar" 
-                           	class="btn btn-primary"/>
+                           	class="btn btn-info" align="center"/>
+                </div> 
+                 
                            	
-                    
-                    <input  onClick="location.href = 'index.php' "
-                            id="back" 
-                            type="button"
-                            value ="Volver" 
-                           	class="btn btn-danger"/>
-
-		
 		
     </form>
-    <div class="push"></div>
     </div>
+    <br />
+    <br />
+    <div class="push"></div>
+<div align="left">
     <div class="footer">
         <i class="glyphicon glyphicon-copyright-mark"></i><b>Copyright</b>
     </div>
+ </diV>
 </body>
 </html>
