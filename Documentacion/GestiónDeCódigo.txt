@@ -1,4 +1,4 @@
-
+﻿
 
 
  -----------------------------------------------------------------------------------------------------------------------
@@ -8,15 +8,19 @@
 |referencia a ellas. Céntrese en los aspectos particulares de su proyecto, por						                                    |
 |ejemplo,												                                                                                                 		|
 |															                                                                                                        |
-|¿cómo se gestionan las ramas en el código? 							                                                                  			|
+|¿cómo se gestionan las ramas en el código? 						HECHO						                                                                  			|
 |														                                                                                                         |
-|¿cómo se aplica un parche (patch)? 								                                        			                                 |
+|¿cómo se aplica un parche (patch)? 							FALTA EJERCICIO	                                        			                                 |
 |														                                                                                                       	 |
-|¿cómo se aprueban los cambios? 									                                                                            		 |
+|¿cómo se aprueban los cambios? 							HECHO							                                                                            		 |
 |														                                                                                                       	 |
-|¿qué roles existen en la gestión del código?							                                                                 			|
+|¿qué roles existen en la gestión del código?						HECHO						                                                                 			|
 |														                                                                                                        	|
 |¿qué políticas de nombre y estilo se utilizan en el código fuente? 					                                               |
 |														                                                                                                       	 |
 |¿cuál es el usage model del repositorio de código? Cada una de estos apartados deben estar divididos en secciones.	    |
  -----------------------------------------------------------------------------------------------------------------------
+Introducción										HECHO
+Arquitectura y creación de documentos							HECHO
+Gestión del código en relación al conjunto de subsistemas y nomenclatura		HECHO
+Gestión de conflictos									HECHO
