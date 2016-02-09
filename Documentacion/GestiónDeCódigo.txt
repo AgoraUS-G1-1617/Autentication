@@ -10,15 +10,15 @@
 |															                                                                                                        |
 |¿cómo se gestionan las ramas en el código? 						HECHO						                                                                  			|
 |														                                                                                                         |
-|¿cómo se aplica un parche (patch)? 							FALTA EJERCICIO	                                        			                                 |
+|¿cómo se aplica un parche (patch)? 							HECHO	                                        			                                 |
 |														                                                                                                       	 |
 |¿cómo se aprueban los cambios? 							HECHO							                                                                            		 |
 |														                                                                                                       	 |
 |¿qué roles existen en la gestión del código?						HECHO						                                                                 			|
 |														                                                                                                        	|
-|¿qué políticas de nombre y estilo se utilizan en el código fuente? 					                                               |
+|¿qué políticas de nombre y estilo se utilizan en el código fuente? 			CANCELADO		                                               |
 |														                                                                                                       	 |
-|¿cuál es el usage model del repositorio de código? Cada una de estos apartados deben estar divididos en secciones.	    |
+|¿cuál es el usage model del repositorio de código? 	    |				CANCELADO
  -----------------------------------------------------------------------------------------------------------------------
 Introducción										HECHO
 Arquitectura y creación de documentos							HECHO
