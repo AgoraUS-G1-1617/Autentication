@@ -59,10 +59,10 @@ if (isset($_REQUEST['error'])) {
 	<div class="formLogin">
 		<form action="logAttempt.php" method="post" >
 		
-		<label for="user"><img src="img/userSnapshot.png" alt="Nombre de usuario"></label>
+		<label for="user" style="font-size: 22px; color: white;"><i class="glyphicon glyphicon-user"></i></label>
         <input  type="text" id="user" name="user" style="font-size: 22px" title="Su nombre de usuario" placeholder="Nombre de usuario" />
         
-        <label for="pass" style="margin-left: 30px;"><img src="img/passSnapshot.png" alt="Contraseña" ></label>
+        <label for="pass" style="margin-left: 30px; color: white; font-size: 22px;"><i class="fa fa-lock"></i></label>
         <input type="password" id="pass" name="pass" title="Su contraseña" placeholder="Contraseña" style="font-size: 22px"/>
         <br />
         <br />

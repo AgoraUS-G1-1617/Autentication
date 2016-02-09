@@ -1,13 +1,6 @@
 <?php
-/* The source code packaged with this file is Free Software, Copyright (C) 2008 by
-** Javier González González <desarrollo AT virtualpol.com> <gonzomail AT gmail.com>
-** It's licensed under the GNU GENERAL PUBLIC LICENSE v3 unless stated otherwise.
-** You can get copies of the licenses here: http://www.gnu.org/licenses/gpl.html
-** The source: http://www.virtualpol.com/codigo - TOS: http://www.virtualpol.com/TOS
-** VirtualPol, The first Democratic Social Network - http://www.virtualpol.com
-*/
 // Conecta con la base de datos, define constantes, carga el sistema de usuarios de VP, hace un par de gestiones rutinarias.
-include_once 'variables.php';
+include_once "database.php";
 
 if (!$_SERVER['HTTPS']) { redirect(SSL_URL.'loginDNIe.php'); } // Fuerza el uso de una conexion segura entre navegador y servidor. (https SSL)
 // Comprueba si el usuario está autentificado o no.
@@ -18,7 +11,7 @@ if ((isset($pol['user_ID'])) AND ($dnie_autentificado == false)) {
 	// Es un usuario y no está autentificado con DNIe 
 	
 	// Plugin de Tractis para PHP. Software Libre. Fuente: https://github.com/tractis/tractis_identity_verifications_for_php
-	require('img/lib/tractis_identity/tractis_identity.php');
+	require('tractis_identity/tractis_identity.php');
 	$tractis_identity = new tractis_identity(CLAVE_API_TRACTIS, SSL_URL.'dnie.php', 'false', IMG.'lib/tractis_identity/images/trac_but_bg_lrg_b_es.png', 'POST');
 	// Trata la redireccion desde Tractis tras una autentificacion correcta.
 	if ($data = $tractis_identity->check_auth()) { 
@@ -74,5 +67,5 @@ $txt = '
 <p><a href="/documentacion">Más información aquí.</a></p>
 <p>Puedes ver el código fuente de <a href="/desarrollo">esta aplicación</a>.</p>';
 // Carga el diseño completo de VirtualPol. Mucho HTML, CSS y poco más.
-include('theme.php');
+
 ?>
