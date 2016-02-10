@@ -15,8 +15,8 @@ require_once 'captcha/RequestMethod/Post.php';
 require_once 'captcha/RequestMethod/Socket.php';
 require_once 'captcha/RequestMethod/SocketPost.php';
 
-$clave_del_sitio = "6Ldx5RYTAAAAALAbT0AF2v0Aj9tNI6nfjinPOo9E";
-$clave_secreta = "6Ldx5RYTAAAAAJbkX1dztvGGHNi9Yq5aCAxSkbni";
+$clave_del_sitio = "6LfD6hcTAAAAAOLQVRMu_oJA4eCRIUxGj0tAo8HJ";
+$clave_secreta = "6LfD6hcTAAAAALJdSU9xW9qZfDy0PkvcJLPs7HE4";
 
 if($_POST['accion'] == 'enviar'){
     $recaptcha = new ReCaptcha($clave_secreta);
@@ -266,7 +266,7 @@ session_start();
 <br />
 <br />
                 
-                <div class="g-recaptcha" data-sitekey="6Ldx5RYTAAAAALAbT0AF2v0Aj9tNI6nfjinPOo9E" align="center"></div>
+                <div class="g-recaptcha" data-sitekey="6LfD6hcTAAAAAOLQVRMu_oJA4eCRIUxGj0tAo8HJ" align="center"></div>
                 <div align="center">  
                 	<input  type="submit" 
                             id="submit" 

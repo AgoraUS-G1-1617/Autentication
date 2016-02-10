@@ -21,7 +21,7 @@
 
 <html>
 <head>
-  <title>{{ APPLICATION_NAME }}</title>
+  <title>Agor@us</title>
   <script type="text/javascript">
   var auth2 = auth2 || {};
 
@@ -49,8 +49,8 @@
 </style>
 <body>
   <div id="gConnect" >
-    <img id="customBtn" src="./signin_button.png" onClick="signInClick()"
-        alt="Sign in with Google+" />
+    <img id="customBtn" src="img/imgG+.png" onClick="signInClick()"
+        alt="Sign in with Google+"  width="5000px;"/>
   </div>
   <div id="authOps" style="display:none">
     <h2>User is now signed in to the app using Google+</h2>

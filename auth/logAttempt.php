@@ -31,7 +31,7 @@ try{
     $loginRes = validUser($user, $pass);
     if ($loginRes) {
         setAuthCookie($user, $pass);
-        header('Location: http://localhost:8080/ADMCensus/');
+        header('Location: http://localhost:90/G03/auth/welcome.php');
     } else {
         error("wrongPass");
     }
