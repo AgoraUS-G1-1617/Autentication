@@ -62,7 +62,7 @@ $client = new Google_Client();
 $client->setApplicationName(APPLICATION_NAME);
 $client->setClientId(CLIENT_ID);
 $client->setClientSecret(CLIENT_SECRET);
-$client->setRedirectUri('postmessage');
+$client->setRedirectUri('http://agoraus.freeoda.com/welcome.php');
 
 $plus = new Google_Service_Plus($client);
 

@@ -39,7 +39,6 @@
 </head>
 <style>
     #customBtn {
-      width: 155px;
     }
     #customBtn:hover {
       box-shadow: 2px 2px 3px #888888;
@@ -50,7 +49,7 @@
 <body>
   <div id="gConnect" >
     <img id="customBtn" src="img/imgG+.png" onClick="signInClick()"
-        alt="Sign in with Google+"  width="5000px;"/>
+        alt="Sign in with Google+" />
   </div>
   <div id="authOps" style="display:none">
     <h2>User is now signed in to the app using Google+</h2>
