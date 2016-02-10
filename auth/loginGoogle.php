@@ -237,7 +237,7 @@ function startApp() {
 
     // Retrieve the singleton for the GoogleAuth library and setup the client.
     gapi.auth2.init({
-        client_id: '{{ CLIENT_ID }}',
+        client_id: '1015695576947-hi4fj34upricgq1mqq2jmadtle55rcsr.apps.googleusercontent.com',
         cookiepolicy: 'single_host_origin',
         fetch_basic_profile: false,
         scope: 'https://www.googleapis.com/auth/plus.login'

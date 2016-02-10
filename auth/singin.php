@@ -26,7 +26,12 @@
  * Client library should be fixed to have correct relative paths
  * e.g. require_once '../Google/Model.php'; instead of require_once 'Google/Model.php';
  */
-require_once 'google-api-php-client/src/Google/autoload.php';
+set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__ .'/vendor/google/apiclient/src');
+
+require_once __DIR__.'/vendor/autoload.php';
+
+require_once '/path/to/google-api-php-client/vendor/autoload.php';
+require_once 'vendor/autoload.php';
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
