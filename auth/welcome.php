@@ -42,8 +42,8 @@ include_once 'variables.php';
 	<div class="row">
   <div class="col-md-4">
   	<div class="loginDNIe">
-		<h1 style="font-size: 40px;">Cabina</h1>
-		<input 
+		<h1 style="font-size: 40px;">Censo</h1>
+		<input  onClick="location.href = 'http://localhost:90/ADMCensus/' "
                             id="loginDNIe" 
                             type="button"
                             value ="Entra" 
@@ -52,8 +52,8 @@ include_once 'variables.php';
   </div>
   <div class="col-md-4">
   	<div class="loginNotDNIe">
-		<h1 style="font-size: 40px;">Censo</h1>
-		<input  
+		<h1 style="font-size: 40px;">Cabina</h1>
+		<input  onClick="location.href = 'http://localhost:90/Cabina/' "
                             id="loginNotDNIe" 
                             type="button"
                             value ="Entra" 
@@ -64,7 +64,7 @@ include_once 'variables.php';
   <div class="col-md-4">
   	<div class="register">
 		<h1 style="font-size: 40px;">Deliberaciones</h1>
-		<input  
+		<input  onClick="location.href = 'http://localhost:90/Deliberaciones/' "
                             id="register" 
                             type="button"
                             value ="Registrate" 
@@ -77,3 +77,32 @@ include_once 'variables.php';
 </body>
 </html>
 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+  <title>AgoraUs</title>
+</head>
+
+<body>
+
+
+
+
+<h1>AgoraUs</h1>
+
+<p>¡Bienvenido a AgoraUs!
+
+
+
+<address>Creada el 8 de Febrero de 2016<br>
+  </address>
+  
+  <ul class="navbar">
+  <li><a href="paginaPrincipal.html">Página principal</a>
+  <li><a href="deliberaciones.html">Deliberaciones</a>
+  <li><a href="cabina.html">Cabina</a>
+  <li><a href="informacion.html">Información Adicional</a>
+</ul>
+
+</body>
+</html>
