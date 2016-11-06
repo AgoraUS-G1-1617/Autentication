@@ -6,9 +6,9 @@ Repositorio para el proyecto de EGC del grupo Autenticación para el curso 2016-
 ## Integrantes del grupo:
  
 * Fidel Mazo Delgado
-* José Manuel Navarro
-* Sergio Carrascosa
-* Giuliano Mayer (Ossyriand)
-* Jorge Rodríguez
-* Alejandro Tortolero
+* Alejandro Garrido Resina
+* Alejandro
+* Alejandro
+* Corxonero
+* Remedios Dans
 
