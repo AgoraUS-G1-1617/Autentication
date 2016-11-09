@@ -17,5 +17,5 @@
     //define("DB_PASS", "EGC1516");
     
     define("DB_HOST", "mysql:dbname=egcdb;host=localhost");
-    define("DB_USER", "alex_sfc4");
-    define("DB_PASS", "ale1990x");
+    define("DB_USER", "egc1617");
+    define("DB_PASS", "egc1617");
