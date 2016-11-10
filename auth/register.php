@@ -18,17 +18,19 @@ require_once 'captcha/RequestMethod/SocketPost.php';
 $clave_del_sitio = "6LfD6hcTAAAAAOLQVRMu_oJA4eCRIUxGj0tAo8HJ";
 $clave_secreta = "6LfD6hcTAAAAALJdSU9xW9qZfDy0PkvcJLPs7HE4";
 
-if($_POST['accion'] == 'enviar'){
-    $recaptcha = new ReCaptcha($clave_secreta);
-    $respuesta = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
-    if($respuesta->isSuccess()){
-        echo 'El formulario ha sido validado';
-    }else{
-        echo 'Se ha devuelto el siguiente error:';
-        foreach ($respuesta->getErrorCodes() as $error_code) {
-            echo '<tt>' . $error_code . '</tt> ';
-        }
-    }
+if(isset($_POST['accion'])){
+	if($_POST['accion'] == 'enviar'){
+	    $recaptcha = new ReCaptcha($clave_secreta);
+	    $respuesta = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
+	    if($respuesta->isSuccess()){
+	        echo 'El formulario ha sido validado';
+	    }else{
+	        echo 'Se ha devuelto el siguiente error:';
+	        foreach ($respuesta->getErrorCodes() as $error_code) {
+	            echo '<tt>' . $error_code . '</tt> ';
+	        }
+	    }
+	}
 }
 
 include_once("database.php");

@@ -31,7 +31,7 @@ try{
     $loginRes = validUser($user, $pass);
     if ($loginRes) {
         setAuthCookie($user, $pass);
-        header('Location: agoraus.freeoda.com/welcome.php');
+        header('Location: welcome.php');
     } else {
         error("wrongPass");
     }

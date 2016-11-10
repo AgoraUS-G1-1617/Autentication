@@ -44,7 +44,7 @@ class databaseTest extends PHPUnit_Framework_TestCase
                                         "Madrid",
                                         "Castilla y Leon",
                                         "Aragon",
-                                        "Cataluña",
+                                        "Cataluï¿½a",
                                         "La Rioja",
                                         "Galicia",
                                         "Asturias",
