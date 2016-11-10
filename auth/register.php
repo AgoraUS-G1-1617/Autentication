@@ -1,4 +1,5 @@
 <?php
+session_start();
 /** 
 * @file
 * \brief Registro en la aplicación
@@ -34,7 +35,6 @@ if(isset($_POST['accion'])){
 }
 
 include_once("database.php");
-session_start();
 ?>
 <!DOCTYPE html>
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml">
