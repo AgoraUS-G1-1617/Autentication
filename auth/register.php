@@ -1,12 +1,12 @@
 <?php
 session_start();
-/** 
-* @file
-* \brief Registro en la aplicación
-* \details Pantalla de registro en la aplicación. Añade cabeceras, muestra 
-* los mensajes de error de action_register.php y define la estructura del layout.
-* \author auth.agoraUS
-*/
+/**
+ * @file
+ * \brief Registro en la aplicación
+ * \details Pantalla de registro en la aplicación. Añade cabeceras, muestra
+ * los mensajes de error de action_register.php y define la estructura del layout.
+ * \author auth.agoraUS
+ */
 
 require_once 'captcha/ReCaptcha.php';
 require_once 'captcha/RequestMethod.php';
@@ -19,22 +19,33 @@ require_once 'captcha/RequestMethod/SocketPost.php';
 $clave_del_sitio = "6LfD6hcTAAAAAOLQVRMu_oJA4eCRIUxGj0tAo8HJ";
 $clave_secreta = "6LfD6hcTAAAAALJdSU9xW9qZfDy0PkvcJLPs7HE4";
 
-if(isset($_POST['accion'])){
-	if($_POST['accion'] == 'enviar'){
-	    $recaptcha = new ReCaptcha($clave_secreta);
-	    $respuesta = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
-	    if($respuesta->isSuccess()){
-	        echo 'El formulario ha sido validado';
-	    }else{
-	        echo 'Se ha devuelto el siguiente error:';
-	        foreach ($respuesta->getErrorCodes() as $error_code) {
-	            echo '<tt>' . $error_code . '</tt> ';
-	        }
-	    }
+if (isset($_POST['accion'])) {
+	if ($_POST['accion'] == 'enviar') {
+		$recaptcha = new ReCaptcha($clave_secreta);
+		$respuesta = $recaptcha -> verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
+		if ($respuesta -> isSuccess()) {
+			echo 'El formulario ha sido validado';
+		} else {
+			echo 'Se ha devuelto el siguiente error:';
+			foreach ($respuesta->getErrorCodes() as $error_code) {
+				echo '<tt>' . $error_code . '</tt> ';
+			}
+		}
 	}
 }
 
-include_once("database.php");
+include_once ("database.php");
+
+if (!isset($_SESSION['registerForm'])) {
+	$registerForm['username'] = "";
+	$registerForm['password'] = "";
+	$registerForm['email'] = "";
+	$registerForm['age'] = "";
+} else {
+	$registerForm = $_SESSION['registerForm'];
+}
+
+$_SESSION['registerForm'] = $registerForm;
 ?>
 <!DOCTYPE html>
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml">
@@ -59,7 +70,7 @@ include_once("database.php");
    
    <title><?php echo TITLE?></title>
    <script type="text/javascript">
-    function validateEmail(email) {
+    	function validateEmail(email) {
         var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"
                 ))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-z
                 A-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -114,21 +125,8 @@ include_once("database.php");
             $('#error').html($('#error').html() + "-Debe elegir una comunidad autónoma<br>");
         }
         return !errores;
-    }
-</script>
-<?php
-    if (!isset($_SESSION['registerForm'])) {
-        $registerForm['username'] = "";
-        $registerForm['password'] = "";
-        $registerForm['email'] = "";
-        $registerForm['age'] = "";
-    } else {
-        $registerForm = $_SESSION['registerForm'];
-    }
+    }</script>
 
-    $_SESSION['registerForm'] = $registerForm;
-    ?>
-    
     <link href='https://fonts.googleapis.com/css?family=Roboto:100' rel='stylesheet' type='text/css'>
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -140,73 +138,73 @@ include_once("database.php");
 	</div>
    <div id="error">
         <?php
-            if (isset($_REQUEST['error'])) {
-                $error = $_REQUEST['error'];
-                if ($error % 2 != 0) {
-                    echo "-Error al insertar en la base de datos.<br>";
-                    $error--;
-                }
-                if ($error >= 23768) {
-                    echo "-La edad no es válida.<br>";
-                    $error -= 23768;
-                }
-                if ($error >= 16384) {
-                    echo "-Debe introducir una edad.<br>";
-                    $error -= 16384;
-                }
-                if ($error >= 8192) {
-                    echo "-La comunidad autónoma no es válida.<br>";
-                    $error -= 8192;
-                }
-                if ($error >= 4096) {
-                    echo "-Debe elegir una comunidad autónoma.<br>";
-                    $error-=4096;
-                }
-                if ($error >= 2048) {
-                    echo "-El género no es válido.<br>";
-                    $error -= 2048;
-                }
-                if ($error >= 1024) {
-                    echo "-Debe elegir un género.<br>";
-                    $error -= 1024;
-                }
-                if ($error >= 512) {
-                    echo "-El email ya está registrado.<br>";
-                    $error -= 512;
-                }
-                if ($error >= 256) {
-                    echo "-La dirección de correo electrónico no es válida.<br>";
-                    $error -= 256;
-                }
-                if ($error >= 128) {
-                    echo "-Debe indicar una dirección de correo electrónico.<br>";
-                    $error -= 128;
-                }
-                if ($error >= 64) {
-                    echo "-Las contraseñas no coinciden.<br>";
-                    $error -= 64;
-                }
-                if ($error >= 32) {
-                    echo "-La contraseña es demasiado corta (mínimo 5 caracteres).<br>";
-                    $error -= 32;
-                }
-                if ($error >= 16) {
-                    echo "-Debe elegir una contraseña.<br>";
-                    $error -= 16;
-                }
-                if ($error >= 8) {
-                    echo "-Ese nombre de usuario ya existe.<br>";
-                    $error -= 8;
-                }
-                if ($error >= 4) {
-                    echo "-El nombre de usuario es demasiado corto (mínimo 5 caracteres).<br>";
-                    $error -= 4;
-                }
-                if ($error >= 2) {
-                    echo "-Debe elegir un nombre de usuario.<br>";
-                    $error -= 2;
-                }
-            }
+		if (isset($_REQUEST['error'])) {
+			$error = $_REQUEST['error'];
+			if ($error % 2 != 0) {
+				echo "-Error al insertar en la base de datos.<br>";
+				$error--;
+			}
+			if ($error >= 23768) {
+				echo "-La edad no es válida.<br>";
+				$error -= 23768;
+			}
+			if ($error >= 16384) {
+				echo "-Debe introducir una edad.<br>";
+				$error -= 16384;
+			}
+			if ($error >= 8192) {
+				echo "-La comunidad autónoma no es válida.<br>";
+				$error -= 8192;
+			}
+			if ($error >= 4096) {
+				echo "-Debe elegir una comunidad autónoma.<br>";
+				$error -= 4096;
+			}
+			if ($error >= 2048) {
+				echo "-El género no es válido.<br>";
+				$error -= 2048;
+			}
+			if ($error >= 1024) {
+				echo "-Debe elegir un género.<br>";
+				$error -= 1024;
+			}
+			if ($error >= 512) {
+				echo "-El email ya está registrado.<br>";
+				$error -= 512;
+			}
+			if ($error >= 256) {
+				echo "-La dirección de correo electrónico no es válida.<br>";
+				$error -= 256;
+			}
+			if ($error >= 128) {
+				echo "-Debe indicar una dirección de correo electrónico.<br>";
+				$error -= 128;
+			}
+			if ($error >= 64) {
+				echo "-Las contraseñas no coinciden.<br>";
+				$error -= 64;
+			}
+			if ($error >= 32) {
+				echo "-La contraseña es demasiado corta (mínimo 5 caracteres).<br>";
+				$error -= 32;
+			}
+			if ($error >= 16) {
+				echo "-Debe elegir una contraseña.<br>";
+				$error -= 16;
+			}
+			if ($error >= 8) {
+				echo "-Ese nombre de usuario ya existe.<br>";
+				$error -= 8;
+			}
+			if ($error >= 4) {
+				echo "-El nombre de usuario es demasiado corto (mínimo 5 caracteres).<br>";
+				$error -= 4;
+			}
+			if ($error >= 2) {
+				echo "-Debe elegir un nombre de usuario.<br>";
+				$error -= 2;
+			}
+		}
         ?>
     </div>
     <div align="left">

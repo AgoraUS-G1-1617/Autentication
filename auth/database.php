@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /** 
 * @file
 * \brief Métodos de operaciones en base de datos
@@ -124,3 +124,4 @@ function createUser($username, $password, $email, $genre, $age, $autonomousCommu
     $stmt->bindParam(':age', $age);
     $stmt->execute();
 }
+?>
