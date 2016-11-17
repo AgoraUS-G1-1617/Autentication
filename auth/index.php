@@ -63,7 +63,7 @@ include_once 'variables.php';
   
   <div class="col-md-4">
   	<div class="register">
-		<h1 style="font-size: 40px;">¿Aún no te has registrado?</h1>
+		<h1 style="font-size: 40px;">¿Aún no te has registrado? ALE</h1>
 		<input  onClick="location.href = 'register.php' "
                             id="register" 
                             type="button"
