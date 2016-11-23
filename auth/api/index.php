@@ -12,7 +12,8 @@
     include_once "../database.php";
     include_once "../auth.php";
     if (!isset($_GET['method']) || $_GET['method'] == "") {
-        badRequest();
+    	$_SESSION['message'] = "No hay método";
+        badRequest(m);
     } else {
         switch ($_GET['method']) {
             case 'getUser':
@@ -51,7 +52,8 @@
     function badRequest() {
         header('HTTP/1.1 400 Bad Request');
 
-        echo "Bad Request. This method doesn't exists or the necessary parameters weren't provided";
+        echo "Bad Request. This method doesn't exists or the necessary parameters weren't provided <\br>";
+		echo $_SESSION['message'];
     }
 
     /**
