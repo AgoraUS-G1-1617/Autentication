@@ -118,3 +118,4 @@ if (isset($_SESSION['registerForm'])) {
 } else {
     header('Location: register.php');
 }
+?>
