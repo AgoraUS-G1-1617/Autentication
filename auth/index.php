@@ -38,7 +38,6 @@ include_once 'variables.php';
 	<div class="tituloInicio">
 		<h1 style="font-size: 100px; font-family: Roboto">¡Bienvenidos a agor@us!</h1>
 	</div>
-	
 	<div class="row">
   <div class="col-md-4">
   	<div class="loginDNIe">
@@ -60,7 +59,20 @@ include_once 'variables.php';
                            	class="btn btn-info"/>
 	</div>
   </div>
-  
+  <?php if ($activation!==FALSE): ?>
+	<div class="row">
+  		<div class="col-md-4">
+  			<div class="Login G+">
+				<h1 style="font-size: 40px;">Entrar con G+</h1>
+				<input  onClick="location.href = 'loginGoogle.php' "
+		                            id="loginDNIe" 
+		                            type="button"
+		                            value ="Entra" 
+		                    	class="btn btn-info"/>
+       		</div>
+       	</div>
+     </div>
+  <?php endif; ?>
   <div class="col-md-4">
   	<div class="register">
 		<h1 style="font-size: 40px;">¿Aún no te has registrado?</h1>

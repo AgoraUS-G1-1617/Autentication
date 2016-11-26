@@ -96,6 +96,6 @@ if (isset($_SESSION['registerForm'])) {
 		header("Location: register.php?error=" . $error);
 	}
 } else {
-	header('Location: register.php');
+    header('Location: register.php');
 }
 ?>
