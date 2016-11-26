@@ -43,3 +43,4 @@ function error($name){
     header('Location: ./index.php?error='.$name.'&logout=1');
     die("Está siendo redirigido...");
 }
+?>
