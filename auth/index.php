@@ -41,8 +41,8 @@ include_once 'variables.php';
 	<div class="row">
   <div class="col-md-4">
   	<div class="loginDNIe">
-		<h1 style="font-size: 40px;">Entrar con G+</h1>
-		<input  onClick="location.href = 'loginGoogle.php' "
+		<h1 style="font-size: 40px;">Entrar con DNIe</h1>
+		<input  onClick="location.href = 'loginDNIe.php' "
                             id="loginDNIe" 
                             type="button"
                             value ="Entra" 
@@ -65,7 +65,7 @@ include_once 'variables.php';
   			<div class="Login G+">
 				<h1 style="font-size: 40px;">Entrar con G+</h1>
 				<input  onClick="location.href = 'loginGoogle.php' "
-		                            id="loginDNIe" 
+		                            id="loginGoogle+" 
 		                            type="button"
 		                            value ="Entra" 
 		                    	class="btn btn-info"/>
