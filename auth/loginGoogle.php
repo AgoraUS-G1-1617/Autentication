@@ -49,7 +49,7 @@ include_once 'variables.php';
 	<link rel="stylesheet" href="styles/bootstrap/css/bootstrap.css.map" type="text/css">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:100' rel='stylesheet' type='text/css'>
 	
-	<script type="text/javascript">
+<!--<script type="text/javascript">
   var auth2 = auth2 || {};
 
   (function() {
@@ -61,7 +61,7 @@ include_once 'variables.php';
   })();
   </script>
   <!-- JavaScript specific to this application that is not related to API
-     calls -->
+     calls >
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" ></script>
   
 <head>
@@ -129,7 +129,7 @@ include_once 'variables.php';
 
 
 <html>
-<head>
+<head>-->
   <title>Agor@us</title>
   <script type="text/javascript">
   var auth2 = auth2 || {};
@@ -147,15 +147,11 @@ include_once 'variables.php';
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" ></script>
 </head>
 <style>
-    #customBtn {
-    }
     #customBtn:hover {
-      box-shadow: 2px 2px 3px #888888;
-      border-radius: 5px;
       cursor: hand;
     }
 </style>
-<body>
+<body style="background-color: #F5F5F5;font-family: Roboto">
   <div id="gConnect" >
     <img id="customBtn" src="img/imgG+.png" onClick="signInClick()"
         alt="Sign in with Google+" />

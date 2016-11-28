@@ -17,5 +17,6 @@
     define("DB_HOST", "mysql:dbname=egcdb;host=localhost");
     define("DB_USER", "root");
     define("DB_PASS", "egc1516");
-	$activation=TRUE;
+	$socialNet=TRUE;
+	$DNIe=FALSE;
 	?>
