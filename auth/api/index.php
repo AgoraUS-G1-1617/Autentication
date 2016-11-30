@@ -11,7 +11,7 @@
     include_once "../database.php";
     include_once "../auth.php";
     if (!isset($_GET['method']) || $_GET['method'] == "") {
-    	$_SESSION['message'] = "No hay método";
+    	$_SESSION['errorMessage'] = "No hay método";
         badRequest();
     } else {
         switch ($_GET['method']) {
