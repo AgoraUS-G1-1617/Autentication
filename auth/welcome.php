@@ -51,14 +51,12 @@ include_once 'variables.php';
 	</div>
   </div>
   <div class="col-md-4">
-  	<div class="loginNotDNIe">
 		<h1 style="font-size: 40px;">Cabina</h1>
 		<input  onClick="location.href = 'http://localhost:90/Cabina/' "
                             id="loginNotDNIe" 
                             type="button"
                             value ="Entra" 
                            	class="btn btn-info"/>
-	</div>
   </div>
   
   <div class="col-md-4">

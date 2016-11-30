@@ -33,46 +33,146 @@ include_once 'variables.php';
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <title><?php echo TITLE?></title>
 </head>
-<body style="background-color: #F5F5F5;font-family: Roboto;">
+<body style="background-color: #F5F5F5;font-family: Roboto">
 	
 	<div class="tituloInicio">
 		<h1 style="font-size: 100px; font-family: Roboto">¡Bienvenidos a agor@us!</h1>
 	</div>
-	
 	<div class="row">
-  <div class="col-md-4">
-  	<div class="loginDNIe">
-		<h1 style="font-size: 40px;">Entrar con G+</h1>
-		<input  onClick="location.href = 'loginGoogle.php' "
-                            id="loginDNIe" 
-                            type="button"
-                            value ="Entra" 
-                           	class="btn btn-info"/>
+	  <?php if ($socialNet!==FALSE && $DNIe!==FALSE): ?>
+		  <div class="col-md-2">
+				<input  onClick="location.href = 'loginGoogle.php' "
+		                            id="loginGoogle+" 
+		                            type="button"
+		                            value ="Entrar con G+" 
+		                    	class="btn btn-info"/>	
+       	</div>
+       	<div class="col-md-2">
+				<input  onClick="location.href = '' "
+		                            id="loginTwiter" 
+		                            type="button"
+		                            value ="Entrar con Twiter" 
+		                    	class="btn btn-info"/>	
+       	</div>
+       	<div class="col-md-2">
+				<input  onClick="location.href = '' "
+		                            id="loginFacebook" 
+		                            type="button"
+		                            value ="Entrar con Facebook" 
+		                    	class="btn btn-info"/>	
+       	</div>
+       	 <div class="col-md-2">
+				<input  onClick="location.href = 'loginDNIe.php' "
+		                            id="loginDNIe" 
+		                            type="button"
+		                            value ="Entrar con DNIe" 
+		                           	class="btn btn-info"/>
+		  </div>
+       	  <div class="col-md-2">
+				<input  onClick="location.href = 'loginNotDNIe.php' "
+		                            id="loginNotDNIe" 
+		                            type="button"
+		                            value ="Entrar sin DNIe" 
+		                           	class="btn btn-info"/>
+		
+		  </div>
+	  <div class="col-md-2">
+	  	<div class="register">
+			<input  onClick="location.href = 'register.php' "
+	                            id="register" 
+	                            type="button"
+	                            value ="Registrase" 
+	                           	class="btn btn-info"/>
+	   
+	  </div>	  
 	</div>
-  </div>
-  <div class="col-md-4">
-  	<div class="loginNotDNIe">
-		<h1 style="font-size: 40px;">Entrar sin DNIe</h1>
-		<input  onClick="location.href = 'loginNotDNIe.php' "
-                            id="loginNotDNIe" 
-                            type="button"
-                            value ="Entra" 
-                           	class="btn btn-info"/>
+	<?php elseif ($socialNet!==FALSE && $DNIe===FALSE):?>
+		  <div class="ancho-botones">
+				<input  onClick="location.href = 'loginGoogle.php' "
+		                            id="loginGoogle+" 
+		                            type="button"
+		                            value ="Entrar con G+" 
+		                    	class="btn btn-info"/>	
+       	</div>
+       	<div class="ancho-botones">
+				<input  onClick="location.href = '' "
+		                            id="loginTwiter" 
+		                            type="button"
+		                            value ="Entrar con Twiter" 
+		                    	class="btn btn-info"/>	
+       	</div>
+       	<div class="ancho-botones">
+				<input  onClick="location.href = '' "
+		                            id="loginFacebook" 
+		                            type="button"
+		                            value ="Entrar con Facebook" 
+		                    	class="btn btn-info"/>	
+       	</div>
+       	<div class="ancho-botones">
+				<input  onClick="location.href = 'loginNotDNIe.php' "
+		                            id="loginNotDNIe" 
+		                            type="button"
+		                            value ="Entrar sin DNIe" 
+		                           	class="btn btn-info"/>
+		
+		  </div>
+	  	<div class="ancho-botones">
+	  	<div class="register">
+			<input  onClick="location.href = 'register.php' "
+	                            id="register" 
+	                            type="button"
+	                            value ="Registrase" 
+	                           	class="btn btn-info"/>
+	   
+	  </div>
+	  </div>
+	<?php elseif ($socialNet===FALSE && $DNIe!==FALSE):?>
+		<div class="col-md-4">
+				<input  onClick="location.href = 'loginDNIe.php' "
+		                            id="loginDNIe" 
+		                            type="button"
+		                            value ="Entrar con DNIe" 
+		                           	class="btn btn-info"/>
+		  </div>
+		<div class="col-md-4">
+				<input  onClick="location.href = 'loginNotDNIe.php' "
+		                            id="loginNotDNIe" 
+		                            type="button"
+		                            value ="Entrar sin DNIe" 
+		                           	class="btn btn-info"/>
+		
+		  </div>
+	  	<div class="col-md-4">
+	  	<div class="register">
+			<input  onClick="location.href = 'register.php' "
+	                            id="register" 
+	                            type="button"
+	                            value ="Registrase" 
+	                           	class="btn btn-info"/>
+	   
+	  </div>
+	  </div>
+	<?php elseif ($socialNet===FALSE && $DNIe===FALSE):?>
+		<div class="col-md-6">
+				<input  onClick="location.href = 'loginNotDNIe.php' "
+		                            id="loginNotDNIe" 
+		                            type="button"
+		                            value ="Entrar sin DNIe" 
+		                           	class="btn btn-info"/>
+		
+		  </div>
+	  	<div class="col-md-6">
+	  	<div class="register">
+			<input  onClick="location.href = 'register.php' "
+	                            id="register" 
+	                            type="button"
+	                            value ="Registrase" 
+	                           	class="btn btn-info"/>
+	   
+	  </div>
+	  </div>
+	<?php endif; ?>
 	</div>
-  </div>
-  
-  <div class="col-md-4">
-  	<div class="register">
-		<h1 style="font-size: 40px;">¿Aún no te has registrado?</h1>
-		<input  onClick="location.href = 'register.php' "
-                            id="register" 
-                            type="button"
-                            value ="Registrate" 
-                           	class="btn btn-info"/>
-	</div>
-  </div>
-</div>
-	
 	
 </body>
 </html>
