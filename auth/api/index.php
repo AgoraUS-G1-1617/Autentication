@@ -7,17 +7,17 @@
     * \author auth.agoraUS
     */
 
-
     header("Access-Control-Allow-Origin: *");
     include_once "../database.php";
     include_once "../auth.php";
     if (!isset($_GET['method']) || $_GET['method'] == "") {
     	$_SESSION['message'] = "No hay método";
-        badRequest(m);
+        badRequest();
     } else {
         switch ($_GET['method']) {
             case 'getUser':
                 if (!isset($_GET['user'])) {
+                	$_SESSION['errorMessage'] = "User not specified";
                     badRequest();
                 } else {
                     getUserAPI($_GET['user']);
@@ -28,19 +28,28 @@
                 break;
             case 'checkToken':
                 if (!isset($_GET['token'])) {
+                	$_SESSION['errorMessage'] = "Token not specified";
                     badRequest();
                 } else {
                     checkToken($_GET['token']);
                 }
                 break;
+				
+			//TODO añadir todos los errores a la sesion, en vez de comprobar uno a uno
             case 'checkTokenUser':
-                if (!isset($_GET['token']) || !isset($_GET['user'])) {
+                if (!isset($_GET['token'])) {
+                	$_SESSION['errorMessage'] = "Token not specified";
                     badRequest();
+				}
+				else if (!isset($_GET['user'])){
+					$_SESSION['errorMessage'] = "User not specified";
+					badRequest();
                 } else {
                     checkTokenUser($_GET['token'], $_GET['user']);
                 }
                 break;
             default:
+				$_SESSION['errorMessage'] = "Method not recognised";
                 badRequest();
                 break;
         }
@@ -52,8 +61,11 @@
     function badRequest() {
         header('HTTP/1.1 400 Bad Request');
 
-        echo "Bad Request. This method doesn't exists or the necessary parameters weren't provided <\br>";
-		echo $_SESSION['message'];
+        echo "Bad Request.";
+		if(isset($_SESSION['errorMessage'])) {
+			echo " Error message: ";
+			echo $_SESSION['errorMessage'];
+		}
     }
 
     /**
