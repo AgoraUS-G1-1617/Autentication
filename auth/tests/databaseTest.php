@@ -113,13 +113,13 @@ class databaseTest extends PHPUnit_Framework_TestCase
     * \brief Test positivo de getUser()
     */
     function test_getUser() {
-        $emails = [
+        $emails = array(
             "danayaher" => "danayaher@alum.us.es",
             "dandelea" => "dandelea@alum.us.es",
             "fidmazdel" => "fidmazdel@alum.us.es",
             "juarolsal" => "juarolsal@alum.us.es",
             "alesanmed" => "alesanmed@alum.us.es",
-            "juacaslop" => "juacaslop@alum.us.es"];
+            "juacaslop" => "juacaslop@alum.us.es");
 
         $key = array_rand($emails);
         $user = getUser($key);
