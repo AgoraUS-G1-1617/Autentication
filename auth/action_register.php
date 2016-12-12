@@ -9,7 +9,7 @@
 session_start();
 include_once ('database.php');
 include_once ('auth.php');
-
+//TODO que hay con añadir numeros al error?
 $error = 0;
 if (isset($_SESSION['registerForm'])) {
 	$registerForm = array();
