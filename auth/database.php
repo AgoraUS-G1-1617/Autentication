@@ -4,8 +4,16 @@
 * \brief Métodos de operaciones en base de datos
 * \author auth.agoraUS
 */
-
 include_once "variables.php";
+class database {
+
+	//TODO Actualizar
+	//Configuración
+	protected $mysqli;
+	const LOCALHOST = '127.0.0.1';
+	const USER = 'root';
+	const PASSWORD = '';
+	const DATABASE = 'test';
 
 /**
 * \brief Conexión BD
@@ -17,6 +25,20 @@ function connect() {
     $con ->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $con;
 }
+
+/**
+ *  Constructor
+ */
+ public function __construct() {
+ 	try{
+ 		//Conectar a la base de datos
+ 		$this->mysqli = new mysqli(self::LOCALHOST, self::USER, self::PASSWORD, self::DATABASE);
+ 	}catch (mysqli_sql_exception $e) {
+ 		//Fallo al conectar
+ 		http_response_code(500);
+		exit;
+ 	}
+ }
 
 /**
 * \brief Crear BD
@@ -60,16 +82,15 @@ function setUp() {
 * \param $user Nombre de usuario
 * \return Usuario consultado.
 */
-function getUser($user) {
+function getUser($username) {
     $con = connect();
     $stmt = $con->prepare("SELECT   USERNAME, 
-                                    PASSWORD, 
                                     EMAIL, 
                                     GENRE, 
                                     AUTONOMOUS_COMMUNITY, 
                                     AGE 
-                                    FROM USERS WHERE USERNAME=:user");
-    $stmt->bindParam(':user', $user);
+                                    FROM USERS WHERE USERNAME=:username");
+    $stmt->bindParam(':username', $username);
     $stmt->execute();
     return $stmt->fetch();
 }
@@ -90,9 +111,10 @@ function getEmail($email) {
 * \details Consultar todos los usuario de la base de datos
 * \return Todos los usuarios
 */
-function getAllUsers() {
+function getUsers() {
     $con = connect();
-    $stmt = $con->prepare("SELECT USERNAME, PASSWORD, EMAIL, GENRE, AUTONOMOUS_COMMUNITY, AGE FROM USERS");
+    //$stmt = $con->prepare("SELECT USERNAME, PASSWORD, EMAIL, GENRE, AUTONOMOUS_COMMUNITY, AGE FROM USERS");
+    $stmt = $con->prepare("SELECT USERNAME, EMAIL, GENRE, AUTONOMOUS_COMMUNITY, AGE FROM USERS");
     $stmt->execute();
     return $stmt->fetchAll();
 }
@@ -123,5 +145,6 @@ function createUser($username, $password, $email, $genre, $age, $autonomousCommu
     $stmt->bindParam(':autonomousCommunity', $autonomousCommunity);
     $stmt->bindParam(':age', $age);
     $stmt->execute();
+}
 }
 ?>
