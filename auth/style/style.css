@@ -294,3 +294,11 @@ FOOTER
 .formLogin {
 	margin-top: -30px;
 }
+
+/*******************
+BOTONES DE LOGIN
+*******************/
+.ancho-botones {
+	float: left;
+    width: 20%;
+  }
