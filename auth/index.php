@@ -8,6 +8,7 @@
 */
 
 include_once 'variables.php';
+include_once 'loginGoogle.php';
 
 ?>
 <!DOCTYPE html>
@@ -88,7 +89,7 @@ include_once 'variables.php';
 	</div>
 	<?php elseif ($socialNet!==FALSE && $DNIe===FALSE):?>
 		  <div class="ancho-botones">
-				<input  onClick="location.href = 'loginGoogle.php' "
+				<input  onClick="signInClick() "
 		                            id="loginGoogle+" 
 		                            type="button"
 		                            value ="Entrar con G+" 
