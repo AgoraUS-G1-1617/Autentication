@@ -10,7 +10,6 @@
 include_once 'variables.php';
 echo("Prueba");
 if (isset($_REQUEST['logout'])) {
-	echo("Prueba2");
     setcookie("token", NULL, time()-3600);
     setcookie("user", NULL, time()-3600);
 } else if (isset($_SESSION['user'])) {
