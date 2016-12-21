@@ -27,4 +27,9 @@
         "google/apiclient": "1.0.*",
         "guzzlehttp/guzzle": "5.2.*"
     }
+    
+  "require" : {
+    "facebook/graph-sdk" : "~5.0"
+  }
+
 }

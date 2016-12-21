@@ -8,6 +8,7 @@
 */
 
 include_once 'variables.php';
+require_once __DIR__ . '/php-graph-sdk-5.0.0/src/Facebook/autoload.php';
 
 ?>
 <!DOCTYPE html>
@@ -55,7 +56,7 @@ include_once 'variables.php';
 		                    	class="btn btn-info"/>	
        	</div>
        	<div class="col-md-2">
-				<input  onClick="location.href = '' "
+				<input  onClick="location.href = 'loginFacebook.php' "
 		                            id="loginFacebook" 
 		                            type="button"
 		                            value ="Entrar con Facebook" 
