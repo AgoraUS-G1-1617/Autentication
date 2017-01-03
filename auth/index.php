@@ -36,7 +36,7 @@ include_once 'variables.php';
 <body style="background-color: #F5F5F5;font-family: Roboto">
 	
 	<div class="tituloInicio">
-		<h1 style="font-size: 100px; font-family: Roboto">¡¡¡Bienvenidos a agor@us!!!</h1>
+		<h1 style="font-size: 100px; font-family: Roboto">Bienvenidos a agor@us</h1>
 	</div>
 	<div class="row">
 	  <?php if ($socialNet!==FALSE && $DNIe!==FALSE): ?>
@@ -46,7 +46,7 @@ include_once 'variables.php';
 		                            type="button"
 		                            value ="Entrar con G+" 
 		                    	class="btn btn-info"/>	
-       	</div>
+       </div>
        	<div class="col-md-2">
 				<input  onClick="location.href = '' "
 		                            id="loginTwiter" 
