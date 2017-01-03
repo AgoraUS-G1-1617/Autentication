@@ -48,7 +48,7 @@ include_once 'variables.php';
 		                    	class="btn btn-info"/>	
        </div>
        	<div class="col-md-2">
-				<input  onClick="location.href = '' "
+				<input  onClick="location.href = 'process.php' "
 		                            id="loginTwiter" 
 		                            type="button"
 		                            value ="Entrar con Twiter" 
@@ -95,7 +95,7 @@ include_once 'variables.php';
 		                    	class="btn btn-info"/>	
        	</div>
        	<div class="ancho-botones">
-				<input  onClick="location.href = '' "
+				<input  onClick="location.href = 'process.php' "
 		                            id="loginTwiter" 
 		                            type="button"
 		                            value ="Entrar con Twiter" 
