@@ -1,5 +1,5 @@
 <?php
-define('CONSUMER_KEY', 'TxDVYignMmYI1g27O358Dz3q1');
-define('CONSUMER_SECRET', 'xYDio3lTps1OSXXhHebikt13OKZ5zb6oSJffO8ybCrSC05v2AJ');
-define('OAUTH_CALLBACK', 'http://127.0.0.1/git/Autentication/auth/welcome.php');
+define('CONSUMER_KEY', 'Bb22ELbl8upSagBxzJDncsjmf');
+define('CONSUMER_SECRET', 'NFa1tkQZu8vHLikwbre3QccVmrMrHc9BIwqa5Rt4c4F96eRaWC');
+define('OAUTH_CALLBACK', '	https://frontend.agoraus1.egc.duckdns.org/');
 ?>
