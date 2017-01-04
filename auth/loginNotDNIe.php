@@ -8,7 +8,7 @@
 */
 
 include_once 'variables.php';
-
+echo("Prueba");
 if (isset($_REQUEST['logout'])) {
     setcookie("token", NULL, time()-3600);
     setcookie("user", NULL, time()-3600);

@@ -114,7 +114,8 @@ class tokenTest extends PHPUnit_Framework_TestCase
     */
     public function test_checkToken(){
         $username = "dandelea";
-        $password = getUser($username)['PASSWORD'];
+		$user = getUser($username);
+        $password = $user['PASSWORD'];
         $token = getToken($username, $password);
         $this->assertTrue(tokenIsCorrect($token));
     }
@@ -124,7 +125,8 @@ class tokenTest extends PHPUnit_Framework_TestCase
     */
     public function test_checkTokenUser(){
         $username = "dandelea";
-        $password = getUser($username)['PASSWORD'];
+        $user = getUser($username);
+        $password = $user['PASSWORD'];
         $token = getToken($username, $password);
         $this->assertTrue(checkUserToken($token, $username));
     }

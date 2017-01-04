@@ -37,7 +37,7 @@ include_once 'loginGoogle.php';
 <body style="background-color: #F5F5F5;font-family: Roboto">
 	
 	<div class="tituloInicio">
-		<h1 style="font-size: 100px; font-family: Roboto">¡Bienvenidos a agor@us!</h1>
+		<h1 style="font-size: 100px; font-family: Roboto">Bienvenidos a agor@us</h1>
 	</div>
 	<div class="row">
 	  <?php if ($socialNet!==FALSE && $DNIe!==FALSE): ?>
@@ -47,9 +47,9 @@ include_once 'loginGoogle.php';
 		                            type="button"
 		                            value ="Entrar con G+" 
 		                    	class="btn btn-info"/>	
-       	</div>
+       </div>
        	<div class="col-md-2">
-				<input  onClick="location.href = '' "
+				<input  onClick="location.href = 'process.php' "
 		                            id="loginTwiter" 
 		                            type="button"
 		                            value ="Entrar con Twiter" 
@@ -96,7 +96,7 @@ include_once 'loginGoogle.php';
 		                    	class="btn btn-info"/>	
        	</div>
        	<div class="ancho-botones">
-				<input  onClick="location.href = '' "
+				<input  onClick="location.href = 'process.php' "
 		                            id="loginTwiter" 
 		                            type="button"
 		                            value ="Entrar con Twiter" 

@@ -86,8 +86,10 @@
     * \param $token Token.
     * \return Boolean
     */
+    //TODO What?
     function tokenIsCorrect($token){
-        $username = explode(':', $token)[0];
+    	$var = explode(':', $token);
+        $username = $var[0];
         return checkUserToken($token, $username);
     }
 
@@ -121,4 +123,6 @@
         }
         return $result;
     }
-	?>
+
+	/**/
+?>
