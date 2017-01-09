@@ -9,7 +9,7 @@
 session_start();
 include_once ('database.php');
 include_once ('auth.php');
-
+//TODO que hay con añadir numeros al error?
 $error = 0;
 if (isset($_SESSION['registerForm'])) {
 	$registerForm = array();
@@ -53,7 +53,7 @@ if (isset($_SESSION['registerForm'])) {
 		$registerForm['genre'] = $_REQUEST['genre'];
 		$error += 1024;
 	} else {
-		$genres = ["Masculino", "Femenino"];
+		$genres = array("Masculino", "Femenino");
 		if (!(in_array($_REQUEST['genre'], $genres))) {
 			$registerForm['genre'] = $_REQUEST['genre'];
 			$error += 2048;
@@ -64,7 +64,7 @@ if (isset($_SESSION['registerForm'])) {
 		$registerForm['autonomous_community'] = $_REQUEST['autonomous_community'];
 		$error += 4096;
 	} else {
-		$autonomousCommunities = ["Andalucia", "Murcia", "Extremadura", "Castilla la Mancha", "Comunidad Valenciana", "Madrid", "Castilla y Leon", "Aragon", "Cataluña", "La Rioja", "Galicia", "Asturias", "Cantabria", "Pais Vasco", "Navarra"];
+		$autonomousCommunities = array("Andalucia", "Murcia", "Extremadura", "Castilla la Mancha", "Comunidad Valenciana", "Madrid", "Castilla y Leon", "Aragon", "Cataluña", "La Rioja", "Galicia", "Asturias", "Cantabria", "Pais Vasco", "Navarra");
 		if (!(in_array($_REQUEST['autonomous_community'], $autonomousCommunities))) {
 			$registerForm['autonomous_community'] = $_REQUEST['autonomous_community'];
 			$error += 8192;
@@ -96,6 +96,6 @@ if (isset($_SESSION['registerForm'])) {
 		header("Location: register.php?error=" . $error);
 	}
 } else {
-	header('Location: register.php');
+    header('Location: register.php');
 }
 ?>

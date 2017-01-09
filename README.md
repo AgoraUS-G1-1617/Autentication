@@ -7,8 +7,8 @@ Repositorio para el proyecto de EGC del grupo Autenticación para el curso 2016-
  
 * Fidel Mazo Delgado
 * Alejandro Garrido Resina
-* Alejandro
-* Alejandro
-* Corxonero
-* Remedios Dans
+* Alejandro Guerrero Montoro
+* Alejandro Román Rodríguez
+* Julio Márquez Castro
+* Remedios Dans Caballero
 
