@@ -61,6 +61,18 @@ include_once 'variables.php';
 	</div>
   </div>
   
+  
+  <div class="col-md-4">
+  	<div class="register">
+		<h1 style="font-size: 40px;">Entrar</h1>
+		<input  onClick="location.href = 'login.php' "
+                            id="login" 
+                            type="button"
+                            value ="Sing In	" 
+                           	class="btn btn-info"/>
+	</div>
+  </div>
+  
   <div class="col-md-4">
   	<div class="register">
 		<h1 style="font-size: 40px;">¿Aún no te has registrado?</h1>
