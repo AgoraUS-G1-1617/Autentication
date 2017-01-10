@@ -25,6 +25,17 @@
         "silex/silex": "1.0.*@dev",
         "twig/twig": ">=1.8,<2.0-dev",
         "google/apiclient": "1.0.*",
-        "guzzlehttp/guzzle": "5.2.*"
+        "guzzlehttp/guzzle": "5.2.*",
+		"phpunit/phpunit": "3.7.*",
+        "theseer/fxsl": "1.0.*@dev",
+        "theseer/phpdox": "0.9.*@dev",
+        "squizlabs/php_codesniffer": "1.4.6",
+        "phpmd/phpmd": "1.5.0",
+        "phploc/phploc": "2.0.2",
+        "sebastian/phpcpd": "1.4.3",
+        "phpdocumentor/phpdocumentor": "v2.0.1",
+        "mayflower/php-codebrowser": "1.1.*@dev",
+        "pear/pear_exception": "dev-master",
+        "phing/phing": "2.6.1"
     }
 }
