@@ -20,7 +20,6 @@
  <property name="phpunit" value="${basedir}/build/tools/phpunit.phar"/> -->
 
  <!-- Use this when the tools are managed by Composer in ${basedir}/vendor/bin -->
- <property name="pdepend" value="${basedir}/vendor/bin/pdepend"/>
  <property name="phpcpd"  value="${basedir}/vendor/bin/phpcpd"/>
  <property name="phpcs"   value="${basedir}/vendor/bin/phpcs"/>
  <property name="phpdox"  value="${basedir}/vendor/bin/phpdox"/>
@@ -34,13 +33,12 @@
 
  <target name="quick-build" depends="prepare,lint,phpunit-no-coverage" description="Performs a lint check and runs the tests (without generating code coverage reports)"/>
 
- <target name="static-analysis" depends="lint,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci" description="Performs static analysis"/>
+ <target name="static-analysis" depends="lint,phploc-ci,phpmd-ci,phpcs-ci,phpcpd-ci" description="Performs static analysis"/>
 
  <!-- Adjust the threadCount attribute's value to the number of CPUs -->
  <target name="static-analysis-parallel" description="Performs static analysis (executing the tools in parallel)">
   <parallel threadCount="2">
    <sequential>
-    <antcall target="pdepend"/>
     <antcall target="phpmd-ci"/>
    </sequential>
    <antcall target="lint"/>
@@ -54,7 +52,6 @@
   <delete dir="${basedir}/build/api"/>
   <delete dir="${basedir}/build/coverage"/>
   <delete dir="${basedir}/build/logs"/>
-  <delete dir="${basedir}/build/pdepend"/>
   <delete dir="${basedir}/build/phpdox"/>
   <property name="clean.done" value="true"/>
  </target>
@@ -63,7 +60,6 @@
   <mkdir dir="${basedir}/build/api"/>
   <mkdir dir="${basedir}/build/coverage"/>
   <mkdir dir="${basedir}/build/logs"/>
-  <mkdir dir="${basedir}/build/pdepend"/>
   <mkdir dir="${basedir}/build/phpdox"/>
   <property name="prepare.done" value="true"/>
  </target>
