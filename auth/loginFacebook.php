@@ -4,7 +4,7 @@
 session_start();
  
 /* Cambiar según la ubicación de tu directorio*/
-require_once __DIR__ . '/php-graph-sdk-5.0.0/src/Facebook/autoload.php';
+require_once __DIR__ . '/vendor/facebook/graph-sdk/src/Facebook/autoload.php';
  
 $fb = new Facebook\Facebook(array(
   'app_id' => '1065487940245693',
@@ -15,7 +15,7 @@ $fb = new Facebook\Facebook(array(
 $helper = $fb->getRedirectLoginHelper();
   
 $permissions = array('email'); // Permisos opcionales
-$loginUrl = $helper->getLoginUrl('http://localhost/webs/ejemplos/facebook/fb-callback.php', $permissions);
+$loginUrl = $helper->getLoginUrl('https://beta.autha.agoraus1.egc.duckdns.org/fb-callback.php', $permissions);
   
 /* Link a la página de login*/
 echo '<a href="' . htmlspecialchars($loginUrl) . '">Login con Facebook!</a>';
