@@ -8,5 +8,5 @@
                      http://pmd.sf.net/ruleset_xml_schema.xsd">
  
 
- -    <rule ref="rulesets/codesize.xml/CyclomaticComplexity" />
+     <rule ref="rulesets/codesize.xml/CyclomaticComplexity" />
 </ruleset>
