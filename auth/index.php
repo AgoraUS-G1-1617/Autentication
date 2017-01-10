@@ -8,9 +8,6 @@
 */
 
 include_once 'variables.php';
-include_once 'loginGoogle.php';
-
-require_once __DIR__ . '/php-graph-sdk-5.0.0/src/Facebook/autoload.php';
 
 
 ?>
@@ -58,8 +55,6 @@ require_once __DIR__ . '/php-graph-sdk-5.0.0/src/Facebook/autoload.php';
 		                            value ="Entrar con Twiter" 
 		                    	class="btn btn-info"/>	
        	</div>
-
-        <div class="col-md-3">
 
        	<div class="col-md-2">
 				<input  onClick="location.href = 'loginFacebook.php' "
