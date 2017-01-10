@@ -167,7 +167,9 @@
  </target>
 
  <target name="phpcpd" unless="phpcpd.done" description="Find duplicate code using PHPCPD and print human readable output. Intended for usage on the command line before committing.">
-  <exec executable="${phpcpd}" taskname="phpcpd">
+  <exec executable="cmd" taskname="phpcpd">
+   <arg value="/c" />
+   <arg value="${phpcpd}" />
    <arg path="${basedir}"/>
   </exec>
 
@@ -175,7 +177,9 @@
  </target>
 
  <target name="phpcpd-ci" unless="phpcpd.done" depends="prepare" description="Find duplicate code using PHPCPD and log result in XML format. Intended for usage within a continuous integration environment.">
-  <exec executable="${phpcpd}" taskname="phpcpd">
+  <exec executable="cmd" taskname="phpcpd">
+   <arg value="/c" />
+   <arg value="${phpcpd}" />
    <arg value="--log-pmd"/>
    <arg path="${basedir}/build/logs/pmd-cpd.xml"/>
    <arg path="${basedir}"/>
@@ -185,7 +189,9 @@
  </target>
 
  <target name="phpunit" unless="phpunit.done" depends="prepare" description="Run unit tests with PHPUnit">
-  <exec executable="${phpunit}" resultproperty="result.phpunit" taskname="phpunit">
+  <exec executable="cmd" resultproperty="result.phpunit" taskname="phpunit">
+   <arg value="/c" />
+   <arg value="${phpunit}" />
    <arg value="--configuration"/>
    <arg path="${basedir}/build/phpunit.xml"/>
   </exec>
@@ -194,7 +200,9 @@
  </target>
 
  <target name="phpunit-no-coverage" unless="phpunit.done" depends="prepare" description="Run unit tests with PHPUnit (without generating code coverage reports)">
-  <exec executable="${phpunit}" failonerror="true" taskname="phpunit">
+  <exec executable="cmd" failonerror="true" taskname="phpunit">
+   <arg value="/c" />
+   <arg value="${phpunit}" />
    <arg value="--configuration"/>
    <arg path="${basedir}/build/phpunit.xml"/>
    <arg value="--no-coverage"/>
@@ -204,7 +212,10 @@
  </target>
 
  <target name="phpdox" unless="phpdox.done" depends="phploc-ci,phpcs-ci,phpmd-ci" description="Generate project documentation using phpDox">
-  <exec executable="${phpdox}" dir="${basedir}/build" taskname="phpdox"/>
+  <exec executable="cmd" dir="${basedir}/build" taskname="phpdox">
+   <arg value="/c" />
+   <arg value="${phpdox}" />
+  </exec>
 
   <property name="phpdox.done" value="true"/>
  </target>
