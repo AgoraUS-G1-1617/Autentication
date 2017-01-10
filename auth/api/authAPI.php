@@ -1,15 +1,24 @@
 <?php
+	require_once ("../database.php");
+	include_once "../auth.php";
+	
+	
 	class authAPI {
+		
 		
 		/*
 		 * Control de métodos
 		 */
 		//TODO Control de login (comprobar token)
 		public function API() {
+			$db =  new database();
 			header('Content-Type: application/JSON');
 			$method = $_SERVER['REQUEST_METHOD'];
 			switch($method) {
 			case 'GET'://Consulta
+				print_r(explode('/', $_SERVER['REQUEST_URI']));
+				print_r($_GET);
+				echo 'pozi';
 				$this -> getUsers();
 				break;
 			case 'POST'://inserta
@@ -52,16 +61,17 @@
 		 *  - Con username: devuelve el user con dicho username
 		 */
 		function getUsers() {
-			if($_GET['action']=='users') { //Se pide el método "users"
-				$db = new database();
+			$db = new database();
+			$met = explode('/', $_SERVER['REQUEST_URI']);
+			if($met[5] == 'users') { //Se pide el método "users"
 				if( isset($_GET['username']) ) { //Se pide un usuario concreto por su username
 					$response = $db->getUser($_GET['username']);
 				}else { //No se ha pedido un usuario concreto
-					$response = $db->getUsers();
+					$response = $db->getAllUsers();
 				}
 				echo json_encode($response, JSON_PRETTY_PRINT);
 			} else { //No es el método que pedimos
-				$this->response(400);
+				print_r($_GET);
 			}
 		}
 	}

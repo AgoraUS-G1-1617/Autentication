@@ -6,15 +6,9 @@
 */
 include_once "variables.php";
 class database {
-
-	//TODO Actualizar
-	//Configuración
-	protected $mysqli;
-	const LOCALHOST = '127.0.0.1';
-	const USER = 'root';
-	const PASSWORD = '';
-	const DATABASE = 'test';
-
+/**
+ *  Constructor
+ */
 /**
 * \brief Conexión BD
 * \details Método de conexión a la base de datos.
@@ -25,21 +19,6 @@ function connect() {
     $con ->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $con;
 }
-
-/**
- *  Constructor
- */
- public function __construct() {
- 	try{
- 		//Conectar a la base de datos
- 		$this->mysqli = new mysqli(self::LOCALHOST, self::USER, self::PASSWORD, self::DATABASE);
- 	}catch (mysqli_sql_exception $e) {
- 		//Fallo al conectar
- 		http_response_code(500);
-		exit;
- 	}
- }
-
 /**
 * \brief Crear BD
 * \details Montar la base de datos con la tabla de usuarios vacía.
@@ -74,7 +53,6 @@ function setUp() {
         );
         ');
 }
-
 /**
 * \brief Consultar usuario
 * \details Consultar toda la información de un usuario en la base de
@@ -82,24 +60,24 @@ function setUp() {
 * \param $user Nombre de usuario
 * \return Usuario consultado.
 */
-function getUser($username) {
+function getUser($user) {
     $con = connect();
     $stmt = $con->prepare("SELECT   USERNAME, 
+                                    PASSWORD, 
                                     EMAIL, 
                                     GENRE, 
                                     AUTONOMOUS_COMMUNITY, 
                                     AGE 
-                                    FROM USERS WHERE USERNAME=:username");
-    $stmt->bindParam(':username', $username);
+                                    FROM USERS WHERE USERNAME=:user");
+    $stmt->bindParam(':user', $user);
     $stmt->execute();
     return $stmt->fetch();
 }
-
 /**
 * \brief Consultar email
 */
 function getEmail($email) {
-    $con = connect();
+    $con = $this->connect();
     $stmt = $con->prepare("SELECT EMAIL FROM USERS WHERE EMAIL=:email");
     $stmt->bindParam(':email', $email);
     $stmt->execute();
@@ -111,14 +89,12 @@ function getEmail($email) {
 * \details Consultar todos los usuario de la base de datos
 * \return Todos los usuarios
 */
-function getUsers() {
-    $con = connect();
-    //$stmt = $con->prepare("SELECT USERNAME, PASSWORD, EMAIL, GENRE, AUTONOMOUS_COMMUNITY, AGE FROM USERS");
-    $stmt = $con->prepare("SELECT USERNAME, EMAIL, GENRE, AUTONOMOUS_COMMUNITY, AGE FROM USERS");
+function getAllUsers() {
+    $con = $this->connect();
+    $stmt = $con->prepare("SELECT USERNAME, PASSWORD, EMAIL, GENRE, AUTONOMOUS_COMMUNITY, AGE FROM USERS");
     $stmt->execute();
     return $stmt->fetchAll();
 }
-
 /**
 * \brief Crear usuario
 * \details Crear un usuario con todos sus campos e insertarlo en la base de datos.
@@ -146,10 +122,8 @@ function createUser($username, $password, $email, $genre, $age, $autonomousCommu
     $stmt->bindParam(':age', $age);
     $stmt->execute();
 }
-
 function disconnect($conexion) {
 	$conexion = null;
 }
-
 }
 ?>

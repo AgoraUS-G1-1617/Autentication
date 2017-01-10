@@ -3,7 +3,7 @@ session_start();
 require_once ("./database.php");
 $form = $_SESSION['formularioLogin'];
 
-$conexion = connect();
+$db=new database();
 ?>
 
 <html>
@@ -13,7 +13,7 @@ $conexion = connect();
 	<body>
 		<?php
 		$exito = false;
-		$stmt = getAllUsers($conexion);
+		$stmt = $db->getAllUsers();
 		foreach ($stmt as $p) {
 			if ($p["PASSWORD"] == md5($form["pass"]) && $p["USERNAME"] == $form["username"]) {
 				$exito = true;
