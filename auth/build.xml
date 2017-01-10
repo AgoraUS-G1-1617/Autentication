@@ -20,6 +20,7 @@
  <property name="phpunit" value="${basedir}/build/tools/phpunit.phar"/> -->
 
  <!-- Use this when the tools are managed by Composer in ${basedir}/vendor/bin -->
+ <property name="pdepend" value="${basedir}/vendor/bin/pedepend"/>
  <property name="phpcpd"  value="${basedir}/vendor/bin/phpcpd"/>
  <property name="phpcs"   value="${basedir}/vendor/bin/phpcs"/>
  <property name="phpdox"  value="${basedir}/vendor/bin/phpdox"/>
