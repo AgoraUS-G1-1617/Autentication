@@ -87,7 +87,9 @@
  </target>
 
  <target name="phploc" unless="phploc.done" description="Measure project size using PHPLOC and print human readable output. Intended for usage on the command line.">
-  <exec executable="${phploc}" taskname="phploc">
+  <exec executable="cmd" taskname="phploc">
+   <arg value="/c" />
+   <arg value="${phploc}" />
    <arg value="--count-tests"/>
    <arg path="${basedir}"/>
    <arg path="${basedir}/tests"/>
