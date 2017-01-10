@@ -113,7 +113,7 @@
 
   <property name="phploc.done" value="true"/>
  </target>
-
+<!--
  <target name="pdepend" unless="pdepend.done" depends="prepare" description="Calculate software metrics using PHP_Depend and log result in XML format. Intended for usage within a continuous integration environment.">
   <exec executable="cmd" taskname="pdepend">
    <arg value="/c" />
@@ -123,7 +123,7 @@
    <arg value="--overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg"/>
    <arg path="${basedir}"/>
   </exec>
-
+-->
   <property name="pdepend.done" value="true"/>
  </target>
 
