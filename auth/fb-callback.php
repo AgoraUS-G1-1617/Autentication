@@ -5,6 +5,10 @@ session_start();
 $fb = new Facebook\Facebook( array('app_id' => '1065487940245693', 'app_secret' => '1a934054901ddcecf5095a53172e0d07', 'default_graph_version' => 'v2.4', ));
 
 $helper = $fb -> getRedirectLoginHelper();
+
+echo "echo";
+print "print";
+
 try {
 	$accessToken = $helper -> getAccessToken();
 } catch(Facebook\Exceptions\FacebookResponseException $e) {
