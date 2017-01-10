@@ -88,7 +88,6 @@ include_once 'variables.php';
 	<div class="tituloInicio">
 		<h1 style="font-size: 100px; font-family: Roboto">Selecciona dónde quieres acceder</h1>
 	</div>
-	
 	<div class="row">
   <div class="col-md-4">
   	<div class="loginDNIe">
@@ -129,8 +128,8 @@ include_once 'variables.php';
 
 
 <html>
-<head>-->
-  <title>Agor@us</title>
+<head>
+ <title>Agor@us</title>-->
   <script type="text/javascript">
   var auth2 = auth2 || {};
 
@@ -146,16 +145,16 @@ include_once 'variables.php';
      calls -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" ></script>
 </head>
-<style>
+<!--<style>
     #customBtn:hover {
       cursor: hand;
     }
 </style>
 <body style="background-color: #F5F5F5;font-family: Roboto">
-  <div id="gConnect" >
+ <!-- <div id="gConnect" >
     <img id="customBtn" src="img/imgG+.png" onClick="signInClick()"
         alt="Sign in with Google+" />
-  </div>
+ </div>-->
   <div id="authOps" style="display:none">
     <h2>User is now signed in to the app using Google+</h2>
     <p>If the user chooses to disconnect, the app must delete all stored
