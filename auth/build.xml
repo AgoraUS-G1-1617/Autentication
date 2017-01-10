@@ -39,9 +39,6 @@
  <!-- Adjust the threadCount attribute's value to the number of CPUs -->
  <target name="static-analysis-parallel" description="Performs static analysis (executing the tools in parallel)">
   <parallel threadCount="2">
-   <sequential>
-    <antcall target="phpmd-ci"/>
-   </sequential>
    <antcall target="lint"/>
    <antcall target="phpcpd-ci"/>
    <antcall target="phpcs-ci"/>
