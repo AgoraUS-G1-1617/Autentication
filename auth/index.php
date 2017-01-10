@@ -69,7 +69,7 @@ include_once 'variables.php';
 		                           	class="btn btn-info"/>
 		  </div>
        	  <div class="col-md-2">
-				<input  onClick="location.href = 'loginNotDNIe.php' "
+				<input  onClick="location.href = 'login.php' "
 		                            id="loginNotDNIe" 
 		                            type="button"
 		                            value ="Entrar sin DNIe" 
@@ -88,17 +88,6 @@ include_once 'variables.php';
 	</div>
   </div>
   
-  
-  <div class="col-md-4">
-  	<div class="register">
-		<h1 style="font-size: 40px;">Entrar</h1>
-		<input  onClick="location.href = 'login.php' "
-                            id="login" 
-                            type="button"
-                            value ="Sing In	" 
-                           	class="btn btn-info"/>
-	</div>
-  </div>
   
   <div class="col-md-4">
   	<div class="register">
@@ -131,7 +120,7 @@ include_once 'variables.php';
 		                    	class="btn btn-info"/>	
        	</div>
        	<div class="ancho-botones">
-				<input  onClick="location.href = 'loginNotDNIe.php' "
+				<input  onClick="location.href = 'login.php' "
 		                            id="loginNotDNIe" 
 		                            type="button"
 		                            value ="Entrar sin DNIe" 
@@ -157,7 +146,7 @@ include_once 'variables.php';
 		                           	class="btn btn-info"/>
 		  </div>
 		<div class="col-md-4">
-				<input  onClick="location.href = 'loginNotDNIe.php' "
+				<input  onClick="location.href = 'login.php' "
 		                            id="loginNotDNIe" 
 		                            type="button"
 		                            value ="Entrar sin DNIe" 
@@ -176,7 +165,7 @@ include_once 'variables.php';
 	  </div>
 	<?php elseif ($socialNet===FALSE && $DNIe===FALSE):?>
 		<div class="col-md-6">
-				<input  onClick="location.href = 'loginNotDNIe.php' "
+				<input  onClick="location.href = 'login.php' "
 		                            id="loginNotDNIe" 
 		                            type="button"
 		                            value ="Entrar sin DNIe" 

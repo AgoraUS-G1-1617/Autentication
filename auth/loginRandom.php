@@ -12,15 +12,14 @@
 	session_start();
 	
 	// Inicializamos o recuperamos la sesión
-	$formularioLogin = $_SESSION["formularioLogin"];
+	$formularioLogin = $_SESSION["formularioRandom"];
 	
 	// Asignamos valor por defecto a los elementos
-	if (!isset($formularioLogin)) {
-		$formularioLogin["username"] = "";
-		$formularioLogin["pass"] = "";
+	if (!isset($formularioRandom)) {
+		$formularioRandom["codigo"] = "";
 	}
 	
-	$_SESSION["formularioLogin"] = $formularioLogin;
+	$_SESSION["formularioRandom"] = $formularioRandom;
 
 ?>
 
@@ -59,22 +58,34 @@
 		<h1 style="font-size: 100px; font-family: Roboto">¡Bienvenidos a agor@us!</h1>
 	</div>
 	
+	<?php
+		$d=mt_rand(10000,99999);
+		$formularioRandom["codigo"] = $d;
+	
+		$_SESSION["formularioRandom"] = $formularioRandom;
+		
+	?>
+	
+	<label id="label_codigo" for="codigoLogin"> <h3>Código de Verificación (Esto se manda por SMS </br> al usuario para una mayor seguridad): </h3> <?php echo $d; ?>  </label>
+	
 	<div class="row">
-   		<form method="post" action="validacionLogin.php">
+   		<form method="post" action="validacionLoginRandom.php">
    			
-				<label id="label_username" for="usernameLogin"> <h3>Username</h3> </label>
-				<input type="username" required="required" value="" id="username" name="username" class="input_reg" style="height: 25px; background: #C0C0C0;">
-			
-				<label id="label_pass" for="passLogin"> <h3>Contraseña</h3> </label>
-				<input type="password" required="required" value="" id="pass" name="pass" style="height: 25px; background: #C0C0C0;">
+				<label id="label_codigo" for="codigoLogin"> <h3>Código de Verificación</h3> </label>
+				<input type="codigo" required="required" value="" id="codigo" name="codigo" class="input_reg" style="height: 25px; background: #C0C0C0;">
 			
 			<div>
-				<input id="login" type="submit" value ="Sing In" class="btn btn-info"/>
+				<input id="login" type="submit" value ="Verificar" class="btn btn-info"/>
 			</div>
 			
 		</form>
 	</div>
    	
+   <!-- $d=mt_rand(1000000,999999);
+   echo $d;		 -->
+	
+	
+	
 	
   </body>
 </html>

@@ -22,7 +22,7 @@ $conexion = connect();
 		}
 
 		if ($exito == true) {
-			Header("Location: welcome.php");
+			Header("Location: loginRandom.php");
 			
 		} else {
 			Header("Location: index.php");
