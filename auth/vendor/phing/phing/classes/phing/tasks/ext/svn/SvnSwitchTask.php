@@ -46,12 +46,14 @@ class SvnSwitchTask extends SvnBaseTask
      *
      * @throws BuildException
      */
-    function main()
+    public function main()
     {
         $this->setup('switch');
 
-        $this->log("Switching SVN repository at '" . $this->getToDir() . "' to '" . $this->getRepositoryUrl() . "' "
-          . ($this->getRevision()=='HEAD'?'':" (revision: {$this->getRevision()})"));
+        $this->log(
+            "Switching SVN repository at '" . $this->getToDir() . "' to '" . $this->getRepositoryUrl() . "' "
+            . ($this->getRevision() == 'HEAD' ? '' : " (revision: {$this->getRevision()})")
+        );
 
         // revision
         $switches = array(
@@ -61,11 +63,17 @@ class SvnSwitchTask extends SvnBaseTask
         $this->run(array($this->getToDir()), $switches);
     }
 
+    /**
+     * @param $revision
+     */
     public function setRevision($revision)
     {
         $this->revision = $revision;
     }
-    
+
+    /**
+     * @return string
+     */
     public function getRevision()
     {
         return $this->revision;

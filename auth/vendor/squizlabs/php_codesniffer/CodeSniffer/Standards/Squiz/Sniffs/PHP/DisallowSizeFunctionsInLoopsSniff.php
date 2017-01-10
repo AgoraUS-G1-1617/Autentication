@@ -7,7 +7,7 @@
  * @category  PHP
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
@@ -20,7 +20,7 @@
  * @category  PHP
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @version   Release: @package_version@
  * @link      http://pear.php.net/package/PHP_CodeSniffer
@@ -45,11 +45,11 @@ class Squiz_Sniffs_PHP_DisallowSizeFunctionsInLoopsSniff implements PHP_CodeSnif
      */
     protected $forbiddenFunctions = array(
                                      'PHP' => array(
-                                               'sizeof',
-                                               'strlen',
-                                               'count',
+                                               'sizeof' => true,
+                                               'strlen' => true,
+                                               'count'  => true,
                                               ),
-                                     'JS'  => array('length'),
+                                     'JS'  => array('length' => true),
                                     );
 
 
@@ -94,7 +94,9 @@ class Squiz_Sniffs_PHP_DisallowSizeFunctionsInLoopsSniff implements PHP_CodeSnif
         }
 
         for ($i = ($start + 1); $i < $end; $i++) {
-            if ($tokens[$i]['code'] === T_STRING && in_array($tokens[$i]['content'], $this->forbiddenFunctions[$tokenizer])) {
+            if ($tokens[$i]['code'] === T_STRING
+                && isset($this->forbiddenFunctions[$tokenizer][$tokens[$i]['content']]) === true
+            ) {
                 $functionName = $tokens[$i]['content'];
                 if ($tokenizer === 'JS') {
                     // Needs to be in the form object.function to be valid.
@@ -123,5 +125,3 @@ class Squiz_Sniffs_PHP_DisallowSizeFunctionsInLoopsSniff implements PHP_CodeSnif
 
 
 }//end class
-
-?>

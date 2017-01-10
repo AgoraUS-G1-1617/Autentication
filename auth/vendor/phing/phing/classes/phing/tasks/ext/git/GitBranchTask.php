@@ -18,7 +18,7 @@
  * and is licensed under the LGPL. For more information please see
  * <http://phing.info>.
  */
- 
+
 require_once 'phing/Task.php';
 require_once 'phing/tasks/ext/git/GitBaseTask.php';
 
@@ -143,96 +143,148 @@ class GitBranchTask extends GitBaseTask
         }
 
         $this->log(
-            sprintf('git-branch: branch "%s" repository', $this->getRepository()), 
-            Project::MSG_INFO); 
+            sprintf('git-branch: branch "%s" repository', $this->getRepository()),
+            Project::MSG_INFO
+        );
         $this->log('git-branch output: ' . trim($output), Project::MSG_INFO);
     }
 
+    /**
+     * @param $flag
+     */
     public function setSetUpstream($flag)
     {
         $this->setUpstream = $flag;
     }
 
+    /**
+     * @return bool
+     */
     public function getSetUpstream()
     {
         return $this->setUpstream;
     }
 
+    /**
+     * @return bool
+     */
     public function isSetUpstream()
     {
         return $this->getSetUpstream();
     }
 
+    /**
+     * @param $flag
+     */
     public function setTrack($flag)
     {
         $this->track = $flag;
     }
 
+    /**
+     * @return bool
+     */
     public function getTrack()
     {
         return $this->track;
     }
 
+    /**
+     * @return bool
+     */
     public function isTrack()
     {
         return $this->getTrack();
     }
 
+    /**
+     * @param $flag
+     */
     public function setNoTrack($flag)
     {
         $this->noTrack = $flag;
     }
 
+    /**
+     * @return bool
+     */
     public function getNoTrack()
     {
         return $this->noTrack;
     }
 
+    /**
+     * @return bool
+     */
     public function isNoTrack()
     {
         return $this->getNoTrack();
     }
 
+    /**
+     * @param $flag
+     */
     public function setForce($flag)
     {
         $this->force = $flag;
     }
 
+    /**
+     * @return bool
+     */
     public function getForce()
     {
         return $this->force;
     }
 
+    /**
+     * @return bool
+     */
     public function isForce()
     {
         return $this->getForce();
     }
 
+    /**
+     * @param $branchname
+     */
     public function setBranchname($branchname)
     {
         $this->branchname = $branchname;
     }
 
+    /**
+     * @return string
+     */
     public function getBranchname()
     {
         return $this->branchname;
     }
 
+    /**
+     * @param $startPoint
+     */
     public function setStartPoint($startPoint)
     {
         $this->startPoint = $startPoint;
     }
 
+    /**
+     * @return string
+     */
     public function getStartPoint()
     {
         return $this->startPoint;
     }
 
+    /**
+     * @param $flag
+     */
     public function setDelete($flag)
     {
         $this->extraOptions['d'] = $flag;
     }
-    
+
     public function getDelete()
     {
         return $this->extraOptions['d'];
@@ -243,21 +295,27 @@ class GitBranchTask extends GitBaseTask
         return $this->getDelete();
     }
 
+    /**
+     * @param $flag
+     */
     public function setForceDelete($flag)
     {
         $this->extraOptions['D'] = $flag;
     }
-    
+
     public function getForceDelete()
     {
         return $this->extraOptions['D'];
     }
 
+    /**
+     * @param $flag
+     */
     public function setMove($flag)
     {
         $this->extraOptions['m'] = $flag;
     }
-    
+
     public function getMove()
     {
         return $this->extraOptions['m'];
@@ -268,11 +326,14 @@ class GitBranchTask extends GitBaseTask
         return $this->getMove();
     }
 
+    /**
+     * @param $flag
+     */
     public function setForceMove($flag)
     {
         $this->extraOptions['M'] = $flag;
     }
-    
+
     public function getForceMove()
     {
         return $this->extraOptions['M'];
@@ -283,11 +344,17 @@ class GitBranchTask extends GitBaseTask
         return $this->getForceMove();
     }
 
+    /**
+     * @param $name
+     */
     public function setNewBranch($name)
     {
         $this->newbranch = $name;
     }
 
+    /**
+     * @return string
+     */
     public function getNewBranch()
     {
         return $this->newbranch;

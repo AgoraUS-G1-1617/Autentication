@@ -8,7 +8,7 @@
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
@@ -22,13 +22,32 @@
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @version   Release: @package_version@
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
 class Squiz_Sniffs_PHP_LowercasePHPFunctionsSniff implements PHP_CodeSniffer_Sniff
 {
+
+    /**
+     * String -> int hash map of all php built in function names
+     *
+     * @var array
+     */
+    private $_builtInFunctions;
+
+
+    /**
+     * Construct the LowercasePHPFunctionSniff
+     */
+    public function __construct()
+    {
+
+        $allFunctions            = get_defined_functions();
+        $this->_builtInFunctions = array_flip($allFunctions['internal']);
+
+    }//end __construct()
 
 
     /**
@@ -74,6 +93,11 @@ class Squiz_Sniffs_PHP_LowercasePHPFunctionsSniff implements PHP_CodeSniffer_Sni
             return;
         }
 
+        if ($tokens[$prev]['code'] === T_NS_SEPARATOR) {
+            // Namespaced class/function, not an inbuilt function.
+            return;
+        }
+
         if ($tokens[$prev]['code'] === T_NEW) {
             // Object creation, not an inbuilt function.
             return;
@@ -90,11 +114,10 @@ class Squiz_Sniffs_PHP_LowercasePHPFunctionsSniff implements PHP_CodeSniffer_Sni
         }
 
         // Make sure it is an inbuilt PHP function.
-        // PHP_CodeSniffer doesn't include/require any files, so no
-        // user defined global functions can exist, except for
-        // PHP_CodeSniffer ones.
+        // PHP_CodeSniffer can possibly include user defined functions
+        // through the use of vendor/autoload.php.
         $content = $tokens[$stackPtr]['content'];
-        if (function_exists($content) === false) {
+        if (isset($this->_builtInFunctions[strtolower($content)]) === false) {
             return;
         }
 
@@ -104,12 +127,14 @@ class Squiz_Sniffs_PHP_LowercasePHPFunctionsSniff implements PHP_CodeSniffer_Sni
                       strtolower($content),
                       $content,
                      );
-            $phpcsFile->addError($error, $stackPtr, 'CallUppercase', $data);
+
+            $fix = $phpcsFile->addFixableError($error, $stackPtr, 'CallUppercase', $data);
+            if ($fix === true) {
+                $phpcsFile->fixer->replaceToken($stackPtr, strtolower($content));
+            }
         }
 
     }//end process()
 
 
 }//end class
-
-?>

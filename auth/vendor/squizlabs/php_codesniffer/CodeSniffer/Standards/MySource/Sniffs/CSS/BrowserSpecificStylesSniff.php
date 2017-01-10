@@ -7,7 +7,7 @@
  * @category  PHP
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
@@ -20,7 +20,7 @@
  * @category  PHP
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @version   Release: @package_version@
  * @link      http://pear.php.net/package/PHP_CodeSniffer
@@ -45,18 +45,18 @@ class MySource_Sniffs_CSS_BrowserSpecificStylesSniff implements PHP_CodeSniffer_
      * @var array
      */
     protected $specificStylesheets = array(
-                                      'moz',
-                                      'ie',
-                                      'ie7',
-                                      'ie8',
-                                      'webkit',
+                                      'moz'    => true,
+                                      'ie'     => true,
+                                      'ie7'    => true,
+                                      'ie8'    => true,
+                                      'webkit' => true,
                                      );
 
 
     /**
      * Returns the token types that this sniff is interested in.
      *
-     * @return array(int)
+     * @return int[]
      */
     public function register()
     {
@@ -81,7 +81,7 @@ class MySource_Sniffs_CSS_BrowserSpecificStylesSniff implements PHP_CodeSniffer_
         $breakChar = strrpos($filename, '_');
         if ($breakChar !== false && substr($filename, -4) === '.css') {
             $specific = substr($filename, ($breakChar + 1), -4);
-            if (in_array($specific, $this->specificStylesheets) === true) {
+            if (isset($this->specificStylesheets[$specific]) === true) {
                 return;
             }
         }
@@ -98,5 +98,3 @@ class MySource_Sniffs_CSS_BrowserSpecificStylesSniff implements PHP_CodeSniffer_
 
 
 }//end class
-
-?>

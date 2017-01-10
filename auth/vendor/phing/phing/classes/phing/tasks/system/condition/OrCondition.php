@@ -30,17 +30,22 @@ require_once 'phing/tasks/system/condition/ConditionBase.php';
  * @author    Andreas Aderhold <andi@binarycloud.com>
  * @copyright  2001,2002 THYRELL. All rights reserved
  * @version   $Id$
- * @access    public
  * @package   phing.tasks.system.condition
  */
-class OrCondition extends ConditionBase implements Condition {
+class OrCondition extends ConditionBase implements Condition
+{
 
-    function evaluate() {
-        foreach($this as $c) { // ConditionBase implements IteratorAggregator
-              if ($c->evaluate()) {
+    /**
+     * @return bool
+     */
+    public function evaluate()
+    {
+        foreach ($this as $c) { // ConditionBase implements IteratorAggregator
+            if ($c->evaluate()) {
                 return true;
             }
         }
+
         return false;
     }
 }

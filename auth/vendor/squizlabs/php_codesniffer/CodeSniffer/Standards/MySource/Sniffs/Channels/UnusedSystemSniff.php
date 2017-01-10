@@ -7,7 +7,7 @@
  * @category  PHP
  * @package   PHP_CodeSniffer_MySource
  * @author    Greg Sherwood <gsherwood@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
@@ -18,7 +18,7 @@
  * @category  PHP
  * @package   PHP_CodeSniffer_MySource
  * @author    Greg Sherwood <gsherwood@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @version   Release: @package_version@
  * @link      http://pear.php.net/package/PHP_CodeSniffer
@@ -54,7 +54,10 @@ class MySource_Sniffs_Channels_UnusedSystemSniff implements PHP_CodeSniffer_Snif
 
         // Check if this is a call to includeSystem, includeAsset or includeWidget.
         $methodName = strtolower($tokens[($stackPtr + 1)]['content']);
-        if (in_array($methodName, array('includesystem', 'includeasset', 'includewidget')) === true) {
+        if ($methodName === 'includesystem'
+            || $methodName === 'includeasset'
+            || $methodName === 'includewidget'
+        ) {
             $systemName = $phpcsFile->findNext(T_WHITESPACE, ($stackPtr + 3), null, true);
             if ($systemName === false || $tokens[$systemName]['code'] !== T_CONSTANT_ENCAPSED_STRING) {
                 // Must be using a variable instead of a specific system name.
@@ -100,13 +103,10 @@ class MySource_Sniffs_Channels_UnusedSystemSniff implements PHP_CodeSniffer_Snif
                 break;
             }//end if
 
-            $validTokens = array(
-                            T_DOUBLE_COLON,
-                            T_EXTENDS,
-                            T_IMPLEMENTS,
-                           );
-
-            if (in_array($tokens[$i]['code'], $validTokens) === false) {
+            if ($tokens[$i]['code'] !== T_DOUBLE_COLON
+                && $tokens[$i]['code'] !== T_EXTENDS
+                && $tokens[$i]['code'] !== T_IMPLEMENTS
+            ) {
                 continue;
             }
 
@@ -117,7 +117,6 @@ class MySource_Sniffs_Channels_UnusedSystemSniff implements PHP_CodeSniffer_Snif
                     // The included system was used, so it is fine.
                     return;
                 }
-
                 break;
             case T_EXTENDS:
                 $classNameToken = $phpcsFile->findNext(T_STRING, ($i + 1));
@@ -126,7 +125,6 @@ class MySource_Sniffs_Channels_UnusedSystemSniff implements PHP_CodeSniffer_Snif
                     // The included system was used, so it is fine.
                     return;
                 }
-
                 break;
             case T_IMPLEMENTS:
                 $endImplements = $phpcsFile->findNext(array(T_EXTENDS, T_OPEN_CURLY_BRACKET), ($i + 1));
@@ -139,7 +137,6 @@ class MySource_Sniffs_Channels_UnusedSystemSniff implements PHP_CodeSniffer_Snif
                         }
                     }
                 }
-
                 break;
             }//end switch
         }//end for
@@ -153,5 +150,3 @@ class MySource_Sniffs_Channels_UnusedSystemSniff implements PHP_CodeSniffer_Snif
 
 
 }//end class
-
-?>

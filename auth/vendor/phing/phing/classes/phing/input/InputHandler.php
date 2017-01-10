@@ -27,7 +27,8 @@
  * @version $Id$
  * @package phing.input
  */
-interface InputHandler {
+interface InputHandler
+{
 
     /**
      * Handle the request encapsulated in the argument.
@@ -37,9 +38,9 @@ interface InputHandler {
      *
      * <p>Postcondition: request.getInput will return a non-null
      * value, request.isInputValid will return true.</p>
+     * @param InputRequest $request
      * @return void
-     * @throws BuildException
      */
     public function handleInput(InputRequest $request);
-    
+
 }

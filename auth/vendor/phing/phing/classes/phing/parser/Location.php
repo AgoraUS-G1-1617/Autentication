@@ -25,11 +25,11 @@
  * @author    Andreas Aderhold <andi@binarycloud.com>
  * @copyright 2001,2002 THYRELL. All rights reserved
  * @version   $Id$
- * @access    public
  * @package   phing.parser
  */
 
-class Location {
+class Location
+{
 
     private $fileName;
     private $lineNumber;
@@ -41,9 +41,9 @@ class Location {
      * @param  string  the filename
      * @param  integer the line number
      * @param  integer the column number
-     * @access public
      */
-    function Location($fileName = null, $lineNumber = null, $columnNumber = null) {
+    public function __construct($fileName = null, $lineNumber = null, $columnNumber = null)
+    {
         $this->fileName = $fileName;
         $this->lineNumber = $lineNumber;
         $this->columnNumber = $columnNumber;
@@ -56,21 +56,26 @@ class Location {
      * returns empty string.
      *
      * @return string the string representation of this Location object
-     * @access public
      */
-    function toString() {
+    public function toString()
+    {
         $buf = "";
         if ($this->fileName !== null) {
-            $buf.=$this->fileName;
+            $buf .= $this->fileName;
             if ($this->lineNumber !== null) {
-                $buf.= ":".$this->lineNumber;
+                $buf .= ":" . $this->lineNumber;
             }
-            $buf.=":".$this->columnNumber;
+            $buf .= ":" . $this->columnNumber;
         }
+
         return (string) $buf;
     }
 
-    function __toString () {
-      return $this->toString();
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->toString();
     }
 }

@@ -30,12 +30,18 @@
 class IoncubeComment
 {
     private $value = "";
-    
+
+    /**
+     * @return string
+     */
     public function getValue()
     {
         return $this->value;
     }
-    
+
+    /**
+     * @param $txt
+     */
     public function addText($txt)
     {
         $this->value = trim($txt);

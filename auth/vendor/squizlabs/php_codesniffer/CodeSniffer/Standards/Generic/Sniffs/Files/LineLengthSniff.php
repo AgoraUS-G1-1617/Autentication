@@ -8,7 +8,7 @@
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
@@ -24,7 +24,7 @@
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @version   Release: @package_version@
  * @link      http://pear.php.net/package/PHP_CodeSniffer
@@ -68,36 +68,21 @@ class Generic_Sniffs_Files_LineLengthSniff implements PHP_CodeSniffer_Sniff
      * @param int                  $stackPtr  The position of the current token in
      *                                        the stack passed in $tokens.
      *
-     * @return void
+     * @return int
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
-
-        // Make sure this is the first open tag.
-        $previousOpenTag = $phpcsFile->findPrevious(T_OPEN_TAG, ($stackPtr - 1));
-        if ($previousOpenTag !== false) {
-            return;
-        }
-
-        $tokenCount         = 0;
-        $currentLineContent = '';
-        $currentLine        = 1;
-
-        $trim = (strlen($phpcsFile->eolChar) * -1);
-        for (; $tokenCount < $phpcsFile->numTokens; $tokenCount++) {
-            if ($tokens[$tokenCount]['line'] === $currentLine) {
-                $currentLineContent .= $tokens[$tokenCount]['content'];
-            } else {
-                $currentLineContent = substr($currentLineContent, 0, $trim);
-                $this->checkLineLength($phpcsFile, ($tokenCount - 1), $currentLineContent);
-                $currentLineContent = $tokens[$tokenCount]['content'];
-                $currentLine++;
+        for ($i = 1; $i < $phpcsFile->numTokens; $i++) {
+            if ($tokens[$i]['column'] === 1) {
+                $this->checkLineLength($phpcsFile, $tokens, $i);
             }
         }
 
-        $currentLineContent = substr($currentLineContent, 0, $trim);
-        $this->checkLineLength($phpcsFile, ($tokenCount - 1), $currentLineContent);
+        $this->checkLineLength($phpcsFile, $tokens, $i);
+
+        // Ignore the rest of the file.
+        return ($phpcsFile->numTokens + 1);
 
     }//end process()
 
@@ -105,34 +90,65 @@ class Generic_Sniffs_Files_LineLengthSniff implements PHP_CodeSniffer_Sniff
     /**
      * Checks if a line is too long.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile   The file being scanned.
-     * @param int                  $stackPtr    The token at the end of the line.
-     * @param string               $lineContent The content of the line.
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param array                $tokens    The token stack.
+     * @param int                  $stackPtr  The first token on the next line.
      *
-     * @return void
+     * @return null|false
      */
-    protected function checkLineLength(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $lineContent)
+    protected function checkLineLength(PHP_CodeSniffer_File $phpcsFile, $tokens, $stackPtr)
     {
-        // If the content is a CVS or SVN id in a version tag, or it is
-        // a license tag with a name and URL, there is nothing the
-        // developer can do to shorten the line, so don't throw errors.
-        if (preg_match('|@version[^\$]+\$Id|', $lineContent) !== 0) {
+        // The passed token is the first on the line.
+        $stackPtr--;
+
+        if ($tokens[$stackPtr]['column'] === 1
+            && $tokens[$stackPtr]['length'] === 0
+        ) {
+            // Blank line.
             return;
         }
 
-        if (preg_match('|@license|', $lineContent) !== 0) {
-            return;
+        if ($tokens[$stackPtr]['column'] !== 1
+            && $tokens[$stackPtr]['content'] === $phpcsFile->eolChar
+        ) {
+            $stackPtr--;
         }
 
-        if (PHP_CODESNIFFER_ENCODING !== 'iso-8859-1') {
-            // Not using the detault encoding, so take a bit more care.
-            $lineLength = iconv_strlen($lineContent, PHP_CODESNIFFER_ENCODING);
-            if ($lineLength === false) {
-                // String contained invalid characters, so revert to default.
-                $lineLength = strlen($lineContent);
-            }
+        $lineLength = ($tokens[$stackPtr]['column'] + $tokens[$stackPtr]['length'] - 1);
+
+        // Record metrics for common line length groupings.
+        if ($lineLength <= 80) {
+            $phpcsFile->recordMetric($stackPtr, 'Line length', '80 or less');
+        } else if ($lineLength <= 120) {
+            $phpcsFile->recordMetric($stackPtr, 'Line length', '81-120');
+        } else if ($lineLength <= 150) {
+            $phpcsFile->recordMetric($stackPtr, 'Line length', '121-150');
         } else {
-            $lineLength = strlen($lineContent);
+            $phpcsFile->recordMetric($stackPtr, 'Line length', '151 or more');
+        }
+
+        // If this is a long comment, check if it can be broken up onto multiple lines.
+        // Some comments contain unbreakable strings like URLs and so it makes sense
+        // to ignore the line length in these cases if the URL would be longer than the max
+        // line length once you indent it to the correct level.
+        if ($lineLength > $this->lineLimit
+            && ($tokens[$stackPtr]['code'] === T_COMMENT
+            || $tokens[$stackPtr]['code'] === T_DOC_COMMENT_STRING)
+        ) {
+            $oldLength = strlen($tokens[$stackPtr]['content']);
+            $newLength = strlen(ltrim($tokens[$stackPtr]['content'], "/#\t "));
+            $indent    = (($tokens[$stackPtr]['column'] - 1) + ($oldLength - $newLength));
+
+            $nonBreakingLength = $tokens[$stackPtr]['length'];
+
+            $space = strrpos($tokens[$stackPtr]['content'], ' ');
+            if ($space !== false) {
+                $nonBreakingLength -= ($space + 1);
+            }
+
+            if (($nonBreakingLength + $indent) > $this->lineLimit) {
+                return;
+            }
         }
 
         if ($this->absoluteLineLimit > 0
@@ -159,4 +175,3 @@ class Generic_Sniffs_Files_LineLengthSniff implements PHP_CodeSniffer_Sniff
 
 
 }//end class
-

@@ -34,31 +34,43 @@ class CloverPHPUnitResultFormatter extends PHPUnitResultFormatter
     /**
      * @var PHPUnit_Framework_TestResult
      */
-    private $result = NULL;
-    
+    private $result = null;
+
     /**
      * PHPUnit version
      * @var string
      */
-    private $version = NULL;
+    private $version = null;
 
+    /**
+     * @param PHPUnitTask $parentTask
+     */
     public function __construct(PHPUnitTask $parentTask)
     {
         parent::__construct($parentTask);
-        
+
         $this->version = PHPUnit_Runner_Version::id();
     }
 
+    /**
+     * @return string
+     */
     public function getExtension()
     {
         return ".xml";
     }
 
+    /**
+     * @return string
+     */
     public function getPreferredOutfile()
     {
         return "clover-coverage";
     }
 
+    /**
+     * @param PHPUnit_Framework_TestResult $result
+     */
     public function processResult(PHPUnit_Framework_TestResult $result)
     {
         $this->result = $result;
@@ -66,22 +78,24 @@ class CloverPHPUnitResultFormatter extends PHPUnitResultFormatter
 
     public function endTestRun()
     {
-        require_once 'PHP/CodeCoverage/Report/Clover.php';
-        
         $coverage = $this->result->getCodeCoverage();
-        
+
         if (!empty($coverage)) {
-            $clover = new PHP_CodeCoverage_Report_Clover();
-            
+            if (class_exists('PHP_CodeCoverage_Report_Clover')) {
+                $clover = new PHP_CodeCoverage_Report_Clover();
+            } elseif (class_exists('\SebastianBergmann\CodeCoverage\Report\Clover')) {
+                $cloverClass = '\SebastianBergmann\CodeCoverage\Report\Clover';
+                $clover = new $cloverClass;
+            }
+
             $contents = $clover->process($coverage);
-    
-            if ($this->out)
-            {
+
+            if ($this->out) {
                 $this->out->write($contents);
                 $this->out->close();
             }
         }
-        
+
         parent::endTestRun();
     }
 }

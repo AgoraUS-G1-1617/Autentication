@@ -20,7 +20,6 @@
  * <http://phing.info>.
  */
 
-
 /**
  * An interface used to describe the actions required by any type of
  * directory scanner that supports Selecters.
@@ -29,12 +28,13 @@
  * @author Bruce Atherton <bruce@callenish.com> (Ant)
  * @package phing.types.selectors
  */
-interface SelectorScanner {
+interface SelectorScanner
+{
 
     /**
      * Sets the selectors the scanner should use.
      *
-     * @param selectors the list of selectors
+     * @param $selectors the list of selectors
      */
     public function setSelectors($selectors);
 

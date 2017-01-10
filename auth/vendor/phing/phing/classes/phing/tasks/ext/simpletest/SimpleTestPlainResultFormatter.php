@@ -32,64 +32,84 @@ require_once 'phing/tasks/ext/simpletest/SimpleTestResultFormatter.php';
 class SimpleTestPlainResultFormatter extends SimpleTestResultFormatter
 {
     private $inner = "";
-    
-    function getExtension()
+
+    /**
+     * @return string
+     */
+    public function getExtension()
     {
         return ".txt";
     }
-    
-    function getPreferredOutfile()
+
+    /**
+     * @return string
+     */
+    public function getPreferredOutfile()
     {
         return "testresults";
     }
 
-    function paintCaseStart($test_name)
+    /**
+     * @param string $test_name
+     */
+    public function paintCaseStart($test_name)
     {
         parent::paintCaseStart($test_name);
-        
+
         $this->inner = "";
     }
-    
-    function paintCaseEnd($test_name)
+
+    /**
+     * @param string $test_name
+     */
+    public function paintCaseEnd($test_name)
     {
         parent::paintCaseEnd($test_name);
-        
-    $sb = "";
-        /* Only count suites where more than one test was run */
-        if ($this->getRunCount())
-        {
-            $sb.= "Testsuite: $test_name\n";
-            $sb.= "Tests run: " . $this->getRunCount();
-            $sb.= ", Failures: " . $this->getFailureCount();
-            $sb.= ", Errors: " . $this->getErrorCount();
-            $sb.= ", Time elapsed: " . $this->getElapsedTime();
-            $sb.= " sec\n";
 
-            if ($this->out != NULL)
-            {
+        $sb = "";
+        /* Only count suites where more than one test was run */
+        if ($this->getRunCount()) {
+            $sb .= "Testsuite: $test_name\n";
+            $sb .= "Tests run: " . $this->getRunCount();
+            $sb .= ", Failures: " . $this->getFailureCount();
+            $sb .= ", Errors: " . $this->getErrorCount();
+            $sb .= ", Time elapsed: " . $this->getElapsedTime();
+            $sb .= " sec\n";
+
+            if ($this->out != null) {
                 $this->out->write($sb);
                 $this->out->write($this->inner);
             }
         }
     }
 
-    function paintError($message)
+    /**
+     * @param string $message
+     */
+    public function paintError($message)
     {
         parent::paintError($message);
-        
+
         $this->formatError("ERROR", $message);
     }
 
-    function paintFail($message)
+    /**
+     * @param string $message
+     */
+    public function paintFail($message)
     {
         parent::paintFail($message);
-        
+
         $this->formatError("FAILED", $message);
     }
 
+    /**
+     * @param $type
+     * @param $message
+     */
     private function formatError($type, $message)
     {
-        $this->inner.= $this->getTestName() . " " . $type . "\n";
-        $this->inner.= $message . "\n"; 
+        $this->inner .= $this->getTestName() . " " . $type . "\n";
+        $this->inner .= $message . "\n";
     }
 }

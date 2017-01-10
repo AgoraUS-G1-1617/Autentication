@@ -8,7 +8,7 @@
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
@@ -22,7 +22,7 @@
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @version   Release: @package_version@
  * @link      http://pear.php.net/package/PHP_CodeSniffer
@@ -58,41 +58,31 @@ class Generic_Sniffs_PHP_UpperCaseConstantSniff implements PHP_CodeSniffer_Sniff
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
+        $tokens   = $phpcsFile->getTokens();
+        $keyword  = $tokens[$stackPtr]['content'];
+        $expected = strtoupper($keyword);
+        if ($keyword !== $expected) {
+            if ($keyword === strtolower($keyword)) {
+                $phpcsFile->recordMetric($stackPtr, 'PHP constant case', 'lower');
+            } else {
+                $phpcsFile->recordMetric($stackPtr, 'PHP constant case', 'mixed');
+            }
 
-        // Is this a member var name?
-        $prevPtr = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);
-        if ($tokens[$prevPtr]['code'] === T_OBJECT_OPERATOR) {
-            return;
-        }
-
-        // Is this a class name?
-        if ($tokens[$prevPtr]['code'] === T_CLASS
-            || $tokens[$prevPtr]['code'] === T_EXTENDS
-            || $tokens[$prevPtr]['code'] === T_IMPLEMENTS
-            || $tokens[$prevPtr]['code'] === T_NEW
-        ) {
-            return;
-        }
-
-        // Class or namespace?
-        if ($tokens[($stackPtr - 1)]['code'] === T_NS_SEPARATOR) {
-            return;
-        }
-
-        $keyword = $tokens[$stackPtr]['content'];
-        if (strtoupper($keyword) !== $keyword) {
             $error = 'TRUE, FALSE and NULL must be uppercase; expected "%s" but found "%s"';
             $data  = array(
-                      strtoupper($keyword),
+                      $expected,
                       $keyword,
                      );
-            $phpcsFile->addError($error, $stackPtr, 'Found', $data);
+
+            $fix = $phpcsFile->addFixableError($error, $stackPtr, 'Found', $data);
+            if ($fix === true) {
+                $phpcsFile->fixer->replaceToken($stackPtr, $expected);
+            }
+        } else {
+            $phpcsFile->recordMetric($stackPtr, 'PHP constant case', 'upper');
         }
 
     }//end process()
 
 
 }//end class
-
-?>

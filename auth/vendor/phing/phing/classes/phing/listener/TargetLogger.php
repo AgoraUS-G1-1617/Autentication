@@ -29,23 +29,34 @@ require_once 'phing/listener/AnsiColorLogger.php';
  * @version   $Id$
  * @package   phing.listener
  */
-class TargetLogger extends AnsiColorLogger {
+class TargetLogger extends AnsiColorLogger
+{
 
     private $targetName = null;
     private $targetStartTime;
 
-    function targetStarted(BuildEvent $event) {
+    /**
+     * @param BuildEvent $event
+     */
+    public function targetStarted(BuildEvent $event)
+    {
         parent::targetStarted($event);
         $target = $event->getTarget();
         $this->targetName = $target->getName();
         $this->targetStartTime = Phing::currentTimeMillis();
     }
 
-    function targetFinished(BuildEvent $event) {
-        $msg .= PHP_EOL . "Target time: " .self::formatTime(Phing::currentTimeMillis() - $this->targetStartTime) . PHP_EOL;
+    /**
+     * @param BuildEvent $event
+     */
+    public function targetFinished(BuildEvent $event)
+    {
+        $msg = PHP_EOL . "Target time: " . self::formatTime(
+                Phing::currentTimeMillis() - $this->targetStartTime
+            ) . PHP_EOL;
         $event->setMessage($msg, Project::MSG_INFO);
         $this->messageLogged($event);
         $this->targetName = null;
-        
+
     }
 }

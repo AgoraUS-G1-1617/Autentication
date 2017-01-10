@@ -7,7 +7,7 @@
  * @category  PHP
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
@@ -21,7 +21,7 @@
  * @category  PHP
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @version   Release: @package_version@
  * @link      http://pear.php.net/package/PHP_CodeSniffer
@@ -69,17 +69,25 @@ class Squiz_Sniffs_WhiteSpace_PropertyLabelSpacingSniff implements PHP_CodeSniff
 
         if ($colon !== ($stackPtr + 1)) {
             $error = 'There must be no space before the colon in a property/label declaration';
-            $phpcsFile->addError($error, $stackPtr, 'Before');
+            $fix   = $phpcsFile->addFixableError($error, $stackPtr, 'Before');
+            if ($fix === true) {
+                $phpcsFile->fixer->replaceToken(($stackPtr + 1), '');
+            }
         }
 
         if ($tokens[($colon + 1)]['code'] !== T_WHITESPACE || $tokens[($colon + 1)]['content'] !== ' ') {
             $error = 'There must be a single space after the colon in a property/label declaration';
-            $phpcsFile->addError($error, $stackPtr, 'After');
+            $fix   = $phpcsFile->addFixableError($error, $stackPtr, 'After');
+            if ($fix === true) {
+                if ($tokens[($colon + 1)]['code'] === T_WHITESPACE) {
+                    $phpcsFile->fixer->replaceToken(($colon + 1), ' ');
+                } else {
+                    $phpcsFile->fixer->addContent($colon, ' ');
+                }
+            }
         }
 
     }//end process()
 
 
 }//end class
-
-?>

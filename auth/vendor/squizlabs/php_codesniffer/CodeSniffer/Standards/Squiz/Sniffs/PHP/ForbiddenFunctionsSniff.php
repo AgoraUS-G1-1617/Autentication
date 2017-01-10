@@ -8,7 +8,7 @@
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
@@ -27,7 +27,7 @@ if (class_exists('Generic_Sniffs_PHP_ForbiddenFunctionsSniff', true) === false) 
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @version   Release: @package_version@
  * @link      http://pear.php.net/package/PHP_CodeSniffer
@@ -43,29 +43,12 @@ class Squiz_Sniffs_PHP_ForbiddenFunctionsSniff extends Generic_Sniffs_PHP_Forbid
      *
      * @var array(string => string|null)
      */
-    protected $forbiddenFunctions = array(
-                                     'sizeof'          => 'count',
-                                     'delete'          => 'unset',
-                                     'print'           => 'echo',
-                                     'is_null'         => null,
-                                     'create_function' => null,
-                                    );
-
-
-    /**
-     * Returns an array of tokens this test wants to listen for.
-     *
-     * @return array
-     */
-    public function register()
-    {
-        $tokens = parent::register();
-        $tokens[] = T_PRINT;
-        return $tokens;
-
-    }//end register()
-
+    public $forbiddenFunctions = array(
+                                  'sizeof'          => 'count',
+                                  'delete'          => 'unset',
+                                  'print'           => 'echo',
+                                  'is_null'         => null,
+                                  'create_function' => null,
+                                 );
 
 }//end class
-
-?>

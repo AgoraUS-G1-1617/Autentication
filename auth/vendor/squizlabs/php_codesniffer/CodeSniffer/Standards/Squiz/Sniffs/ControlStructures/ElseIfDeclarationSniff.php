@@ -8,7 +8,7 @@
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
@@ -23,7 +23,7 @@
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @version   Release: @package_version@
  * @link      http://pear.php.net/package/PHP_CodeSniffer
@@ -56,12 +56,12 @@ class Squiz_Sniffs_ControlStructures_ElseIfDeclarationSniff implements PHP_CodeS
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $error = 'Usage of ELSEIF not allowed; use ELSE IF instead';
-        $phpcsFile->addError($error, $stackPtr, 'NotAllowed');
+        $fix   = $phpcsFile->addFixableError($error, $stackPtr, 'NotAllowed');
+        if ($fix === true) {
+            $phpcsFile->fixer->replaceToken($stackPtr, 'else if');
+        }
 
     }//end process()
 
 
 }//end class
-
-
-?>

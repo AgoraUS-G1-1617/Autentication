@@ -7,7 +7,7 @@
  * @category  PHP
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
@@ -21,7 +21,7 @@
  * @category  PHP
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @version   Release: @package_version@
  * @link      http://pear.php.net/package/PHP_CodeSniffer
@@ -37,7 +37,7 @@ class Generic_Sniffs_Files_InlineHTMLSniff implements PHP_CodeSniffer_Sniff
      */
     public function register()
     {
-        return array(T_OPEN_TAG);
+        return array(T_INLINE_HTML);
 
     }//end register()
 
@@ -53,22 +53,18 @@ class Generic_Sniffs_Files_InlineHTMLSniff implements PHP_CodeSniffer_Sniff
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        // Make sure this is the first open tag.
-        $previousOpenTag = $phpcsFile->findPrevious(T_OPEN_TAG, ($stackPtr - 1));
-        if ($previousOpenTag !== false) {
-            return;
-        }
-
-        $inline = $phpcsFile->findNext(T_INLINE_HTML, 0);
-        if ($inline === false) {
+        // Ignore shebang lines.
+        $tokens = $phpcsFile->getTokens();
+        if (substr($tokens[$stackPtr]['content'], 0, 2) === '#!') {
             return;
         }
 
         $error = 'PHP files must only contain PHP code';
-        $phpcsFile->addError($error, $inline, 'Found');
+        $phpcsFile->addError($error, $stackPtr, 'Found');
+
+        return $phpcsFile->numTokens;
 
     }//end process()
 
 
 }//end class
-

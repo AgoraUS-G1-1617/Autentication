@@ -7,7 +7,7 @@
  * @category  PHP
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
@@ -20,7 +20,7 @@
  * @category  PHP
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @version   Release: @package_version@
  * @link      http://pear.php.net/package/PHP_CodeSniffer
@@ -44,15 +44,15 @@ class Squiz_Sniffs_CSS_ForbiddenStylesSniff implements PHP_CodeSniffer_Sniff
      * @var array(string => string|null)
      */
     protected $forbiddenStyles = array(
-                                     '-moz-border-radius'             => 'border-radius',
-                                     '-webkit-border-radius'          => 'border-radius',
-                                     '-moz-border-radius-topleft'     => 'border-top-left-radius',
-                                     '-moz-border-radius-topright'    => 'border-top-right-radius',
-                                     '-moz-border-radius-bottomright' => 'border-bottom-right-radius',
-                                     '-moz-border-radius-bottomleft'  => 'border-bottom-left-radius',
-                                     '-moz-box-shadow'                => 'box-shadow',
-                                     '-webkit-box-shadow'             => 'box-shadow',
-                                    );
+                                  '-moz-border-radius'             => 'border-radius',
+                                  '-webkit-border-radius'          => 'border-radius',
+                                  '-moz-border-radius-topleft'     => 'border-top-left-radius',
+                                  '-moz-border-radius-topright'    => 'border-top-right-radius',
+                                  '-moz-border-radius-bottomright' => 'border-bottom-right-radius',
+                                  '-moz-border-radius-bottomleft'  => 'border-bottom-left-radius',
+                                  '-moz-box-shadow'                => 'box-shadow',
+                                  '-webkit-box-shadow'             => 'box-shadow',
+                                 );
 
     /**
      * A cache of forbidden style names, for faster lookups.
@@ -131,7 +131,7 @@ class Squiz_Sniffs_CSS_ForbiddenStylesSniff implements PHP_CodeSniffer_Sniff
             if (in_array($style, $this->forbiddenStyleNames) === false) {
                 return;
             }
-        }
+        }//end if
 
         $this->addError($phpcsFile, $stackPtr, $style, $pattern);
 
@@ -166,20 +166,25 @@ class Squiz_Sniffs_CSS_ForbiddenStylesSniff implements PHP_CodeSniffer_Sniff
         }
 
         if ($this->forbiddenStyles[$pattern] !== null) {
-            $type  .= 'WithAlternative';
             $data[] = $this->forbiddenStyles[$pattern];
-            $error .= '; use %s instead';
-        }
+            if ($this->error === true) {
+                $fix = $phpcsFile->addFixableError($error.'; use %s instead', $stackPtr, $type.'WithAlternative', $data);
+            } else {
+                $fix = $phpcsFile->addFixableWarning($error.'; use %s instead', $stackPtr, $type.'WithAlternative', $data);
+            }
 
-        if ($this->error === true) {
-            $phpcsFile->addError($error, $stackPtr, $type, $data);
+            if ($fix === true) {
+                $phpcsFile->fixer->replaceToken($stackPtr, $this->forbiddenStyles[$pattern]);
+            }
         } else {
-            $phpcsFile->addWarning($error, $stackPtr, $type, $data);
+            if ($this->error === true) {
+                $phpcsFile->addError($error, $stackPtr, $type, $data);
+            } else {
+                $phpcsFile->addWarning($error, $stackPtr, $type, $data);
+            }
         }
 
     }//end addError()
 
 
 }//end class
-
-?>

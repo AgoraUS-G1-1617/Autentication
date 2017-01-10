@@ -7,7 +7,7 @@
  * @category  PHP
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
@@ -20,7 +20,7 @@
  * @category  PHP
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @version   Release: @package_version@
  * @link      http://pear.php.net/package/PHP_CodeSniffer
@@ -39,7 +39,7 @@ class Squiz_Sniffs_CSS_ColonSpacingSniff implements PHP_CodeSniffer_Sniff
     /**
      * Returns the token types that this sniff is interested in.
      *
-     * @return array(int)
+     * @return int[]
      */
     public function register()
     {
@@ -67,30 +67,52 @@ class Squiz_Sniffs_CSS_ColonSpacingSniff implements PHP_CodeSniffer_Sniff
             return;
         }
 
+        if ($tokens[$prev]['content'] === 'progid') {
+            // Special case for IE filters.
+            return;
+        }
+
         if ($tokens[($stackPtr - 1)]['code'] === T_WHITESPACE) {
             $error = 'There must be no space before a colon in a style definition';
-            $phpcsFile->addError($error, $stackPtr, 'Before');
+            $fix   = $phpcsFile->addFixableError($error, $stackPtr, 'Before');
+            if ($fix === true) {
+                $phpcsFile->fixer->replaceToken(($stackPtr - 1), '');
+            }
+        }
+
+        if ($tokens[($stackPtr + 1)]['code'] === T_SEMICOLON) {
+            // Empty style definition, ignore it.
+            return;
         }
 
         if ($tokens[($stackPtr + 1)]['code'] !== T_WHITESPACE) {
             $error = 'Expected 1 space after colon in style definition; 0 found';
-            $phpcsFile->addError($error, $stackPtr, 'NoneAfter');
+            $fix   = $phpcsFile->addFixableError($error, $stackPtr, 'NoneAfter');
+            if ($fix === true) {
+                $phpcsFile->fixer->addContent($stackPtr, ' ');
+            }
         } else {
             $content = $tokens[($stackPtr + 1)]['content'];
             if (strpos($content, $phpcsFile->eolChar) === false) {
-                $length  = strlen($content);
+                $length = strlen($content);
                 if ($length !== 1) {
                     $error = 'Expected 1 space after colon in style definition; %s found';
                     $data  = array($length);
-                    $phpcsFile->addError($error, $stackPtr, 'After', $data);
+                    $fix   = $phpcsFile->addFixableError($error, $stackPtr, 'After', $data);
+                    if ($fix === true) {
+                        $phpcsFile->fixer->replaceToken(($stackPtr + 1), ' ');
+                    }
                 }
             } else {
                 $error = 'Expected 1 space after colon in style definition; newline found';
-                $phpcsFile->addError($error, $stackPtr, 'AfterNewline');
+                $fix   = $phpcsFile->addFixableError($error, $stackPtr, 'AfterNewline');
+                if ($fix === true) {
+                    $phpcsFile->fixer->replaceToken(($stackPtr + 1), ' ');
+                }
             }
         }//end if
 
     }//end process()
 
+
 }//end class
-?>

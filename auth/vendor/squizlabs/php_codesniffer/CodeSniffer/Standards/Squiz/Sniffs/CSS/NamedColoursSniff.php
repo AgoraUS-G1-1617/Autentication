@@ -7,7 +7,7 @@
  * @category  PHP
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
@@ -20,7 +20,7 @@
  * @category  PHP
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @version   Release: @package_version@
  * @link      http://pear.php.net/package/PHP_CodeSniffer
@@ -44,30 +44,30 @@ class Squiz_Sniffs_CSS_NamedColoursSniff implements PHP_CodeSniffer_Sniff
      * @var array
      */
     public $colourNames = array(
-                           'aqua',
-                           'black',
-                           'blue',
-                           'fuchsia',
-                           'gray',
-                           'green',
-                           'lime',
-                           'maroon',
-                           'navy',
-                           'olive',
-                           'orange',
-                           'purple',
-                           'red',
-                           'silver',
-                           'teal',
-                           'white',
-                           'yellow',
-                           );
+                           'aqua'    => 'aqua',
+                           'black'   => 'black',
+                           'blue'    => 'blue',
+                           'fuchsia' => 'fuchsia',
+                           'gray'    => 'gray',
+                           'green'   => 'green',
+                           'lime'    => 'lime',
+                           'maroon'  => 'maroon',
+                           'navy'    => 'navy',
+                           'olive'   => 'olive',
+                           'orange'  => 'orange',
+                           'purple'  => 'purple',
+                           'red'     => 'red',
+                           'silver'  => 'silver',
+                           'teal'    => 'teal',
+                           'white'   => 'white',
+                           'yellow'  => 'yellow',
+                          );
 
 
     /**
      * Returns the token types that this sniff is interested in.
      *
-     * @return array(int)
+     * @return int[]
      */
     public function register()
     {
@@ -96,12 +96,12 @@ class Squiz_Sniffs_CSS_NamedColoursSniff implements PHP_CodeSniffer_Sniff
             return;
         }
 
-        if (in_array(strtolower($tokens[$stackPtr]['content']), $this->colourNames) === true) {
+        if (isset($this->colourNames[strtolower($tokens[$stackPtr]['content'])]) === true) {
             $error = 'Named colours are forbidden; use hex, rgb, or rgba values instead';
             $phpcsFile->addError($error, $stackPtr, 'Forbidden');
         }
 
     }//end process()
 
+
 }//end class
-?>

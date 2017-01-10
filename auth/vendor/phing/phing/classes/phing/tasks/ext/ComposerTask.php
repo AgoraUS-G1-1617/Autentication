@@ -35,9 +35,9 @@ require_once "phing/types/Commandline.php";
 class ComposerTask extends Task
 {
     /**
-     * @var string the path to php interperter
+     * @var string the path to php interpreter
      */
-    private $php = 'php';
+    private $php = '';
 
     /**
      *
@@ -49,16 +49,27 @@ class ComposerTask extends Task
      *
      * @var Commandline
      */
-    private $commandLine =null;
+    private $commandLine = null;
     /**
      *
      * @var string path to Composer application
      */
     private $composer = 'composer.phar';
 
+    /**
+     *
+     */
     public function __construct()
     {
         $this->commandLine = new Commandline();
+    }
+
+    /**
+     * Initialize the interpreter with the Phing property php.interpreter
+     */
+    public function init()
+    {
+        $this->setPhp($this->project->getProperty('php.interpreter'));
     }
 
     /**
@@ -80,6 +91,7 @@ class ComposerTask extends Task
     {
         return $this->php;
     }
+
     /**
      * sets the Composer command to execute
      * @param string $command
@@ -140,8 +152,10 @@ class ComposerTask extends Task
         $commandLine = strval($this->commandLine);
         //Creating new Commandline instance. It allows to handle subsequent calls correctly
         $this->commandLine = new Commandline();
+
         return $commandLine;
     }
+
     /**
      * executes the Composer task
      */

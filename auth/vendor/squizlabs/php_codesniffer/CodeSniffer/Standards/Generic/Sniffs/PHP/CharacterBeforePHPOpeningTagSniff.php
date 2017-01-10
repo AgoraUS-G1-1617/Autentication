@@ -7,7 +7,7 @@
  * @category  PHP
  * @package   PHP_CodeSniffer
  * @author    Andy Grunwald <andygrunwald@gmail.com>
- * @copyright 2010 Andy Grunwald
+ * @copyright 2010-2014 Andy Grunwald
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
@@ -18,7 +18,7 @@
  * @category  PHP
  * @package   PHP_CodeSniffer
  * @author    Andy Grunwald <andygrunwald@gmail.com>
- * @copyright 2010 Andy Grunwald
+ * @copyright 2010-2014 Andy Grunwald
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @version   Release: @package_version@
  * @link      http://pear.php.net/package/PHP_CodeSniffer
@@ -50,14 +50,25 @@ class Generic_Sniffs_PHP_CharacterBeforePHPOpeningTagSniff implements PHP_CodeSn
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
+        $expected = 0;
         if ($stackPtr > 0) {
+            // Allow a shebang line.
+            $tokens = $phpcsFile->getTokens();
+            if (substr($tokens[0]['content'], 0, 2) === '#!') {
+                $expected = 1;
+            }
+        }
+
+        if ($stackPtr !== $expected) {
             $error = 'The opening PHP tag must be the first content in the file';
             $phpcsFile->addError($error, $stackPtr, 'Found');
         }
+
+        // Skip the rest of the file so we don't pick up additional
+        // open tags, typically embedded in HTML.
+        return $phpcsFile->numTokens;
 
     }//end process()
 
 
 }//end class
-
-?>

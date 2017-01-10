@@ -1,5 +1,5 @@
 <?php
-/* 
+/*
  *  $Id$
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
@@ -16,7 +16,7 @@
  *
  * This software consists of voluntary contributions made by many individuals
  * and is licensed under the LGPL. For more information please see
- * <http://phing.info>. 
+ * <http://phing.info>.
  */
 
 include_once 'phing/mappers/FileNameMapper.php';
@@ -29,23 +29,26 @@ include_once 'phing/mappers/FileNameMapper.php';
  * @version   $Id$
  * @package   phing.mappers
  */
-class MergeMapper implements FileNameMapper {
-    
+class MergeMapper implements FileNameMapper
+{
+
     /** the merge */
     private $mergedFile;
 
     /**
      * The mapper implementation. Basically does nothing in this case.
      *
-     * @param   mixed     The data the mapper works on
-     * @return  mixed     The data after the mapper has been applied
-     * @access  public
+     * @param mixed $sourceFileName The data the mapper works on
+     * @throws BuildException
+     * @return mixed The data after the mapper has been applied
      * @author  Andreas Aderhold, andi@binarycloud.com
      */
-    function main($sourceFileName) {
-        if ($this->mergedFile === null) {            
-            throw new BuildException("MergeMapper error, to attribute not set");            
-        }         
+    public function main($sourceFileName)
+    {
+        if ($this->mergedFile === null) {
+            throw new BuildException("MergeMapper error, to attribute not set");
+        }
+
         return array($this->mergedFile);
     }
 
@@ -53,17 +56,20 @@ class MergeMapper implements FileNameMapper {
      * Accessor. Sets the to property
      *
      * @param   string     To what this mapper should convert the from string
-     * @return  boolean    True
-     * @access  public
+     * @return boolean True
      * @author  Andreas Aderhold, andi@binarycloud.com
      */
-    function setTo($to) {
+    public function setTo($to)
+    {
         $this->mergedFile = $to;
-    }    
+    }
 
     /**
      * Ignored.
+     * @param string $from
      */
-    function setFrom($from) {}
+    public function setFrom($from)
+    {
+    }
 
 }

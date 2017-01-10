@@ -7,7 +7,7 @@
  * @category  PHP
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
@@ -20,7 +20,7 @@
  * @category  PHP
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @version   Release: @package_version@
  * @link      http://pear.php.net/package/PHP_CodeSniffer
@@ -39,7 +39,7 @@ class Squiz_Sniffs_CSS_SemicolonSpacingSniff implements PHP_CodeSniffer_Sniff
     /**
      * Returns the token types that this sniff is interested in.
      *
-     * @return array(int)
+     * @return int[]
      */
     public function register()
     {
@@ -69,13 +69,16 @@ class Squiz_Sniffs_CSS_SemicolonSpacingSniff implements PHP_CodeSniffer_Sniff
         }
 
         if ($tokens[($semicolon - 1)]['code'] === T_WHITESPACE) {
-            $length  = strlen($tokens[($semicolon - 1)]['content']);
-            $error = 'Expected 0 spaces before semicolon in style definition; %s found';
-            $data  = array($length);
-            $phpcsFile->addError($error, $stackPtr, 'SpaceFound', $data);
+            $length = strlen($tokens[($semicolon - 1)]['content']);
+            $error  = 'Expected 0 spaces before semicolon in style definition; %s found';
+            $data   = array($length);
+            $fix    = $phpcsFile->addFixableError($error, $stackPtr, 'SpaceFound', $data);
+            if ($fix === true) {
+                $phpcsFile->fixer->replaceToken(($semicolon - 1), '');
+            }
         }
 
     }//end process()
 
+
 }//end class
-?>

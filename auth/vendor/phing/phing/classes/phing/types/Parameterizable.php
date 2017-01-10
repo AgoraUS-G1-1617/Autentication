@@ -27,6 +27,11 @@
  * @author Magesh Umasankar (Ant)
  * @package phing.types
  */
-interface Parameterizable {
-    function setParameters($parameters);
+interface Parameterizable
+{
+    /**
+     * @param $parameters
+     * @return mixed
+     */
+    public function setParameters($parameters);
 }

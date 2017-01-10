@@ -34,18 +34,20 @@ class SimpleTestCountResultFormatter extends SimpleTestResultFormatter
     const SUCCESS = 0;
     const FAILURES = 1;
     const ERRORS = 2;
-    
-    function getRetCode()
+
+    /**
+     * @return int
+     */
+    public function getRetCode()
     {
-        if ($this->getExceptionCount() != 0)
-        {
+        if ($this->getExceptionCount() != 0) {
             return self::ERRORS;
+        } else {
+            if ($this->getFailCount() != 0) {
+                return self::FAILURES;
+            }
         }
-        else if ($this->getFailCount() != 0)
-        {
-            return self::FAILURES;
-        }
-        
+
         return self::SUCCESS;
-    }   
+    }
 }

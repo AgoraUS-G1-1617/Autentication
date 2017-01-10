@@ -71,13 +71,10 @@ class PearPackageFileSet extends FileSet
     protected $role = 'php';
 
     /**
-     * Prefix to prepend to the file paths in the zip
-     */
-    protected $prefix;
-
-    /**
      * Full path to a PEAR config file.
      * If none provided, default one is used.
+     *
+     * @var string
      */
     protected $config;
 
@@ -85,7 +82,6 @@ class PearPackageFileSet extends FileSet
      * @var PearPackageScanner instance
      */
     protected $pps;
-
 
     /**
      * Creates and returns the pear package scanner.
@@ -99,10 +95,12 @@ class PearPackageFileSet extends FileSet
     {
         if ($this->isReference()) {
             $obj = $this->getRef($p);
+
             return $obj->getDirectoryScanner($p);
         }
 
         $this->loadPearPackageScanner($p);
+
         return $this->pps;
     }
 
@@ -118,6 +116,7 @@ class PearPackageFileSet extends FileSet
         if ($this->pps === null) {
             $this->loadPearPackageScanner($p);
         }
+
         return new PhingFile((string) $this->pps->getBaseDir());
     }
 
@@ -143,7 +142,9 @@ class PearPackageFileSet extends FileSet
 
     /**
      * Sets the package.xml filename.
+     * If it is not set, the local pear installation is queried for the package.
      *
+     * @param $descFile
      * @return void
      */
     public function setDescFile($descFile)
@@ -157,6 +158,7 @@ class PearPackageFileSet extends FileSet
      *
      * @param string $package Single package name, or "channel/name" combination
      *
+     * @throws BuildException
      * @return void
      */
     public function setPackage($package)

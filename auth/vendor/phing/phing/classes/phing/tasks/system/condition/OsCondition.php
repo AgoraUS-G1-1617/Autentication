@@ -27,20 +27,29 @@ require_once 'phing/tasks/system/condition/ConditionBase.php';
  * @author    Andreas Aderhold <andi@binarycloud.com>
  * @copyright 2001,2002 THYRELL. All rights reserved
  * @version   $Id$
- * @access    public
  * @package   phing.tasks.system.condition
  */
-class OsCondition implements Condition {
+class OsCondition implements Condition
+{
 
     private $family;
 
-    function setFamily($f) {
+    /**
+     * @param $f
+     */
+    public function setFamily($f)
+    {
         $this->family = strtolower($f);
     }
 
-    function evaluate() {
+    /**
+     * @return bool
+     * @throws BuildException
+     */
+    public function evaluate()
+    {
         $osName = strtolower(Phing::getProperty("os.name"));
-        
+
         if ($this->family !== null) {
             if ($this->family === "windows") {
                 return StringHelper::startsWith("win", $osName);
@@ -57,6 +66,7 @@ class OsCondition implements Condition {
             }
             throw new BuildException("Don't know how to detect os family '" . $this->family . "'");
         }
+
         return false;
     }
 

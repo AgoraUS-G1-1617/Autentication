@@ -8,7 +8,7 @@
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @copyright 2006-2014 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
@@ -24,7 +24,7 @@
  * @package   PHP_CodeSniffer
  * @author    Johann-Peter Hartmann <hartmann@mayflower.de>
  * @author    Greg Sherwood <gsherwood@squiz.net>
- * @copyright 2007 Mayflower GmbH
+ * @copyright 2007-2014 Mayflower GmbH
  * @license   https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @version   Release: @package_version@
  * @link      http://pear.php.net/package/PHP_CodeSniffer
@@ -85,22 +85,22 @@ class Generic_Sniffs_Metrics_CyclomaticComplexitySniff implements PHP_CodeSniffe
 
         // Predicate nodes for PHP.
         $find = array(
-                 'T_CASE',
-                 'T_DEFAULT',
-                 'T_CATCH',
-                 'T_IF',
-                 'T_FOR',
-                 'T_FOREACH',
-                 'T_WHILE',
-                 'T_DO',
-                 'T_ELSEIF',
+                 T_CASE    => true,
+                 T_DEFAULT => true,
+                 T_CATCH   => true,
+                 T_IF      => true,
+                 T_FOR     => true,
+                 T_FOREACH => true,
+                 T_WHILE   => true,
+                 T_DO      => true,
+                 T_ELSEIF  => true,
                 );
 
         $complexity = 1;
 
         // Iterate from start to end and count predicate nodes.
         for ($i = ($start + 1); $i < $end; $i++) {
-            if (in_array($tokens[$i]['type'], $find) === true) {
+            if (isset($find[$tokens[$i]['code']]) === true) {
                 $complexity++;
             }
         }
@@ -125,5 +125,3 @@ class Generic_Sniffs_Metrics_CyclomaticComplexitySniff implements PHP_CodeSniffe
 
 
 }//end class
-
-?>

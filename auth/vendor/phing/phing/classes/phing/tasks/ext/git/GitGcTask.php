@@ -18,7 +18,7 @@
  * and is licensed under the LGPL. For more information please see
  * <http://phing.info>.
  */
- 
+
 require_once 'phing/Task.php';
 require_once 'phing/tasks/ext/git/GitBaseTask.php';
 /**
@@ -87,8 +87,9 @@ class GitGcTask extends GitBaseTask
         }
 
         $this->log(
-            sprintf('git-gc: cleaning up "%s" repository', $this->getRepository()), 
-            Project::MSG_INFO); 
+            sprintf('git-gc: cleaning up "%s" repository', $this->getRepository()),
+            Project::MSG_INFO
+        );
     }
 
     /**
@@ -99,14 +100,20 @@ class GitGcTask extends GitBaseTask
         return $this->getAggressive();
     }
 
+    /**
+     * @return bool
+     */
     public function getAggressive()
     {
         return $this->isAggressive;
     }
 
+    /**
+     * @param $flag
+     */
     public function setAggressive($flag)
     {
-        $this->isAggressive = (bool)$flag;
+        $this->isAggressive = (bool) $flag;
     }
 
     /**
@@ -117,14 +124,20 @@ class GitGcTask extends GitBaseTask
         return $this->getAuto();
     }
 
+    /**
+     * @return bool
+     */
     public function getAuto()
     {
         return $this->isAuto;
     }
 
+    /**
+     * @param $flag
+     */
     public function setAuto($flag)
     {
-        $this->isAuto = (bool)$flag;
+        $this->isAuto = (bool) $flag;
     }
 
     /**
@@ -135,21 +148,33 @@ class GitGcTask extends GitBaseTask
         return $this->getNoPrune();
     }
 
+    /**
+     * @return bool
+     */
     public function getNoPrune()
     {
         return $this->noPrune;
     }
 
+    /**
+     * @param $flag
+     */
     public function setNoPrune($flag)
     {
-        $this->noPrune = (bool)$flag;
+        $this->noPrune = (bool) $flag;
     }
 
+    /**
+     * @return string
+     */
     public function getPrune()
     {
         return $this->prune;
     }
 
+    /**
+     * @param $date
+     */
     public function setPrune($date)
     {
         $this->prune = $date;
