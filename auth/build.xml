@@ -113,10 +113,7 @@
 
   <property name="phploc.done" value="true"/>
  </target>
-
-  <property name="pdepend.done" value="true"/>
- </target>
-
+ 
  <target name="phpmd" unless="phpmd.done" description="Perform project mess detection using PHPMD and print human readable output. Intended for usage on the command line before committing.">
   <exec executable="cmd" taskname="phpmd">
    <arg value="/c" />
