@@ -36,7 +36,7 @@ include_once 'variables.php';
 <body style="background-color: #F5F5F5;font-family: Roboto">
 	
 	<div class="tituloInicio">
-		<h1 style="font-size: 100px; font-family: Roboto">¡Bienvenidos a agor@us!</h1>
+		<h1 style="font-size: 100px; font-family: Roboto">Bienvenidos a agor@us</h1>
 	</div>
 	<div class="row">
 	  <?php if ($socialNet!==FALSE && $DNIe!==FALSE): ?>
@@ -46,9 +46,9 @@ include_once 'variables.php';
 		                            type="button"
 		                            value ="Entrar con G+" 
 		                    	class="btn btn-info"/>	
-       	</div>
+       </div>
        	<div class="col-md-2">
-				<input  onClick="location.href = '' "
+				<input  onClick="location.href = 'process.php' "
 		                            id="loginTwiter" 
 		                            type="button"
 		                            value ="Entrar con Twiter" 
@@ -69,7 +69,7 @@ include_once 'variables.php';
 		                           	class="btn btn-info"/>
 		  </div>
        	  <div class="col-md-2">
-				<input  onClick="location.href = 'loginNotDNIe.php' "
+				<input  onClick="location.href = 'login.php' "
 		                            id="loginNotDNIe" 
 		                            type="button"
 		                            value ="Entrar sin DNIe" 
@@ -86,6 +86,17 @@ include_once 'variables.php';
 	   
 	  </div>	  
 	</div>
+  </div>
+  
+  
+  <div class="col-md-4">
+  	<div class="register">
+		<h1 style="font-size: 40px;">¿Aún no te has registrado? ALE</h1>
+		<input  onClick="location.href = 'register.php' "
+                            id="register" 
+                            type="button"
+                            value ="Registrate" 
+                           	class="btn btn-info"/>
 	<?php elseif ($socialNet!==FALSE && $DNIe===FALSE):?>
 		  <div class="ancho-botones">
 				<input  onClick="location.href = 'loginGoogle.php' "
@@ -95,7 +106,7 @@ include_once 'variables.php';
 		                    	class="btn btn-info"/>	
        	</div>
        	<div class="ancho-botones">
-				<input  onClick="location.href = '' "
+				<input  onClick="location.href = 'process.php' "
 		                            id="loginTwiter" 
 		                            type="button"
 		                            value ="Entrar con Twiter" 
@@ -109,7 +120,7 @@ include_once 'variables.php';
 		                    	class="btn btn-info"/>	
        	</div>
        	<div class="ancho-botones">
-				<input  onClick="location.href = 'loginNotDNIe.php' "
+				<input  onClick="location.href = 'login.php' "
 		                            id="loginNotDNIe" 
 		                            type="button"
 		                            value ="Entrar sin DNIe" 
@@ -135,7 +146,7 @@ include_once 'variables.php';
 		                           	class="btn btn-info"/>
 		  </div>
 		<div class="col-md-4">
-				<input  onClick="location.href = 'loginNotDNIe.php' "
+				<input  onClick="location.href = 'login.php' "
 		                            id="loginNotDNIe" 
 		                            type="button"
 		                            value ="Entrar sin DNIe" 
@@ -154,7 +165,7 @@ include_once 'variables.php';
 	  </div>
 	<?php elseif ($socialNet===FALSE && $DNIe===FALSE):?>
 		<div class="col-md-6">
-				<input  onClick="location.href = 'loginNotDNIe.php' "
+				<input  onClick="location.href = 'login.php' "
 		                            id="loginNotDNIe" 
 		                            type="button"
 		                            value ="Entrar sin DNIe" 

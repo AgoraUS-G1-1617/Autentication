@@ -146,5 +146,10 @@ function createUser($username, $password, $email, $genre, $age, $autonomousCommu
     $stmt->bindParam(':age', $age);
     $stmt->execute();
 }
+
+function disconnect($conexion) {
+	$conexion = null;
+}
+
 }
 ?>
