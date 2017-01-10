@@ -17,6 +17,8 @@ try {
 	exit ;
 }
 
+echo $accessToken;
+
 if (isset($accessToken)) {
 	// Logged in!
 	$_SESSION['facebook_access_token'] = (string)$accessToken;
@@ -25,5 +27,7 @@ if (isset($accessToken)) {
 	// access token from $_SESSION['facebook_access_token']
 	
 	header('Location: https://frontend.agoraus1.egc.duckdns.org/');
+}else{
+	echo "PROBLEMS";
 }
 ?>
