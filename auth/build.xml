@@ -1,4 +1,6 @@
 <project name="name-of-project" default="full-build">
+ <property name="phpdir" value="\xampp\php"/>
+ 
  <!-- By default, we assume all tools to be on the $PATH -->
  <property name="pdepend" value="pdepend"/>
  <property name="phpcpd" value="phpcpd"/>
