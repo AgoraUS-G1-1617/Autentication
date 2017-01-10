@@ -1,5 +1,6 @@
 <?php
 # login-callback.php
+session_start();
 
 $fb = new Facebook\Facebook( array('app_id' => '1065487940245693', 'app_secret' => '1a934054901ddcecf5095a53172e0d07', 'default_graph_version' => 'v2.4', ));
 
@@ -23,6 +24,6 @@ if (isset($accessToken)) {
 	// Now you can redirect to another page and use the
 	// access token from $_SESSION['facebook_access_token']
 	
-	echo "HOLA";
+	header('Location: https://frontend.agoraus1.egc.duckdns.org/');
 }
 ?>

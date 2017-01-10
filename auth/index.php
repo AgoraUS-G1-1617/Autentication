@@ -56,14 +56,14 @@ include_once 'variables.php';
 		                    	class="btn btn-info"/>	
        	</div>
 
-       	<div class="col-md-2">
+       	<div class="col-md-3">
 				<input  onClick="location.href = 'loginFacebook.php' "
 		                            id="loginFacebook" 
 		                            type="button"
 		                            value ="Entrar con Facebook" 
 		                    	class="btn btn-info"/>	
        	</div>
-       	 <div class="col-md-2">
+       	 <div class="col-md-3">
 				<input  onClick="location.href = 'loginDNIe.php' "
 		                            id="loginDNIe" 
 		                            type="button"
