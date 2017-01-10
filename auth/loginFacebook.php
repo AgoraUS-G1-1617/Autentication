@@ -7,8 +7,8 @@ session_start();
 require_once __DIR__ . '/php-graph-sdk-5.0.0/src/Facebook/autoload.php';
  
 $fb = new Facebook\Facebook(array(
-  'app_id' => '1321152037907359',
-  'app_secret' => '1321152037907359',
+  'app_id' => '1065487940245693',
+  'app_secret' => '1a934054901ddcecf5095a53172e0d07',
   'default_graph_version' => 'v2.4',
 ));
   
