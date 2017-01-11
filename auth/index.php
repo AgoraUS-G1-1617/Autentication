@@ -19,7 +19,7 @@ $helper = $fb -> getRedirectLoginHelper();
 
 $permissions = array('email');
 // Permisos opcionales
-$loginUrl = $helper -> getLoginUrl('http://egcaj.tk/fb-callback.php', $permissions);
+$loginUrl = $helper -> getLoginUrl('https://beta.autha.agoraus1.egc.duckdns.org/fb-callback.php', $permissions);
 
 include_once 'variables.php';
 ?>
@@ -106,21 +106,21 @@ include_once 'variables.php';
 		                            value ="Entrar con G+" 
 		                    	class="btn btn-info"/>	
      </div>-->
-     	<div class="col-md-4">
+     	<div class="col-md-3">
 				<input  onClick="parent.location = '<?php echo htmlspecialchars($loginUrl); ?>' "
 		                            id="loginFacebook" 
 		                            type="button"
 		                            value ="Entrar con Facebook" 
 		                    	class="btn btn-info"/>	
        	</div>
-       	<div class="col-md-4">
+       	<div class="col-md-3">
 				<input  onClick="location.href = 'process.php' "
 		                            id="loginTwiter" 
 		                            type="button"
 		                            value ="Entrar con Twiter" 
 		                    	class="btn btn-info"/>	
        	</div>
-       	<div class="col-md-4">
+       	<div class="col-md-3">
 				<input  onClick="location.href = 'loginNotDNIe.php' "
 		                            id="loginNotDNIe" 
 		                            type="button"
@@ -128,7 +128,7 @@ include_once 'variables.php';
 		                           	class="btn btn-info"/>
 		
 		  </div>
-	  	<div class="col-md-4">
+	  	<div class="col-md-3">
 	  	<div class="register">
 			<input  onClick="location.href = 'register.php' "
 	                            id="register" 
