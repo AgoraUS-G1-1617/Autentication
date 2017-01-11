@@ -15,5 +15,11 @@
     <log type="coverage-crap4j" target="build/logs/crap4j.xml"/>
     <log type="junit" target="build/logs/junit.xml" logIncompleteSkipped="false"/>
   </logging>
+       
+<filter>
+    <whitelist processUncoveredFilesFromWhitelist="true">
+        <directory suffix=".php">auth</directory>
+    </whitelist>
+</filter>
 
 </phpunit>
