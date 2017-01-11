@@ -15,7 +15,8 @@ $fb = new Facebook\Facebook(array(
 $helper = $fb->getRedirectLoginHelper();
   
 $permissions = array('email'); // Permisos opcionales
-$loginUrl = $helper->getLoginUrl('https://beta.autha.agoraus1.egc.duckdns.org/fb-callback.php', $permissions);
+$loginUrl = $helper->getLoginUrl('http://egcaj.tk/fb-callback.php', $permissions);
+
   
 /* Link a la página de login*/
 echo '<a href="' . htmlspecialchars($loginUrl) . '">Login con Facebook!</a>';

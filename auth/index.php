@@ -8,8 +8,6 @@
 */
 
 include_once 'variables.php';
-
-
 ?>
 <!DOCTYPE html>
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml">
@@ -55,7 +53,6 @@ include_once 'variables.php';
 		                            value ="Entrar con Twiter" 
 		                    	class="btn btn-info"/>	
        	</div>
-
        	<div class="col-md-3">
 				<input  onClick="location.href = 'loginFacebook.php' "
 		                            id="loginFacebook" 
@@ -63,7 +60,6 @@ include_once 'variables.php';
 		                            value ="Entrar con Facebook" 
 		                    	class="btn btn-info"/>	
        	</div>
-       	 <div class="col-md-3">
 				<input  onClick="location.href = 'loginDNIe.php' "
 		                            id="loginDNIe" 
 		                            type="button"
