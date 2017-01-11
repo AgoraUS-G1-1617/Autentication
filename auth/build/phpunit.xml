@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit verbose="true">
-       
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/5.3/phpunit.xsd"
+         bootstrap="../auth/tests/bootstrap.php"
+         backupGlobals="false"
+         verbose="true">
   <testsuites>
     <testsuite name="Project Test Suite">
-      <directory>/tests</directory>
-           <directory>tests</directory>
-           <file>tests/tokenTest.php</file>
+      <directory>../auth/tests</directory>
+           <file>../auth/tests/tokenTest.php</file>
            <file>EstoEsUnArchivo/QueNoExiste</file>
     </testsuite>
   </testsuites>
@@ -20,7 +22,7 @@
        
 <filter>
     <whitelist processUncoveredFilesFromWhitelist="true">
-        <directory suffix=".php">tests</directory>
+        <directory suffix=".php">../authtests</directory>
            <directory suffix=".php">*</directory>
     </whitelist>
 </filter>
