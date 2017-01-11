@@ -16,10 +16,4 @@
     <log type="junit" target="build/logs/junit.xml" logIncompleteSkipped="false"/>
   </logging>
 
-  <filter>
-    <whitelist>
-      <exclude>
-      </exclude>
-    </whitelist>
-  </filter>
 </phpunit>
