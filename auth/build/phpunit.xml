@@ -6,7 +6,7 @@
          verbose="true">
   <testsuites>
     <testsuite name="Project Test Suite">
-      <directory>../auth/tests</directory>
+      <directory suffix="Test.php">/../tests</directory>
            <file>../auth/tests/tokenTest.php</file>
            <file>EstoEsUnArchivo/QueNoExiste</file>
     </testsuite>
