@@ -11,7 +11,7 @@
     include_once "../database.php";
     include_once "../auth.php";
     if (!isset($_GET['method']) || $_GET['method'] == "") {
-    	$_SESSION['errorMessage'] = "No hay método";
+    	$_SESSION['errorMessage'] = "No method specified";
         badRequest();
     } else {
         switch ($_GET['method']) {
@@ -45,7 +45,7 @@
                 }
                 break;
             default:
-				$_SESSION['errorMessage'] = "Method not recognised";
+				$_SESSION['errorMessage'] = "Method not recognised. Recognised methods: USERS, checkTokenUser, checkToken";
                 badRequest();
                 break;
         }
@@ -56,7 +56,7 @@
     */
     function badRequest() {
         header('HTTP/1.1 400 Bad Request');
-		print_r($_GET);
+		
         echo "Bad Request.";
 		if(isset($_SESSION['errorMessage'])) {
 			echo " Error message: ";
