@@ -4,6 +4,7 @@
   <testsuites>
     <testsuite name="Project Test Suite">
       <directory>/auth/tests</directory>
+           <file>/auth/tests/tokenTest.php</file>
     </testsuite>
   </testsuites>
 
