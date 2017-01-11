@@ -6,8 +6,8 @@
          verbose="true">
        
   <testsuites>
-    <testsuite name="Auth">
-      <directory>../tests</directory>
+    <testsuite name="Project Test Suite">
+      <directory>/tests</directory>
     </testsuite>
   </testsuites>
 
@@ -19,10 +19,8 @@
   </logging>
 
   <filter>
-    <whitelist addUncoveredFilesFromWhitelist="true">
-      <directory suffix=".php">bootstrap</directory>
+    <whitelist>
       <exclude>
-        <file>bootstrap/bootstrap.php</file>
       </exclude>
     </whitelist>
   </filter>
