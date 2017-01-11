@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="\tests\bootstrap.php"
-         backupGlobals="false"
-         backupStaticAttributes="false"
-         strict="true"
-         verbose="true">
+<phpunit verbose="true">
        
   <testsuites>
     <testsuite name="Project Test Suite">
-      <directory>auth/tests</directory>
+      <directory>/auth/tests</directory>
     </testsuite>
   </testsuites>
 
