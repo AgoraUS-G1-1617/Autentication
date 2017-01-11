@@ -15,16 +15,12 @@
         badRequest();
     } else {
         switch ($_GET['method']) {
-            case 'getUser':
-                if (!isset($_GET['user'])) {
-                	$_SESSION['errorMessage'] = "User not specified";
-                    badRequest();
+            case 'users':
+                if (!isset($_GET['id'])) {
+                	getUsers();
                 } else {
-                    getUserAPI($_GET['user']);
+                    getUserAPI($_GET['id']);
                 }
-                break;
-            case 'getUsers':
-                getUsers();
                 break;
             case 'checkToken':
                 if (!isset($_GET['token'])) {
@@ -41,11 +37,11 @@
                 	$_SESSION['errorMessage'] = "Token not specified";
                     badRequest();
 				}
-				else if (!isset($_GET['user'])){
+				else if (!isset($_GET['id'])){
 					$_SESSION['errorMessage'] = "User not specified";
 					badRequest();
                 } else {
-                    checkTokenUser($_GET['token'], $_GET['user']);
+                    checkTokenUser($_GET['token'], $_GET['id']);
                 }
                 break;
             default:
@@ -60,7 +56,7 @@
     */
     function badRequest() {
         header('HTTP/1.1 400 Bad Request');
-
+		print_r($_GET);
         echo "Bad Request.";
 		if(isset($_SESSION['errorMessage'])) {
 			echo " Error message: ";
@@ -83,6 +79,10 @@
         $result['genre'] = $user[3];
         $result['autonomous_community'] = $user[4];
         $result['age'] = $user[5];
+		
+		if($user == null) {
+            $result = "User not found";
+        }
 
         echo json_encode($result);
         return json_encode($result);
