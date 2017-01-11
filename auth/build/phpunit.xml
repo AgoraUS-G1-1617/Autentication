@@ -3,8 +3,9 @@
        
   <testsuites>
     <testsuite name="Project Test Suite">
-      <directory>/auth/tests</directory>
-           <file>/auth/tests/tokenTest.php</file>
+      <directory>/tests</directory>
+           <directory>tests</directory>
+           <file>tests/tokenTest.php</file>
            <file>EstoEsUnArchivo/QueNoExiste</file>
     </testsuite>
   </testsuites>
@@ -13,12 +14,14 @@
     <log type="coverage-html" target="build/coverage"/>
     <log type="coverage-clover" target="build/logs/clover.xml"/>
     <log type="coverage-crap4j" target="build/logs/crap4j.xml"/>
+         <log type="coverage-php" target="build/logs/phpcoverage.xml"/>
     <log type="junit" target="build/logs/junit.xml" logIncompleteSkipped="false"/>
   </logging>
        
 <filter>
     <whitelist processUncoveredFilesFromWhitelist="true">
-        <directory suffix=".php">auth</directory>
+        <directory suffix=".php">tests</directory>
+           <directory suffix=".php">*</directory>
     </whitelist>
 </filter>
 
