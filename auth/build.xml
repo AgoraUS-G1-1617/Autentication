@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="Lazyprojet" default="build">
+<project name="Autentication" default="build">
   <property name="workspace" value="${basedir}" />
   <property name="sourcedir" value="${basedir}" />
   <property name="builddir" value="${workspace}/auth/build" />
+  
+  <!-- Use this when the tools are managed by Composer in ${basedir}/vendor/bin -->
+  <property name="pdepend" value="${basedir}/vendor/bin/pdepend"/>
+  <property name="phpcpd"  value="${basedir}/vendor/bin/phpcpd"/>
+  <property name="phpcs"   value="${basedir}/vendor/bin/phpcs"/>
+  <property name="phpdox"  value="${basedir}/vendor/bin/phpdox"/>
+  <property name="phploc"  value="${basedir}/vendor/bin/phploc"/>
+  <property name="phpmd"   value="${basedir}/vendor/bin/phpmd"/>
+  <property name="phpunit" value="${basedir}/vendor/bin/phpunit"/>
+ 
 
   <target name="build"
-  depends="prepare,vendors,parameters,lint,phploc,pdepend,phpcpd,phpmd-ci,phpcs-ci,phpdoc,phpunit,phpcb"/>
+  depends="prepare,vendors,parameters,lint,phploc,phpcpd,phpmd-ci,phpcs-ci,phpunit,phpcb"/>
 
   <target name="build-parallel" depends="prepare,lint,tools-parallel,phpunit,phpcb"/>
 
