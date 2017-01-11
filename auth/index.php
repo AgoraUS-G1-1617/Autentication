@@ -1,11 +1,25 @@
 <?php
-/** 
-* @file
-* \brief Inicio de la aplicación
-* \details Pantalla de inicio de la aplicación. Añade cabeceras, muestra 
-* los mensajes de error de logAttempt.php y define la estructura del layout.
-* \author auth.agoraUS
-*/
+/**
+ * @file
+ * \brief Inicio de la aplicación
+ * \details Pantalla de inicio de la aplicación. Añade cabeceras, muestra
+ * los mensajes de error de logAttempt.php y define la estructura del layout.
+ * \author auth.agoraUS
+ */
+
+/* Iniciando la sesión*/
+session_start();
+
+/* Cambiar según la ubicación de tu directorio*/
+require_once __DIR__ . '/vendor/facebook/graph-sdk/src/Facebook/autoload.php';
+
+$fb = new Facebook\Facebook( array('app_id' => '1065487940245693', 'app_secret' => '1a934054901ddcecf5095a53172e0d07', 'default_graph_version' => 'v2.4', ));
+
+$helper = $fb -> getRedirectLoginHelper();
+
+$permissions = array('email');
+// Permisos opcionales
+$loginUrl = $helper -> getLoginUrl('http://egcaj.tk/fb-callback.php', $permissions);
 
 include_once 'variables.php';
 ?>
@@ -84,7 +98,7 @@ include_once 'variables.php';
 	   
 	  </div>	  
 	</div>
-	<?php elseif ($socialNet!==FALSE && $DNIe===FALSE):?>
+	<?php elseif ($socialNet!==FALSE && $DNIe===FALSE): ?>
 		<!--  <div class="col-md-3">
 				<input  onClick="signInClick() "
 		                            id="loginGoogle+" 
@@ -92,6 +106,13 @@ include_once 'variables.php';
 		                            value ="Entrar con G+" 
 		                    	class="btn btn-info"/>	
      </div>-->
+     	<div class="col-md-4">
+				<input  onClick="parent.location = '<?php echo htmlspecialchars($loginUrl); ?>' "
+		                            id="loginFacebook" 
+		                            type="button"
+		                            value ="Entrar con Facebook" 
+		                    	class="btn btn-info"/>	
+       	</div>
        	<div class="col-md-4">
 				<input  onClick="location.href = 'process.php' "
 		                            id="loginTwiter" 
@@ -117,7 +138,7 @@ include_once 'variables.php';
 	   
 	  </div>
 	  </div>
-	<?php elseif ($socialNet===FALSE && $DNIe!==FALSE):?>
+	<?php elseif ($socialNet===FALSE && $DNIe!==FALSE): ?>
 		<div class="col-md-4">
 				<input  onClick="location.href = 'loginDNIe.php' "
 		                            id="loginDNIe" 
@@ -143,7 +164,7 @@ include_once 'variables.php';
 	   
 	  </div>
 	  </div>
-	<?php elseif ($socialNet===FALSE && $DNIe===FALSE):?>
+	<?php elseif ($socialNet===FALSE && $DNIe===FALSE): ?>
 		<div class="col-md-6">
 				<input  onClick="location.href = 'loginNotDNIe.php' "
 		                            id="loginNotDNIe" 
