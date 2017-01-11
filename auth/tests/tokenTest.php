@@ -26,7 +26,7 @@ class tokenTest extends PHPUnit_Framework_TestCase
     /**
     * \brief Inicialización de la prueba
     */
-    protected function setUp() {
+    public function setUp() {
         $con = connect();
         $stmt = $con->query('
             DROP TABLE IF EXISTS USERS;
@@ -102,7 +102,7 @@ class tokenTest extends PHPUnit_Framework_TestCase
     /**
     * \brief Finalización de la prueba
     */
-    function tearDown(){
+    public function tearDown(){
         $con = connect();
         $stmt = $con->query('
             DROP TABLE USERS;
