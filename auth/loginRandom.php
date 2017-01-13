@@ -59,14 +59,14 @@
 	</div>
 	
 	<?php
-		$d=mt_rand(10000,99999);
-		$formularioRandom["codigo"] = $d;
+		$d = mt_rand(10000,99999);
+		$formularioRandom["codigo"] = md5($d);
 	
 		$_SESSION["formularioRandom"] = $formularioRandom;
 		
 	?>
 	
-	<label id="label_codigo" for="codigoLogin"> <h3>Código de Verificación (Esto se manda por SMS </br> al usuario para una mayor seguridad): </h3> <?php echo $d; ?>  </label>
+	<label id="label_codigo" for="codigoLogin"> <h3>Código de Verificación (Esto se manda por SMS </br> al usuario para una mayor seguridad): </h3> <?php echo $formularioRandom["codigo"]; ?>  </label>
 	
 	<div class="row">
    		<form method="post" action="validacionLoginRandom.php">

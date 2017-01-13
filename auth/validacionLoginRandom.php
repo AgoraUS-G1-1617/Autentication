@@ -9,7 +9,7 @@
 		if (isset($formulario["codigo"]) && ($formulario["codigo"] == $_REQUEST["codigo"])) {
 			Header("Location: welcome.php");
 		}else {
-		Header("Location: index.php");
+			Header("Location: index.php");
 		}
 		
 	} 
