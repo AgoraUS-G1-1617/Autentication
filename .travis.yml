@@ -9,7 +9,7 @@ before_script:
   - pwd
   - ls -a
   - git status
-script: phpunit tests/databaseTest.php
+script: phpunit auth/tests/databaseTest.php
 after_success:
   - echo 'after success'
   - git remote add production https://{GH_REF}
