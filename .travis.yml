@@ -19,6 +19,7 @@ before_script:
   - mysql -u root -e "show databases;"
   - mysql -u root -e "select * from mysql.user;"
 script: phpunit auth/tests/databaseTest.php
+script: phpunit auth/tests/tokenTest.php
 after_success:
   - echo 'after success'
   - git remote add production https://{GH_REF}
