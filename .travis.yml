@@ -2,6 +2,9 @@ language: php
 php:
   - 5.6
 sudo: required
+services:
+  - mysql
+
 dist: trusty
 before_install: echo 'before install'
 before_script:
@@ -9,6 +12,7 @@ before_script:
   - pwd
   - ls -a
   - git status
+  - mysql -e 'create database IF NOT EXISTS egcajtk_egcdb;'
 script: phpunit auth/tests/databaseTest.php
 after_success:
   - echo 'after success'
