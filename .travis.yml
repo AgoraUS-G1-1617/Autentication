@@ -8,7 +8,7 @@ services:
 dist: trusty
 before_install: echo 'before install'
 before_script:
-  - echo 'Antes de script'
+  - echo 'Before script'
   - pwd
   - ls -a
   - git status
