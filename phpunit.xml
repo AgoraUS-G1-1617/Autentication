@@ -3,7 +3,7 @@
 <phpunit colors="true">
 
     <testsuites>
-        <testsuite name="Test para Autenticacion_B">
+        <testsuite name="Test para Autenticacion">
             <directory>./auth/tests/</directory>
         </testsuite>
     </testsuites>
