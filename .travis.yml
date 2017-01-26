@@ -13,6 +13,8 @@ before_script:
   - ls -a
   - git status
   - mysql -e 'create database IF NOT EXISTS egcajtk_egcdb;'
+  - mysql -u root -e "CREATE USER 'egcajtk_egc1617'@'localhost' IDENTIFIED BY 'egcajtk_egc1617';"
+  - mysql -u root -e "GRANT ALL ON egcajtk_egcdb.* TO 'egcajtk_egc1617'@'localhost';"
 script: phpunit auth/tests/databaseTest.php
 after_success:
   - echo 'after success'
