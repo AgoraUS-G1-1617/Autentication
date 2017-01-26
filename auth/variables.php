@@ -15,8 +15,8 @@
     //define("DB_HOST", "mysql:dbname=n260m_17280281_agoraus;host=sql210.260mb.net");
         
     define("DB_HOST", "mysql:dbname=egcajtk_egcdb;host=localhost");
-    define("DB_USER", "egcajtk_egc1617");
-    define("DB_PASS", "egc1617aj");
+    define("DB_USER", "root");
+    define("DB_PASS", "");
 	$socialNet=TRUE;
 	$DNIe=FALSE;
 	?>
