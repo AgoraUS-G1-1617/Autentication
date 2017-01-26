@@ -1,0 +1,18 @@
+language: php
+php:
+  - 5.6
+sudo: required
+dist: trusty
+before_install: echo 'before install'
+before_script:
+  - echo 'Antes de script'
+  - pwd
+  - ls -a
+  - git status
+script: phpunit tests/databaseTest.php
+after_success:
+  - echo 'after success'
+  - git remote add production https://{GH_REF}
+  - git remote -v
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master > /dev/null 2>&1
+after_script: echo 'after script'
