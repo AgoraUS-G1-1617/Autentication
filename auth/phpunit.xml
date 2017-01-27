@@ -10,7 +10,7 @@
 
     <filter>
         <whitelist>
-            <directory>./auth/tests</directory>
+            <directory>./auth/</directory>
             <exclude>
                 <directory>./auth/tests</directory>
             </exclude>
