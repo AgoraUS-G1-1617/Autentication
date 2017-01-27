@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<phpunit bootstrap="auth/tests/bootstrap.php" colors="true">
+<phpunit bootstrap="tests/bootstrap.php" colors="true">
 
     <testsuites>
         <testsuite name="Test para Autenticacion">
-            <directory>./auth/tests/</directory>
+            <directory>./tests/</directory>
         </testsuite>
     </testsuites>
 
     <filter>
         <whitelist>
-            <directory>./auth</directory>
+        
             <exclude>
                 <directory>./auth/tests</directory>
             </exclude>
