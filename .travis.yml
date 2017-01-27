@@ -18,7 +18,7 @@ before_script:
   - mysql -u root -e "GRANT ALL PRIVILEGES ON egcajtk_egcdb.* TO 'egcajtk_egc1617'@'localhost' IDENTIFIED BY 'egc1617aj';"
   - mysql -u root -e "show databases;"
   - mysql -u root -e "select * from mysql.user;"
-script: phpunit --configuration $TRAVIS_BUILD_DIR/phpunit.xml --coverage-text
+script: phpunit --configuration $TRAVIS_BUILD_DIR/auth/phpunit.xml --coverage-text
 
 after_success:
   - echo 'after success'
