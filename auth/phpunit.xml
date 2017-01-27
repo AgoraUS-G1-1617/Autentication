@@ -8,13 +8,5 @@
         </testsuite>
     </testsuites>
 
-    <filter>
-        <whitelist>
-            <directory>./auth/</directory>
-            <exclude>
-                <directory>./auth/tests</directory>
-            </exclude>
-        </whitelist>
-    </filter>
 
 </phpunit>
