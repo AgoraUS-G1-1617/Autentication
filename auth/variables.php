@@ -19,5 +19,5 @@
     define("DB_PASS", "egc1617aj");
 	$socialNet=TRUE;
 	$DNIe=FALSE;
-    //Cambio para ver si la funcionalidad de travis responde5.
+    //Cambio para ver si la funcionalidad de travis responde6.
 	?>
