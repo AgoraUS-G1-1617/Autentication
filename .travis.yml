@@ -9,9 +9,6 @@ dist: trusty
 before_install: echo 'before install'
 before_script:
   - echo 'Before script'
-  - pwd
-  - ls -a
-  - git status
   - mysql -e 'create database IF NOT EXISTS egcajtk_egcdb;' 
   - mysql -u root -e "USE egcajtk_egcdb;"
   - mysql -u root -e "CREATE USER 'egcajtk_egc1617'@'localhost' IDENTIFIED BY 'egc1617aj';"
