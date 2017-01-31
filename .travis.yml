@@ -18,4 +18,4 @@ before_script:
   - mysql -u root -e "GRANT ALL PRIVILEGES ON egcajtk_egcdb.* TO 'egcajtk_egc1617'@'localhost' IDENTIFIED BY 'egc1617aj';"
 
 script:
-  - phpunit --configuration $TRAVIS_BUILD_DIR/phpunit.xml 
+  - phpunit --configuration $TRAVIS_BUILD_DIR/phpunit.xml --log-junit result.xml
