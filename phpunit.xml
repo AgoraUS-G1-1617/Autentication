@@ -10,9 +10,9 @@
 
     <filter>
         <whitelist>
-            <directory>./tests</directory>
+            <directory>./</directory>
             <exclude>
-                <directory>./</directory>
+                <directory>./tests</directory>
             </exclude>
         </whitelist>
     </filter>
