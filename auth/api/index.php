@@ -11,10 +11,9 @@
     include_once "../database.php";
     include_once "../auth.php";
     if (!isset($_GET['method']) || $_GET['method'] == "") {
-    	$_SESSION['errorMessage'] = "No method specified";
-        badRequest();
+        badRequest(400, "No method introduced", null);
     } else {
-        switch ($_GET['method']) {
+        switch (strtolower($_GET['method'])) {
             case 'users':
                 if (!isset($_GET['id'])) {
                 	getUsers();
@@ -22,7 +21,7 @@
                     getUserAPI($_GET['id']);
                 }
                 break;
-            case 'checkToken':
+ /**           case 'checktoken':
                 if (!isset($_GET['token'])) {
                 	$_SESSION['errorMessage'] = "Token not specified";
                     badRequest();
@@ -30,23 +29,24 @@
                     checkToken($_GET['token']);
                 }
                 break;
-				
-			//TODO añadir todos los errores a la sesion, en vez de comprobar uno a uno
-            case 'checkTokenUser':
-                if (!isset($_GET['token'])) {
-                	$_SESSION['errorMessage'] = "Token not specified";
-                    badRequest();
+**/			
+            case 'token':
+                if (!isset($_GET['id'])) {
+                    badRequest(400, "Token not specified", null);
 				}
-				else if (!isset($_GET['id'])){
-					$_SESSION['errorMessage'] = "User not specified";
-					badRequest();
+				else if (!isset($_GET['id2'])){
+					//$_SESSION['errorMessage'] = "User not specified";
+					//badRequest();
+                    checkToken($_GET['id']);
                 } else {
-                    checkTokenUser($_GET['token'], $_GET['id']);
+                    checkTokenUser($_GET['id'], $_GET['id2']);
                 }
                 break;
             default:
-				$_SESSION['errorMessage'] = "Method not recognised. Recognised methods: USERS, checkTokenUser, checkToken";
-                badRequest();
+                $param[0] = "method";
+                $param[1] = $_GET['method'];
+                $params[0] = $param;
+                badRequest(400, "Method not recognised. Recognised methods: /USERS and /TOKEN", $params);
                 break;
         }
     }
@@ -54,14 +54,20 @@
     /**
     * \brief Código 400. Método no existe.
     */
-    function badRequest() {
+    function badRequest($code, $message, $params) {
         header('HTTP/1.1 400 Bad Request');
-		
-        echo "Bad Request.";
-		if(isset($_SESSION['errorMessage'])) {
-			echo " Error message: ";
-			echo $_SESSION['errorMessage'];
-		}
+		header('Content-type: application/json');
+
+        $error['code'] = $code;
+        $error['message'] = $message;
+        
+        if($params != null) {
+            foreach($params as $param) {
+                $error[$param[0]] = $param[1];
+            }
+        }
+        echo json_encode($error, JSON_UNESCAPED_SLASHES);
+        return json_encode($error, JSON_UNESCAPED_SLASHES);
     }
 
     /**
@@ -73,16 +79,20 @@
         header('HTTP/1.1 200 OK');
         header('Content-type: application/json');
         $user = getUser($username);
+
+        if($user == null) {
+            $param[0] = "user";
+            $param[1] = $username;
+            $params[0] = $param;
+            return badRequest(400, "User not found", $params);
+        }
+        
         $result['username'] = $user[0];
-        $result['password'] = $user[1];
+        //$result['password'] = $user[1];
         $result['email'] = $user[2];
         $result['genre'] = $user[3];
         $result['autonomous_community'] = $user[4];
         $result['age'] = $user[5];
-		
-		if($user == null) {
-            $result = "User not found";
-        }
 
         echo json_encode($result);
         return json_encode($result);
@@ -99,7 +109,7 @@
         $users=array();
         foreach (getAllUsers() as $user) {
             $addedUser['username'] = $user['USERNAME'];
-            $addedUser['password'] = $user['PASSWORD'];
+            //$addedUser['password'] = $user['PASSWORD'];
             $addedUser['email'] = $user['EMAIL'];
             $addedUser['genre'] = $user['GENRE'];
             $addedUser['autonomous_community'] = $user['AUTONOMOUS_COMMUNITY'];
@@ -116,6 +126,7 @@
     function checkToken($token) {
         header('HTTP/1.1 200 OK');
         //header('Content-type: application/json');
+        $result['token'] = $token;
         $result['valid']=tokenIsCorrect($token);
 
         echo json_encode($result);

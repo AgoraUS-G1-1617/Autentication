@@ -12,8 +12,9 @@
 	session_start();
 	
 	// Inicializamos o recuperamos la sesión
-	$formularioLogin = $_SESSION["formularioLogin"];
-	
+    if(!isset($_SESSION["formularioLogin"])) {
+	    $formularioLogin = $_SESSION["formularioLogin"];
+	}
 	// Asignamos valor por defecto a los elementos
 	if (!isset($formularioLogin)) {
 		$formularioLogin["username"] = "";

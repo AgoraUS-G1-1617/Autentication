@@ -1,30 +1,30 @@
 <?php
-/**
+/** 
 * @file
 * @group tests
-* \brief Clase para testear las funciones de operaciones con la base de datos.
+* \brief Clase para testear las funciones de operaciones con tokens.
 *
-* \details Clase que, usando el framework PHPUnit, pone a prueba a los 
-* distintos metodos database.php sobre operaciones sobre base de datos.
+* \details Clase que, usando el framework PHPUnit, pone a prueba a los distintos métodos
+* auth.php sobre operaciones con tokens.</p>
 * \author auth.agoraUS
 */
 
 chdir(dirname(__FILE__));
-include_once "../database.php";
-include_once "../auth.php";
+include_once "../auth/database.php";
+include_once "../auth/auth.php";
 
-    /**
-* \brief Clase para testear las funciones de operaciones con la base de datos.
+/** 
+* \brief Clase para testear las funciones de operaciones con tokens.
 *
-* \details  Clase que, usando el framework PHPUnit, pone a prueba a los 
-*           distintos metodos database.php sobre operaciones sobre base de datos.</p>
-* \author auth.agoraUS
+* \details Clase que, usando el framework PHPUnit, pone a prueba a los distintos métodos
+* auth.php sobre operaciones con tokens.</p>
+* * \author auth.agoraUS
 */
-class databaseTest extends PHPUnit_Framework_TestCase
+class tokenTest extends PHPUnit_Framework_TestCase
 {
 
     /**
-    * \brief Inicializacion de la prueba
+    * \brief Inicialización de la prueba
     */
     protected function setUp() {
         $con = connect();
@@ -44,7 +44,7 @@ class databaseTest extends PHPUnit_Framework_TestCase
                                         "Madrid",
                                         "Castilla y Leon",
                                         "Aragon",
-                                        "Catalu�a",
+                                        "Cataluña",
                                         "La Rioja",
                                         "Galicia",
                                         "Asturias",
@@ -100,68 +100,56 @@ class databaseTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-    * \brief Finalizacion de la prueba
+    * \brief Finalización de la prueba
     */
-    function tearDown() {
+    function tearDown(){
         $con = connect();
         $stmt = $con->query('
             DROP TABLE USERS;
             ');
     }
 
-    /** 
-    * \brief Test positivo de getUser()
+    /**
+    * \brief Test positivo de checkToken()
     */
-    function test_getUser() {
-        $emails = array(
-            "danayaher" => "danayaher@alum.us.es",
-            "dandelea" => "dandelea@alum.us.es",
-            "fidmazdel" => "fidmazdel@alum.us.es",
-            "juarolsal" => "juarolsal@alum.us.es",
-            "alesanmed" => "alesanmed@alum.us.es",
-            "juacaslop" => "juacaslop@alum.us.es");
-
-        $key = array_rand($emails);
-        $user = getUser($key);
-        $this->assertEquals($emails[$key], $user['EMAIL']);
+    public function test_checkToken(){
+        $username = "dandelea";
+		$user = getUser($username);
+        $password = $user['PASSWORD'];
+        $token = getToken($username, $password);
+        $this->assertTrue(tokenIsCorrect($token));
     }
 
     /**
-    * \brief Test positivo de getAllUsers()
+    * \brief Test positivo de chekTokenUser()
     */
-    function test_getAllUsers() {
-        $emails = array("danayaher", "dandelea", "fidmazdel", "juarolsal", "alesanmed", "juacaslop");
-        $users = getAllUsers();
-        foreach ($users as $user) {
-            $this->assertContains($user['USERNAME'], $emails);
-        }
-    }
-
-    /**
-    * \brief Test positivo de createUser()
-    */
-    function test_createUser() {
-        $username = "nombredeusuario";
-        $password = "password";
-        $email = "direcciondecorreo@alum.us.es";
-        $genre = "Femenino";
-        $autonomousCommunity = "Madrid";
-        $age = 50;
-        createUser($username, $password, $email, $genre, $autonomousCommunity, $age);
-        $foundUser = getUser($username);
-        $this->assertNotNull($foundUser);
-    }   
-
-    /**
-    * \brief Test negativo de getUser()
-    * @expectedException PHPUnit_Framework_ExpectationFailedException
-    */
-    function testNegative_getUser() {
-        $username = "incorrect_value";
+    public function test_checkTokenUser(){
+        $username = "dandelea";
         $user = getUser($username);
-        $this->assertEquals($username, $user['USERNAME']);
+        $password = $user['PASSWORD'];
+        $token = getToken($username, $password);
+        $this->assertTrue(checkUserToken($token, $username));
     }
 
-    
-        
+    /**
+        * \brief Test negativo de checkToken()
+        * @expectedException PHPUnit_Framework_ExpectationFailedException
+        */
+    public function testNegative_checkToken(){
+        $username = "dandelea";
+        $password = "incorrect_password";
+        $token = getToken($username, $password);
+        $this->assertTrue(tokenIsCorrect($token));
+    }
+
+    /**
+        * \brief Test negativo de checkTokenUser()
+        * @expectedException PHPUnit_Framework_ExpectationFailedException
+        */
+    public function testNegative_checkTokenUser(){
+        $username = "dandelea";
+        $password = "incorrect_password";
+        $token = getToken($username, $password);
+        $this->assertTrue(checkUserToken($token, $username));
+    }
 }
