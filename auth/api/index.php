@@ -11,8 +11,7 @@
     include_once "../database.php";
     include_once "../auth.php";
     if (!isset($_GET['method']) || $_GET['method'] == "") {
-    	$_SESSION['errorMessage'] = "No method specified";
-        badRequest();
+        badRequest(400, "No method introduced", null);
     } else {
         switch (strtolower($_GET['method'])) {
             case 'users':
@@ -33,7 +32,7 @@
 **/			
             case 'token':
                 if (!isset($_GET['id'])) {
-                    badRequest(400, "Token not specified");
+                    badRequest(400, "Token not specified", null);
 				}
 				else if (!isset($_GET['id2'])){
 					//$_SESSION['errorMessage'] = "User not specified";
@@ -61,11 +60,12 @@
 
         $error['code'] = $code;
         $error['message'] = $message;
-
-        foreach($params as $param) {
-            $error[$param[0]] = $param[1];
-        }
         
+        if($params != null) {
+            foreach($params as $param) {
+                $error[$param[0]] = $param[1];
+            }
+        }
         echo json_encode($error, JSON_UNESCAPED_SLASHES);
         return json_encode($error, JSON_UNESCAPED_SLASHES);
     }
@@ -126,6 +126,7 @@
     function checkToken($token) {
         header('HTTP/1.1 200 OK');
         //header('Content-type: application/json');
+        $result['token'] = $token;
         $result['valid']=tokenIsCorrect($token);
 
         echo json_encode($result);
