@@ -31,22 +31,20 @@
                 }
                 break;
 **/			
-            case 'checktoken':
-                if (!isset($_GET['token'])) {
-                	$_SESSION['errorMessage'] = "Token not specified";
-                    badRequest();
+            case 'token':
+                if (!isset($_GET['id'])) {
+                    badRequest(400, "Token not specified");
 				}
-				else if (!isset($_GET['id'])){
+				else if (!isset($_GET['id2'])){
 					//$_SESSION['errorMessage'] = "User not specified";
 					//badRequest();
-                    checkToken($_GET['token']);
+                    checkToken($_GET['id']);
                 } else {
-                    checkTokenUser($_GET['token'], $_GET['user']);
+                    checkTokenUser($_GET['id'], $_GET['id2']);
                 }
                 break;
             default:
-				$_SESSION['errorMessage'] = "Method not recognised. Recognised methods: /USERS/, /USERS/username, /checkToken/token, /checkToken/token/user";
-                badRequest();
+                badRequest(400, "Method {$_GET['method']} not recognised. Recognised methods: /USERS and /TOKEN");
                 break;
         }
     }
@@ -54,14 +52,15 @@
     /**
     * \brief Código 400. Método no existe.
     */
-    function badRequest() {
+    function badRequest($code, $message) {
         header('HTTP/1.1 400 Bad Request');
-		
-        echo "Bad Request.";
-		if(isset($_SESSION['errorMessage'])) {
-			echo " Error message: ";
-			echo $_SESSION['errorMessage'];
-		}
+		header('Content-type: application/json');
+
+        $error['code'] = $code;
+        $error['message'] = $message;
+        
+        echo json_encode($error, JSON_UNESCAPED_SLASHES);
+        return json_encode($error, JSON_UNESCAPED_SLASHES);
     }
 
     /**
