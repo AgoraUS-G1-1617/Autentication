@@ -19,7 +19,3 @@ before_script:
 
 script: phpunit --configuration $TRAVIS_BUILD_DIR/phpunit.xml --coverage-text
 
-after_success:
-  - echo 'after success'
-
-after_script: echo 'after script'
