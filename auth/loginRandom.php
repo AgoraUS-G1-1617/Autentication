@@ -12,7 +12,9 @@
 	session_start();
 	
 	// Inicializamos o recuperamos la sesión
-	$formularioLogin = $_SESSION["formularioRandom"];
+	if(!isset($_SESSION["formularioLogin"])) {
+	    $formularioLogin = $_SESSION["formularioLogin"];
+	}
 	
 	// Asignamos valor por defecto a los elementos
 	if (!isset($formularioRandom)) {
@@ -20,6 +22,12 @@
 	}
 	
 	$_SESSION["formularioRandom"] = $formularioRandom;
+
+    if(isset($_SESSION['error'])) {
+        $error = $_SESSION['error'];
+        unset($_SESSION['error']);
+        echo "<script>alert('{$error}');</script>";
+    }
 
 ?>
 

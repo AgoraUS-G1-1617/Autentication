@@ -12,7 +12,9 @@
 		// el campo email mínimo tiene que tener 6 caracteres, por ejemplo a@u.es
 		if (isset($formulario["username"]) && isset($formulario["pass"]) && strlen($formulario["username"]) > 3 && strlen($formulario["pass"]) >= 3) {
 			Header("Location: exitoLogin.php");
-		}
+		} else {
+            Header("Location: login.php");
+        }
 		
 	} else {
 		Header("Location: index.php");
