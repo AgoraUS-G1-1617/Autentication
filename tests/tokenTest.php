@@ -152,4 +152,18 @@ class tokenTest extends PHPUnit_Framework_TestCase
         $token = getToken($username, $password);
         $this->assertTrue(checkUserToken($token, $username));
     }
+
+    /**
+    * \brief Test positivo de setAuthCookie()
+    */
+    public function test_setAuthCookie(){
+        $username = "dandelea";
+        $user = getUser($username);
+        $password = $user['PASSWORD'];
+        $tokenPrueba = getToken($username, $password);
+        setAuthCookie($username, $password);
+        $this->assertTrue(isset($_COOKIE["token"]));
+        $cookie = isset($_COOKIE["token"]);
+        $this->assertTrue($cookie == $tokenPrueba);
+    }
 }
