@@ -23,6 +23,16 @@
 	
 	$_SESSION["formularioLogin"] = $formularioLogin;
 
+
+if(isset($_SESSION['error'])) {
+    $error = $_SESSION['error'];
+    unset($_SESSION['error']);
+    echo "<script>alert('{$error}');</script>";
+}
+
+
+
+
 ?>
 
 
