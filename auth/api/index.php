@@ -14,7 +14,7 @@
     	$_SESSION['errorMessage'] = "No method specified";
         badRequest();
     } else {
-        switch ($_GET['method']) {
+        switch (strtolower($_GET['method'])) {
             case 'users':
                 if (!isset($_GET['id'])) {
                 	getUsers();
@@ -22,7 +22,7 @@
                     getUserAPI($_GET['id']);
                 }
                 break;
-            case 'checkToken':
+ /**           case 'checktoken':
                 if (!isset($_GET['token'])) {
                 	$_SESSION['errorMessage'] = "Token not specified";
                     badRequest();
@@ -30,22 +30,22 @@
                     checkToken($_GET['token']);
                 }
                 break;
-				
-			//TODO añadir todos los errores a la sesion, en vez de comprobar uno a uno
-            case 'checkTokenUser':
+**/			
+            case 'checktoken':
                 if (!isset($_GET['token'])) {
                 	$_SESSION['errorMessage'] = "Token not specified";
                     badRequest();
 				}
 				else if (!isset($_GET['id'])){
-					$_SESSION['errorMessage'] = "User not specified";
-					badRequest();
+					//$_SESSION['errorMessage'] = "User not specified";
+					//badRequest();
+                    checkToken($_GET['token']);
                 } else {
-                    checkTokenUser($_GET['token'], $_GET['id']);
+                    checkTokenUser($_GET['token'], $_GET['user']);
                 }
                 break;
             default:
-				$_SESSION['errorMessage'] = "Method not recognised. Recognised methods: USERS, checkTokenUser, checkToken";
+				$_SESSION['errorMessage'] = "Method not recognised. Recognised methods: /USERS/, /USERS/username, /checkToken/token, /checkToken/token/user";
                 badRequest();
                 break;
         }
