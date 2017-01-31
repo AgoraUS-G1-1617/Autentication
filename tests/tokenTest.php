@@ -10,8 +10,8 @@
 */
 
 chdir(dirname(__FILE__));
-include_once "auth/database.php";
-include_once "auth/auth.php";
+include_once "../auth/database.php";
+include_once "../auth/auth.php";
 
 /** 
 * \brief Clase para testear las funciones de operaciones con tokens.
