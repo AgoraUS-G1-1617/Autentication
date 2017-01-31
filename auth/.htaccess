@@ -2,5 +2,6 @@
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule api/(\w+)(/(\w+)/?)+$ api/index.php?method=$1&id=$2&id2=$3[L,QSA]
+RewriteRule api/(\w+)/?$ api/index.php?method=$1
+RewriteRule api/(\w+)/(\w+)/?$ api/index.php?method=$1&id=$2 [L,QSA]
 </IfModule>
