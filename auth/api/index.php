@@ -44,7 +44,10 @@
                 }
                 break;
             default:
-                badRequest(400, "Method {$_GET['method']} not recognised. Recognised methods: /USERS and /TOKEN");
+                $param[0] = "method";
+                $param[1] = $_GET['method'];
+                $params[0] = $param;
+                badRequest(400, "Method not recognised. Recognised methods: /USERS and /TOKEN", $params);
                 break;
         }
     }
@@ -52,12 +55,16 @@
     /**
     * \brief Código 400. Método no existe.
     */
-    function badRequest($code, $message) {
+    function badRequest($code, $message, $params) {
         header('HTTP/1.1 400 Bad Request');
 		header('Content-type: application/json');
 
         $error['code'] = $code;
         $error['message'] = $message;
+
+        foreach($params as $param) {
+            $error[$param[0]] = $param[1];
+        }
         
         echo json_encode($error, JSON_UNESCAPED_SLASHES);
         return json_encode($error, JSON_UNESCAPED_SLASHES);
@@ -72,16 +79,20 @@
         header('HTTP/1.1 200 OK');
         header('Content-type: application/json');
         $user = getUser($username);
+
+        if($user == null) {
+            $param[0] = "user";
+            $param[1] = $username;
+            $params[0] = $param;
+            return badRequest(400, "User not found", $params);
+        }
+        
         $result['username'] = $user[0];
         //$result['password'] = $user[1];
         $result['email'] = $user[2];
         $result['genre'] = $user[3];
         $result['autonomous_community'] = $user[4];
         $result['age'] = $user[5];
-		
-		if($user == null) {
-            $result = "User not found";
-        }
 
         echo json_encode($result);
         return json_encode($result);
