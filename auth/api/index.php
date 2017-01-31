@@ -74,7 +74,7 @@
         header('Content-type: application/json');
         $user = getUser($username);
         $result['username'] = $user[0];
-        $result['password'] = $user[1];
+        //$result['password'] = $user[1];
         $result['email'] = $user[2];
         $result['genre'] = $user[3];
         $result['autonomous_community'] = $user[4];
@@ -99,7 +99,7 @@
         $users=array();
         foreach (getAllUsers() as $user) {
             $addedUser['username'] = $user['USERNAME'];
-            $addedUser['password'] = $user['PASSWORD'];
+            //$addedUser['password'] = $user['PASSWORD'];
             $addedUser['email'] = $user['EMAIL'];
             $addedUser['genre'] = $user['GENRE'];
             $addedUser['autonomous_community'] = $user['AUTONOMOUS_COMMUNITY'];
