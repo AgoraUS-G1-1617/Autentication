@@ -11,8 +11,7 @@
     include_once "../database.php";
     include_once "../auth.php";
     if (!isset($_GET['method']) || $_GET['method'] == "") {
-    	$_SESSION['errorMessage'] = "No method specified";
-        badRequest();
+        badRequest(400, "No method introduced", null);
     } else {
         switch (strtolower($_GET['method'])) {
             case 'users':
@@ -33,7 +32,7 @@
 **/			
             case 'token':
                 if (!isset($_GET['id'])) {
-                    badRequest(400, "Token not specified");
+                    badRequest(400, "Token not specified", null);
 				}
 				else if (!isset($_GET['id2'])){
 					//$_SESSION['errorMessage'] = "User not specified";
@@ -44,7 +43,10 @@
                 }
                 break;
             default:
-                badRequest(400, "Method {$_GET['method']} not recognised. Recognised methods: /USERS and /TOKEN");
+                $param[0] = "method";
+                $param[1] = $_GET['method'];
+                $params[0] = $param;
+                badRequest(400, "Method not recognised. Recognised methods: /USERS and /TOKEN", $params);
                 break;
         }
     }
@@ -52,13 +54,18 @@
     /**
     * \brief Código 400. Método no existe.
     */
-    function badRequest($code, $message) {
+    function badRequest($code, $message, $params) {
         header('HTTP/1.1 400 Bad Request');
 		header('Content-type: application/json');
 
         $error['code'] = $code;
         $error['message'] = $message;
         
+        if($params != null) {
+            foreach($params as $param) {
+                $error[$param[0]] = $param[1];
+            }
+        }
         echo json_encode($error, JSON_UNESCAPED_SLASHES);
         return json_encode($error, JSON_UNESCAPED_SLASHES);
     }
@@ -72,16 +79,20 @@
         header('HTTP/1.1 200 OK');
         header('Content-type: application/json');
         $user = getUser($username);
+
+        if($user == null) {
+            $param[0] = "user";
+            $param[1] = $username;
+            $params[0] = $param;
+            return badRequest(400, "User not found", $params);
+        }
+        
         $result['username'] = $user[0];
         //$result['password'] = $user[1];
         $result['email'] = $user[2];
         $result['genre'] = $user[3];
         $result['autonomous_community'] = $user[4];
         $result['age'] = $user[5];
-		
-		if($user == null) {
-            $result = "User not found";
-        }
 
         echo json_encode($result);
         return json_encode($result);
@@ -115,6 +126,7 @@
     function checkToken($token) {
         header('HTTP/1.1 200 OK');
         //header('Content-type: application/json');
+        $result['token'] = $token;
         $result['valid']=tokenIsCorrect($token);
 
         echo json_encode($result);
