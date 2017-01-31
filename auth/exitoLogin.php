@@ -25,7 +25,8 @@ $conexion = connect();
 			Header("Location: loginRandom.php");
 			
 		} else {
-			Header("Location: index.php");
+            $_SESSION['error'] = "Login incorrecto";
+			Header("Location: login.php");
 		}
 		?>
 	</body>

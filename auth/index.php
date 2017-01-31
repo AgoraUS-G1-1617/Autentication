@@ -22,6 +22,7 @@ $permissions = array('email');
 $loginUrl = $helper -> getLoginUrl('https://beta.autha.agoraus1.egc.duckdns.org/fb-callback.php', $permissions);
 
 include_once 'variables.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml">
