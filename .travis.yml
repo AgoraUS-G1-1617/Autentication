@@ -16,3 +16,5 @@ before_script:
 
 script:
   - phpunit --configuration $TRAVIS_BUILD_DIR/phpunit.xml
+  
+  
