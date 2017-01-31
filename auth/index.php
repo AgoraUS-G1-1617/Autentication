@@ -82,9 +82,9 @@ include_once 'variables.php';
 		  </div>
 
        	  <div class="col-md-3">
-				<input  onClick="location.href = 'loginNotDNIe.php' "
+				<input  onClick="location.href = 'login.php' "
 
-		                            id="loginNotDNIe" 
+		                            id="login" 
 		                            type="button"
 		                            value ="Entrar sin DNIe" 
 		                           	class="btn btn-info"/>
@@ -124,9 +124,9 @@ include_once 'variables.php';
 		                    	class="btn btn-info"/>	
        	</div>
        	<div class="col-md-3">
-				<input  onClick="location.href = 'loginNotDNIe.php' "
+				<input  onClick="location.href = 'login.php' "
 
-		                            id="loginNotDNIe" 
+		                            id="login" 
 		                            type="button"
 		                            value ="Entrar sin DNIe" 
 		                           	class="btn btn-info"/>
@@ -152,7 +152,7 @@ include_once 'variables.php';
 		  </div>
 		<div class="col-md-4">
 				<input  onClick="location.href = 'login.php' "
-		                            id="loginNotDNIe" 
+		                            id="login" 
 		                            type="button"
 		                            value ="Entrar sin DNIe" 
 		                           	class="btn btn-info"/>
@@ -171,7 +171,7 @@ include_once 'variables.php';
 	<?php elseif ($socialNet===FALSE && $DNIe===FALSE): ?>
 		<div class="col-md-6">
 				<input  onClick="location.href = 'login.php' "
-		                            id="loginNotDNIe" 
+		                            id="login" 
 		                            type="button"
 		                            value ="Entrar sin DNIe" 
 		                           	class="btn btn-info"/>
