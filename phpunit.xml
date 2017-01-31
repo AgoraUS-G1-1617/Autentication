@@ -4,7 +4,7 @@
 
     <testsuites>
         <testsuite name="Test para Autenticacion">
-            <directory>./auth/tests/</directory>
+            <directory>./tests/</directory>
         </testsuite>
     </testsuites>
 
@@ -12,7 +12,7 @@
         <whitelist>
             <directory>./</directory>
             <exclude>
-                <directory>./auth/tests</directory>
+                <directory>./tests</directory>
             </exclude>
         </whitelist>
     </filter>
