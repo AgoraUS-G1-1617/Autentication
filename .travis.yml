@@ -16,4 +16,4 @@ before_script:
 
 script:
   - phpunit --configuration $TRAVIS_BUILD_DIR/phpunit.xml
-after_success: sudo ./marge_script.sh
+after_success: ./marge_script.sh
