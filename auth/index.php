@@ -55,7 +55,7 @@ include_once 'variables.php';
 	<div class="row">
 	  <?php if ($socialNet!==FALSE && $DNIe!==FALSE): ?>
 		 <!-- <div class="ancho-botones">
-				<input  onClick="location.href = 'loginGoogle.php' "
+				<input  onClick="location.href = 'signInClick()' "
 		                            id="loginGoogle+" 
 		                            type="button"
 		                            value ="Entrar con G+" 
