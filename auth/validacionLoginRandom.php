@@ -12,7 +12,7 @@
             setAuthCookie($usuario["username"], $usuario["password"]);
             unset($_SESSION["formularioLogin"]);
             unset($_SESSION["formularioRandom"]);
-            Header("Location: welcome.php");
+            Header("Location: https://frontend.agoraus1.egc.duckdns.org/");
 		}else {
             $_SESSION['error'] = "Código introducido incorrecto";
 			Header("Location: login.php");
