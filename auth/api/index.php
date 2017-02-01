@@ -21,12 +21,15 @@
                     getUserAPI($_GET['id']);
                 }
                 break;
-            case 'getusers':
+            case 'getuser':
                 if (!isset($_GET['user'])) {
                 	getUsers();
                 } else {
                     getUserAPI($_GET['user']);
                 }
+                break;
+            case 'getusers':
+                	getUsers();
                 break;
  /**           case 'checktoken':
                 if (!isset($_GET['token'])) {
