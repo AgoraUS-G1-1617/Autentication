@@ -266,7 +266,7 @@ $_SESSION['registerForm'] = $registerForm;
 <br />
 <br />
                 
-                <div class="g-recaptcha" data-sitekey="{$clave_del_sitio}" align="center"></div>
+                <div class="g-recaptcha" data-sitekey="6LcHAhQUAAAAAIPATCFr2lICE5vwn_ACNuNpfKjJ" align="center"></div>
                 <div align="center">  
                 	<input  type="submit" 
                             id="submit" 
