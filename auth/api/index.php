@@ -21,6 +21,16 @@
                     getUserAPI($_GET['id']);
                 }
                 break;
+            case 'getuser':
+                if (!isset($_GET['user'])) {
+                	getUsers();
+                } else {
+                    getUserAPI($_GET['user']);
+                }
+                break;
+            case 'getusers':
+                	getUsers();
+                break;
  /**           case 'checktoken':
                 if (!isset($_GET['token'])) {
                 	$_SESSION['errorMessage'] = "Token not specified";
@@ -29,7 +39,18 @@
                     checkToken($_GET['token']);
                 }
                 break;
-**/			
+**/			case 'checktoken':
+                if (!isset($_GET['token'])) {
+                    badRequest(400, "Token not specified", null);
+				}
+				else if (!isset($_GET['user'])){
+					//$_SESSION['errorMessage'] = "User not specified";
+					//badRequest();
+                    checkToken($_GET['token']);
+                } else {
+                    checkTokenUser($_GET['token'], $_GET['user']);
+                }
+                break;
             case 'token':
                 if (!isset($_GET['id'])) {
                     badRequest(400, "Token not specified", null);
