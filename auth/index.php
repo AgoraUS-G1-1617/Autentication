@@ -61,20 +61,22 @@ include_once 'variables.php';
 		                            value ="Entrar con G+" 
 		                    	class="btn btn-info"/>	
     </div>-->
-       	<div class="col-md-3">
+       	<div class="ancho-botones">
 				<input  onClick="location.href = 'process.php' "
 		                            id="loginTwiter" 
 		                            type="button"
 		                            value ="Entrar con Twiter" 
 		                    	class="btn btn-info"/>	
        	</div>
-       	<div class="col-md-3">
+       	<div class="ancho-botones">
 				<input  onClick="location.href = 'loginFacebook.php' "
 		                            id="loginFacebook" 
 		                            type="button"
 		                            value ="Entrar con Facebook" 
 		                    	class="btn btn-info"/>	
        	</div>
+       	<div class="ancho-botones">
+
 				<input  onClick="location.href = 'loginDNIe.php' "
 		                            id="loginDNIe" 
 		                            type="button"
@@ -82,7 +84,7 @@ include_once 'variables.php';
 		                           	class="btn btn-info"/>
 		  </div>
 
-       	  <div class="col-md-3">
+       	  <div class="ancho-botones">
 				<input  onClick="location.href = 'login.php' "
 
 		                            id="login" 
@@ -91,7 +93,7 @@ include_once 'variables.php';
 		                           	class="btn btn-info"/>
 		
 		  </div>
-	  <div class="col-md-3">
+	  <div class="ancho-botones">
 	  	<div class="register">
 			<input  onClick="location.href = 'register.php' "
 	                            id="register" 
@@ -132,7 +134,7 @@ include_once 'variables.php';
 		                            value ="Entrar sin DNIe" 
 		                           	class="btn btn-info"/>
 		
-		  </div>
+		</div>
 	  	<div class="col-md-3">
 	  	<div class="register">
 			<input  onClick="location.href = 'register.php' "
