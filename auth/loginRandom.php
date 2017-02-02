@@ -68,7 +68,7 @@
 	
 	<?php
 		$d = mt_rand(10000,99999);
-		$formularioRandom["codigo"] = md5($d);
+		$formularioRandom["codigo"] = $d;
 	
 		$_SESSION["formularioRandom"] = $formularioRandom;
 		
